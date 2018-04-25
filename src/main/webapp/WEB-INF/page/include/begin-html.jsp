@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+	crossorigin="anonymous">
+
+<title>Каталог автомобилей</title>
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" href="MainServlet?action=mainAction">Каталог
+					автомобилей</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+					<c:if test="${user!=null}">
+						<c:if test="${user.rolesID==2}">
+							<li class="nav-item"><a class="nav-link"
+								href="do?command=AddCar">Добавить автомобиль</a></li>
+						</c:if>
+
+						<c:if test="${user.rolesID==1}">
+							<li class="nav-item"><a class="nav-link"
+								href="do?command=AllCarsUser">Автомобили пользователей</a></li>
+						</c:if>
+						<c:if test="${user.rolesID==2}">
+							<li class="nav-item"><a class="nav-link"
+								href="do?command=AllCarsUser">Автомобили пользователя</a></li>
+						</c:if>
+
+					</c:if>
+
+				</ul>
+				<div align="right">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0" align="right">
+						<c:if test="${user==null}">
+							<li class="nav-item active"><a class="nav-link"
+								href="MainServlet?action=loginAction">Войти</a></li>
+							<li class="nav-item active"><a class="nav-link"
+								href="MainServlet?action=signupAction">Зарегистрироваться</a></li>
+						</c:if>
+						<c:if test="${user!=null}">
+							<li class="nav-item active"><a class="nav-link"
+								href="do?command=Profile">${user.login}</a></li>
+							<li class="nav-item active"><a class="nav-link"
+								href="do?command=Logout">Выйти</a></li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
