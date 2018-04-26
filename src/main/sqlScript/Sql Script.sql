@@ -54,6 +54,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `fk_users_roles` FOREIGN KEY (`roleID`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+-- Дамп структуры для таблица car_catalog.favorites
+CREATE TABLE IF NOT EXISTS `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL DEFAULT '0',
+  `carID` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_favorites_user` (`userID`),
+  KEY `fk_favorites_car` (`carID`),
+  CONSTRAINT `fk_favorites_car` FOREIGN KEY (`carID`) REFERENCES `cars` (`id`),
+  CONSTRAINT `fk_favorites_user` FOREIGN KEY (`userID`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- Дамп данных таблицы car_catalog.brands_car
 INSERT INTO `brands_car` (`id`, `brand`) VALUES
   (1, 'Audi'),
