@@ -86,4 +86,4 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 -- Дамп данных таблицы car_catalog.users
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `roleID`) VALUES
   (1, 'admin', 'admin@gmail.com', 'admin', 1),
-  (2, 'user', 'user@gmail.com', 'user', 2),
+  (2, 'user', 'user@gmail.com', 'user', 2);
