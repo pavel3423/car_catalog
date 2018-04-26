@@ -87,4 +87,3 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `roleID`) VALUES
   (1, 'admin', 'admin@gmail.com', 'admin', 1),
   (2, 'user', 'user@gmail.com', 'user', 2),
-  (3, 'login', 'email', 'password', 2);
