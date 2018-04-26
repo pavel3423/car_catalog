@@ -2,16 +2,15 @@ package by.htp.car_catalog.dao.hbn;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import by.htp.car_catalog.dao.UserDao;
-import by.htp.car_catalog.domain.User;
+import by.htp.car_catalog.dao.CarDao;
+import by.htp.car_catalog.domain.Car;
 
-public class UserDaoHibernateImpl implements UserDao {
+public class CarDaoHibernateImpl implements CarDao {
 
 	@Override
-	public void create(User entity) {
+	public void create(Car entity) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -21,25 +20,25 @@ public class UserDaoHibernateImpl implements UserDao {
 	}
 
 	@Override
-	public User read(int id) {
+	public Car read(int id) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		return (User) session.load(User.class, id);
+		return (Car) session.load(Car.class, id);
 	}
 
 	@Override
-	public List<User> readAll() {
+	public List<Car> readAll() {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		List<User> users = session.createCriteria(User.class).list();
+		List<Car> cars = session.createCriteria(Car.class).list();
 
-		return users;
+		return cars;
 	}
 
 	@Override
-	public void update(User entity) {
+	public void update(Car entity) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -53,7 +52,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.delete(new User(id));
+		session.delete(new Car(id));
 		session.getTransaction().commit();
 
 	}

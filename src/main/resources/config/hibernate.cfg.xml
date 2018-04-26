@@ -26,6 +26,7 @@
 		</property>
 
 		<mapping resource="hbm/user.hbm.xml" />
+		<mapping resource="hbm/car.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

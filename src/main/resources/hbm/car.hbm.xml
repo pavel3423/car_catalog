@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="by.htp.car_catalog.domain.Car" table="cars">
+
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="brandID" type="int">
+			<column name="brandID" />
+		</property>
+
+		<property name="modelID" type="int">
+			<column name="modelID" />
+		</property>
+
+		<property name="carClass" type="java.lang.String">
+			<column name="carClass" />
+		</property>
+
+		<property name="minPrice" type="int">
+			<column name="minPrice" />
+		</property>
+
+		<property name="maxPrice" type="int">
+			<column name="minPrice" />
+		</property>
+
+	</class>
+</hibernate-mapping>
