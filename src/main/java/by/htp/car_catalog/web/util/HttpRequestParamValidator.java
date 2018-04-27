@@ -4,11 +4,16 @@ public final class HttpRequestParamValidator {
 	private HttpRequestParamValidator() {
 	}
 
-	public static void validateRequestParamNotNull(String... str) {
+	public static boolean validateRequestParamNotNull(String... str) {
 		for (String s : str) {
+
 			if (s == null) {
-				throw new ValidateNullParamException("Empty parameter recieved");
+
+				return false;
 			}
+
 		}
+
+		return true;
 	}
 }

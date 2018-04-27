@@ -38,19 +38,18 @@ public class LogInAction implements BaseAction {
 		User user = userService.getUser(login);
 
 		if (user.getPassword().equals(req.getParameter(REQUEST_PARAM_USER_PASSWORD))) {
-			
+
 			HttpSession session = req.getSession();
 			session.setAttribute(REQUEST_PARAM_USER, user);
-			req.setAttribute("action", ACTION_NAME_PROFILE);
-			
+			req.setAttribute(REQUEST_PARAM_ACTION, ACTION_NAME_PROFILE);
+
 			return null;
-		}else {
-			
+		} else {
+
 			req.setAttribute(REQUEST_MSG, "Неверное имя пользователя или пароль");
-			
+
 			return PAGE_USER_LOGIN;
 		}
-
 
 	}
 }
