@@ -8,4 +8,9 @@
 		<property name="userDao" ref="userDao" />
 	</bean>
 
+	<bean id="brandService"
+		class="by.htp.car_catalog.service.impl.BrandServiceImpl">
+		<property name="brandDao" ref="brandDao" />
+	</bean>
+
 </beans>

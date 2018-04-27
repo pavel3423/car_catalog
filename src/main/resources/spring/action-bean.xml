@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean name="main_action"
-		class="by.htp.car_catalog.web.action.impl.MainAction" />
+		class="by.htp.car_catalog.web.action.impl.MainAction">
+		<property name="brandService" ref="brandService" />
+	</bean>
 
 	<bean name="signup_action"
 		class="by.htp.car_catalog.web.action.impl.SignUpAction" />

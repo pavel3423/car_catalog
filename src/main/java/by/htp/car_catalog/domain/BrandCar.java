@@ -4,34 +4,34 @@ public class BrandCar extends Entity {
 
 	private static final long serialVersionUID = -6226794434941096791L;
 
-	private String role;
+	private String brand;
 
 	public BrandCar() {
 	}
 
-	public BrandCar(int id, String role) {
+	public BrandCar(int id, String brand) {
 		super(id);
-		this.role = role;
+		this.brand = brand;
 	}
 
-	public String getRole() {
-		return role;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [role=" + role + ", getId()=" + getId() + "]";
+		return "Brand [brand=" + brand + ", getId()=" + getId() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
 		return result;
 	}
 
@@ -44,10 +44,10 @@ public class BrandCar extends Entity {
 		if (getClass() != obj.getClass())
 			return false;
 		BrandCar other = (BrandCar) obj;
-		if (role == null) {
-			if (other.role != null)
+		if (brand == null) {
+			if (other.brand != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!brand.equals(other.brand))
 			return false;
 		return true;
 	}
