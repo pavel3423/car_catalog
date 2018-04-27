@@ -2,6 +2,7 @@ package by.htp.car_catalog.web.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,14 +44,30 @@ public class MainServlet extends HttpServlet {
 		try {
 
 			if (action != null) {
+
 				String page = baseAction.executeAction(req);
-				req.getRequestDispatcher(page).forward(req, resp);
+				String newAction = (String) req.getAttribute(REQUEST_PARAM_ACTION);
+
+				if (newAction != null && !action.equals(newAction)) {
+
+					resp.sendRedirect("do?action=" + newAction);
+				} else {
+
+					req.getRequestDispatcher(page).forward(req, resp);
+				}
+
 			} else {
 				resp.getWriter().println("Incorrect Action");
 			}
 
 		} catch (ServletException | IOException e) {
 			LogManager.getLogger().error("Error class MainServlet", e);
+			try {
+				req.getRequestDispatcher(PAGE_USER_ERROR).forward(req, resp);
+			} catch (ServletException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}

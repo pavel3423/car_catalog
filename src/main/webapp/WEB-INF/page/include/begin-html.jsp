@@ -26,46 +26,33 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<a class="navbar-brand" href="do?action=mainAction">Каталог
+				<a class="navbar-brand" href="do?action=main_action">Каталог
 					автомобилей</a>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-					<c:if test="${user!=null}">
-						<c:if test="${user.rolesID==2}">
-							<li class="nav-item"><a class="nav-link"
-								href="do?command=AddCar">Добавить автомобиль</a></li>
-						</c:if>
 
-						<c:if test="${user.rolesID==1}">
-							<li class="nav-item"><a class="nav-link"
-								href="do?command=AllCarsUser">Автомобили пользователей</a></li>
-						</c:if>
-						<c:if test="${user.rolesID==2}">
-							<li class="nav-item"><a class="nav-link"
-								href="do?command=AllCarsUser">Автомобили пользователя</a></li>
-						</c:if>
-
-					</c:if>
 
 				</ul>
 				<div align="right">
 					<ul class="navbar-nav mr-auto mt-2 mt-lg-0" align="right">
-						<c:if test="${user==null}">
+
+						<c:if test="${user==null }">
 							<li class="nav-item active"><a class="nav-link"
-								href="do?action=loginAction">Войти</a></li>
+								href="do?action=login_action">Войти</a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="do?action=signupAction">Зарегистрироваться</a></li>
+								href="do?action=signup_action">Зарегистрироваться</a></li>
 						</c:if>
-						<c:if test="${user!=null}">
+
+						<c:if test="${user!=null }">
 							<li class="nav-item active"><a class="nav-link"
-								href="do?command=Profile">${user.login}</a></li>
+								href="do?action=profile_action">Профиль</a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="do?command=Logout">Выйти</a></li>
+								href="do?action=logout_action">Выйти</a></li>
 						</c:if>
+
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
-
 	<div class="container">

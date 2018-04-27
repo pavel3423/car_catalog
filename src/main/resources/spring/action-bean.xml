@@ -3,15 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean name="mainAction"
+	<bean name="main_action"
 		class="by.htp.car_catalog.web.action.impl.MainAction" />
 
-	<bean name="signupAction"
+	<bean name="signup_action"
 		class="by.htp.car_catalog.web.action.impl.SignUpAction" />
 
-	<bean name="loginAction"
+	<bean name="login_action"
 		class="by.htp.car_catalog.web.action.impl.LogInAction">
 		<property name="userService" ref="userService" />
 	</bean>
+
+	<bean name="profile_action"
+		class="by.htp.car_catalog.web.action.impl.ProfileAction"></bean>
 
 </beans>

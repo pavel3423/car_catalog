@@ -32,16 +32,25 @@ public class LogInAction implements BaseAction {
 	}
 
 	private String authorization(HttpServletRequest req) {
+
 		String login = req.getParameter(REQUEST_PARAM_USER_LOGIN);
 		HttpRequestParamValidator.validateRequestParamNotNull(login);
 		User user = userService.getUser(login);
-		if (user.getPassword().equals(req.getParameter(REQUEST_PARAM_USER_PASSWORD))) {
-			HttpSession session = req.getSession();
-			session.setAttribute("user", user);
 
-			return PAGE_USER_PROFILE;
+		if (user.getPassword().equals(req.getParameter(REQUEST_PARAM_USER_PASSWORD))) {
+			
+			HttpSession session = req.getSession();
+			session.setAttribute(REQUEST_PARAM_USER, user);
+			req.setAttribute("action", ACTION_NAME_PROFILE);
+			
+			return null;
+		}else {
+			
+			req.setAttribute(REQUEST_MSG, "Неверное имя пользователя или пароль");
+			
+			return PAGE_USER_LOGIN;
 		}
 
-		return PAGE_USER_PROFILE;
+
 	}
 }

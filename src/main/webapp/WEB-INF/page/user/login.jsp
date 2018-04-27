@@ -2,9 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/begin-html.jsp"%>
 
-<c:out value="${msg}"></c:out>
+<br>
+<c:if test="${msg!=null}">
+	<div class="alert alert-danger" role="alert">
+		<c:out value="${msg}"></c:out>
+	</div>
+</c:if>
 
-<form class="form-horizontal" action="do?action=loginAction"
+<form class="form-horizontal" action="do?action=login_action"
 	method="POST">
 	<fieldset>
 

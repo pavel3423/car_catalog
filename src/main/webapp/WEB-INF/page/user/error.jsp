@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/begin-html.jsp"%>
 
-<c:out value="${msg}"></c:out>
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">Error</h1>
+		<p class="lead">
+			<c:out value="${msg}"></c:out>
+		</p>
+	</div>
+</div>
 
-Error
-
-<%@ include file="../include/end-html.jsp"%>

@@ -3,6 +3,49 @@
 <%@ include file="../include/begin-html.jsp"%>
 
 <c:out value="${msg}"></c:out>
-HELLO MAIN JSP
+<div class="row">
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+	<div class="col-md-2">
+		<a href="URL">Audi</a>
+	</div>
+</div>
 
 <%@ include file="../include/end-html.jsp"%>

@@ -1,3 +1,3 @@
 <jsp:forward page="/do">
-	<jsp:param value="mainAction" name="action" />
+	<jsp:param value="main_action" name="action" />
 </jsp:forward>
