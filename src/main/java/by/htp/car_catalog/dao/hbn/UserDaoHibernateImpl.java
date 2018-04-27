@@ -2,8 +2,9 @@ package by.htp.car_catalog.dao.hbn;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import by.htp.car_catalog.dao.UserDao;
 import by.htp.car_catalog.domain.User;
@@ -27,6 +28,23 @@ public class UserDaoHibernateImpl implements UserDao {
 		session.beginTransaction();
 
 		return (User) session.load(User.class, id);
+	}
+
+	@Override
+	public User read(String login) {
+
+		Session session = SessionFactoryManager.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.createCriteria(User.class).add(Restrictions.eq("login", login)).list();
+		List<User> users = session.createCriteria(User.class).add(Restrictions.eq("login", login)).list();
+
+		if (users.size() > 0) {
+
+			return users.get(0);
+		} else {
+
+			return null;
+		}
 	}
 
 	@Override

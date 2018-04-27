@@ -21,12 +21,12 @@ public class Main {
 		// System.out.println(user);
 		// }
 
-		User user = new User(0, "login", "email", "password", 2);
-		dao.create(user);
+		// User user = new User(0, "login", "email", "password", 2);
+		// dao.create(user);
 		// System.out.println(dao.read(3));
 		// user.setLogin("newlogin");
 		// dao.update(user);
-		// System.out.println(dao.read(5));
+		System.out.println(dao.read(""));
 		// dao.delete(4);
 		// dao.delete(5);
 		// System.out.println(dao.read(3));

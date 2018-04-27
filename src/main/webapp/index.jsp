@@ -1,3 +1,3 @@
-<jsp:forward page="/MainServlet">
+<jsp:forward page="/do">
 	<jsp:param value="mainAction" name="action" />
 </jsp:forward>

@@ -15,7 +15,7 @@
 
 	<servlet-mapping>
 		<servlet-name>MainServlet</servlet-name>
-		<url-pattern>/MainServlet</url-pattern>
+		<url-pattern>/do</url-pattern>
 	</servlet-mapping>
 
 	<context-param>

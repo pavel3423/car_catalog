@@ -26,7 +26,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<a class="navbar-brand" href="MainServlet?action=mainAction">Каталог
+				<a class="navbar-brand" href="do?action=mainAction">Каталог
 					автомобилей</a>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
@@ -52,9 +52,9 @@
 					<ul class="navbar-nav mr-auto mt-2 mt-lg-0" align="right">
 						<c:if test="${user==null}">
 							<li class="nav-item active"><a class="nav-link"
-								href="MainServlet?action=loginAction">Войти</a></li>
+								href="do?action=loginAction">Войти</a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="MainServlet?action=signupAction">Зарегистрироваться</a></li>
+								href="do?action=signupAction">Зарегистрироваться</a></li>
 						</c:if>
 						<c:if test="${user!=null}">
 							<li class="nav-item active"><a class="nav-link"

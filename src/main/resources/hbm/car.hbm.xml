@@ -27,7 +27,7 @@
 		</property>
 
 		<property name="maxPrice" type="int">
-			<column name="minPrice" />
+			<column name="maxPrice" />
 		</property>
 
 	</class>

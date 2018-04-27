@@ -7,4 +7,8 @@
 		class="by.htp.car_catalog.dao.hbn.UserDaoHibernateImpl">
 	</bean>
 
+	<bean name="carDao"
+		class="by.htp.car_catalog.dao.hbn.CarDaoHibernateImpl">
+	</bean>
+
 </beans>

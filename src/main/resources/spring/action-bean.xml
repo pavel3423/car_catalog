@@ -10,6 +10,8 @@
 		class="by.htp.car_catalog.web.action.impl.SignUpAction" />
 
 	<bean name="loginAction"
-		class="by.htp.car_catalog.web.action.impl.LogInAction" />
+		class="by.htp.car_catalog.web.action.impl.LogInAction">
+		<property name="userService" ref="userService" />
+	</bean>
 
 </beans>

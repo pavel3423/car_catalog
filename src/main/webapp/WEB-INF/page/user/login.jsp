@@ -4,7 +4,7 @@
 
 <c:out value="${msg}"></c:out>
 
-<form class="form-horizontal" action="do?command=Login"
+<form class="form-horizontal" action="do?action=loginAction"
 	method="POST">
 	<fieldset>
 
@@ -16,7 +16,7 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="Login">Login</label>
 			<div class="col-md-4">
-				<input id="Login" name="Login" type="text" placeholder="Login"
+				<input id="login" name="login" type="text" placeholder="Login"
 					class="form-control input-md">
 
 			</div>
@@ -26,7 +26,7 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="Password">Password</label>
 			<div class="col-md-4">
-				<input id="Password" name="Password" type="password"
+				<input id="password" name="password" type="password"
 					placeholder="Password" class="form-control input-md">
 			</div>
 		</div>
