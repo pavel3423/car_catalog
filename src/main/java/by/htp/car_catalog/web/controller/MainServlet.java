@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -56,12 +57,14 @@ public class MainServlet extends HttpServlet {
 				}
 
 			} else {
-				getRequestDispatcher(req, resp, PAGE_USER_ERROR);
+				sendErrorPage(req, resp, "Command not found");
 			}
 		} catch (RequestIOException | IOException e) {
 			LogManager.getLogger().error("Error class MainServlet", e);
 		} catch (NoSuchBeanDefinitionException e) {
-			getRequestDispatcher(req, resp, PAGE_USER_ERROR);
+			sendErrorPage(req, resp, "The command is not correct");
+		}catch(JDBCConnectionException e) {
+			sendErrorPage(req, resp, "No connection to the database");
 		}
 
 	}
@@ -73,6 +76,13 @@ public class MainServlet extends HttpServlet {
 		} catch (ServletException | IOException e) {
 			throw new RequestIOException(e);
 		}
+
+	}
+
+	private void sendErrorPage(HttpServletRequest req, HttpServletResponse resp, String errorMsg) {
+
+		req.setAttribute(REQUEST_MSG, errorMsg);
+		getRequestDispatcher(req, resp, PAGE_USER_ERROR);
 
 	}
 
