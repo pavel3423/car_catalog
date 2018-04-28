@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import by.htp.car_catalog.web.action.ActionManagerContext;
 import by.htp.car_catalog.web.action.BaseAction;
+import by.htp.car_catalog.web.util.RequestIOException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
@@ -38,9 +40,8 @@ public class MainServlet extends HttpServlet {
 				.getWebApplicationContext(servletContext);
 
 		String action = req.getParameter(REQUEST_PARAM_ACTION);
-		BaseAction baseAction = ActionManagerContext.getAction(action, webApplicationContext);
-
 		try {
+			BaseAction baseAction = ActionManagerContext.getAction(action, webApplicationContext);
 
 			if (action != null) {
 
@@ -48,25 +49,29 @@ public class MainServlet extends HttpServlet {
 				String newAction = (String) req.getAttribute(REQUEST_PARAM_ACTION);
 
 				if (newAction != null && !action.equals(newAction)) {
-
 					resp.sendRedirect("do?action=" + newAction);
-				} else {
 
-					req.getRequestDispatcher(page).forward(req, resp);
+				} else {
+					getRequestDispatcher(req, resp, page);
 				}
 
 			} else {
-				resp.getWriter().println("Incorrect Action");
+				getRequestDispatcher(req, resp, PAGE_USER_ERROR);
 			}
-
-		} catch (ServletException | IOException e) {
+		} catch (RequestIOException | IOException e) {
 			LogManager.getLogger().error("Error class MainServlet", e);
-			try {
-				req.getRequestDispatcher(PAGE_USER_ERROR).forward(req, resp);
-			} catch (ServletException | IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		} catch (NoSuchBeanDefinitionException e) {
+			getRequestDispatcher(req, resp, PAGE_USER_ERROR);
+		}
+
+	}
+
+	private void getRequestDispatcher(HttpServletRequest req, HttpServletResponse resp, String page) {
+
+		try {
+			req.getRequestDispatcher(page).forward(req, resp);
+		} catch (ServletException | IOException e) {
+			throw new RequestIOException(e);
 		}
 
 	}
