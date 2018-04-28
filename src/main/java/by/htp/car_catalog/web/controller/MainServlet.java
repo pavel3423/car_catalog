@@ -63,7 +63,8 @@ public class MainServlet extends HttpServlet {
 			LogManager.getLogger().error("Error class MainServlet", e);
 		} catch (NoSuchBeanDefinitionException e) {
 			sendErrorPage(req, resp, "The command is not correct");
-		}catch(JDBCConnectionException e) {
+		} catch (JDBCConnectionException e) {
+			LogManager.getLogger().error("No connection on JDBC driver", e);
 			sendErrorPage(req, resp, "No connection to the database");
 		}
 
