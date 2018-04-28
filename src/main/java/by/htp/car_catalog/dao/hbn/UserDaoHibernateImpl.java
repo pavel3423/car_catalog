@@ -12,13 +12,14 @@ import by.htp.car_catalog.domain.User;
 public class UserDaoHibernateImpl implements UserDao {
 
 	@Override
-	public void create(User entity) {
+	public User create(User entity) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(entity);
 		session.getTransaction().commit();
-
+		
+		return entity;
 	}
 
 	@Override

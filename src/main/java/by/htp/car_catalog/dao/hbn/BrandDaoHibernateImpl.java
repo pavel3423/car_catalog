@@ -10,13 +10,14 @@ import by.htp.car_catalog.domain.BrandCar;
 public class BrandDaoHibernateImpl implements BrandCarDao {
 
 	@Override
-	public void create(BrandCar entity) {
+	public BrandCar create(BrandCar entity) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(entity);
 		session.getTransaction().commit();
 
+		return entity;
 	}
 
 	@Override

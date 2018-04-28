@@ -10,13 +10,14 @@ import by.htp.car_catalog.domain.Car;
 public class CarDaoHibernateImpl implements CarDao {
 
 	@Override
-	public void create(Car entity) {
+	public Car create(Car entity) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(entity);
 		session.getTransaction().commit();
 
+		return entity;
 	}
 
 	@Override

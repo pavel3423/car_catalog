@@ -14,10 +14,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addUser(String login, String email, String password) {
+		User user = new User(0, login, email, password, 2);
+		userDao.create(user);
 
-		userDao.create(new User(0, login, email, password, 2));
-
-		return userDao.read(login, password);
+		return user;
 	}
 
 	@Override

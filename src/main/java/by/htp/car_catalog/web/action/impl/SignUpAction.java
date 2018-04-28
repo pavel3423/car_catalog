@@ -17,7 +17,7 @@ import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamE
 public class SignUpAction implements BaseAction {
 
 	private static final String MSG_NO_REGISTRATION_USER = "Не удаётся зарегестрироваться. Пожалуйста проверьте правильность введённых данных.";
-	private static final String MSG_USER_DUBLICATE = "Пользователь с этой электронной почтой или именем пользователя уже зарегестрирован.";
+	private static final String MSG_USER_DUBLICATE = "Пользователь с этим именем или электронной почтой уже зарегестрирован.";
 
 	private UserService userService;
 
