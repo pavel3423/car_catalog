@@ -4,6 +4,6 @@ import by.htp.car_catalog.domain.User;
 
 public interface UserService {
 
-	User getUser(String login);
+	User getUser(String login, String password);
 
 }

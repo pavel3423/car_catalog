@@ -31,12 +31,13 @@ public class UserDaoHibernateImpl implements UserDao {
 	}
 
 	@Override
-	public User read(String login) {
+	public User read(String login, String password) {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.createCriteria(User.class).add(Restrictions.eq("login", login)).list();
-		List<User> users = session.createCriteria(User.class).add(Restrictions.eq("login", login)).list();
+		List<User> users = session.createCriteria(User.class).add(Restrictions.eq("login", login))
+				.add(Restrictions.eq("password", password)).list();
 
 		if (users.size() > 0) {
 

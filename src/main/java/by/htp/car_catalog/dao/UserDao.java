@@ -4,6 +4,6 @@ import by.htp.car_catalog.domain.User;
 
 public interface UserDao extends BaseDao<User> {
 
-	User read(String login);
+	User read(String login, String password);
 
 }

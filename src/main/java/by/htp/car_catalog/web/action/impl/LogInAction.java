@@ -10,6 +10,7 @@ import by.htp.car_catalog.service.UserService;
 import by.htp.car_catalog.web.action.BaseAction;
 import by.htp.car_catalog.web.util.FormUtil;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
+import by.htp.car_catalog.web.util.ValidateNullParamException;
 
 public class LogInAction implements BaseAction {
 
@@ -34,22 +35,23 @@ public class LogInAction implements BaseAction {
 	private String authorization(HttpServletRequest req) {
 
 		String login = req.getParameter(REQUEST_PARAM_USER_LOGIN);
-		HttpRequestParamValidator.validateRequestParamNotNull(login);
-		User user = userService.getUser(login);
+		String passwors = req.getParameter(REQUEST_PARAM_USER_PASSWORD);
 
-		if (user.getPassword().equals(req.getParameter(REQUEST_PARAM_USER_PASSWORD))) {
+		try {
+
+			HttpRequestParamValidator.validateRequestParamNotNull(login, passwors);
+			User user = userService.getUser(login, passwors);
+			HttpRequestParamValidator.validateRequestParamNotNull(user);
 
 			HttpSession session = req.getSession();
 			session.setAttribute(REQUEST_PARAM_USER, user);
 			req.setAttribute(REQUEST_PARAM_ACTION, ACTION_NAME_PROFILE);
 
 			return null;
-		} else {
+		} catch (ValidateNullParamException e) {
 
 			req.setAttribute(REQUEST_MSG, "Неверное имя пользователя или пароль");
-
 			return PAGE_USER_LOGIN;
 		}
-
 	}
 }
