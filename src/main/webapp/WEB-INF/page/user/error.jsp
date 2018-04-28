@@ -12,7 +12,7 @@
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
 
-<title>Каталог автомобилей</title>
+<title>Error</title>
 
 </head>
 
