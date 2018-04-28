@@ -52,7 +52,7 @@ public class SignUpAction implements BaseAction {
 			req.setAttribute(REQUEST_MSG, "Не все поля заполнены");
 			return PAGE_USER_SIGNUP;
 		} catch (ConstraintViolationException e) {
-			req.setAttribute(REQUEST_MSG, "Пользователь с таким Login или Email уже  существует");
+			req.setAttribute(REQUEST_MSG, "Пользователь с таким login или email уже  существует");
 			return PAGE_USER_SIGNUP;
 		}
 	}

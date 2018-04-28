@@ -10,7 +10,9 @@ import by.htp.car_catalog.web.action.BaseAction;
 import by.htp.car_catalog.web.util.FormUtil;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.SessionUser;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
 import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
 
 public class LogInAction implements BaseAction {
 
@@ -46,9 +48,11 @@ public class LogInAction implements BaseAction {
 			SessionUser.addUserSession(req, user, ACTION_NAME_PROFILE);
 
 			return null;
-		} catch (ValidateNullParamException e) {
-
+		} catch (ValidateNullStringException e) {
 			req.setAttribute(REQUEST_MSG, "Заполните все поля");
+			return PAGE_USER_LOGIN;
+		} catch (ValidateNullObjectException e) {
+			req.setAttribute(REQUEST_MSG, "Пользователь с таким login или password не существует");
 			return PAGE_USER_LOGIN;
 		}
 	}

@@ -1,6 +1,7 @@
 package by.htp.car_catalog.web.util;
 
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
 
 public final class HttpRequestParamValidator {
 	private HttpRequestParamValidator() {
@@ -11,7 +12,7 @@ public final class HttpRequestParamValidator {
 
 			if (o == null) {
 
-				throw new ValidateNullParamException("Empty parameter recieved");
+				throw new ValidateNullObjectException();
 			}
 
 		}
@@ -22,7 +23,7 @@ public final class HttpRequestParamValidator {
 
 			if ("".equals(s)) {
 
-				throw new ValidateNullParamException("Empty parameter recieved");
+				throw new ValidateNullStringException();
 			}
 
 		}
