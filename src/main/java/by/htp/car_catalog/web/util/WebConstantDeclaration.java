@@ -7,6 +7,7 @@ public class WebConstantDeclaration {
 	public static final String REQUEST_PARAM_ALL_BRANDS = "brands";
 	public static final String REQUEST_PARAM_USER_LOGIN = "login";
 	public static final String REQUEST_PARAM_USER_PASSWORD = "password";
+	public static final String REQUEST_PARAM_USER_EMAIL = "email";
 
 	public static final String REQUEST_MSG = "msg";
 

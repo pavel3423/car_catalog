@@ -11,7 +11,7 @@
 		<div class="col-md-2" align="center">
 			<br> <img src="image/car_brands/${brand.brand}_logo.png"
 				width="160" align="middle" alt="альтернативный текст"> <a
-				href="#">${brand.brand}</a>
+				href="#" style="color: black">${brand.brand}</a>
 		</div>
 
 	</c:forEach>

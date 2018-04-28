@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.util;
+package by.htp.car_catalog.web.util.exception.runtimeException;
 
 public class RequestIOException extends RuntimeException {
 

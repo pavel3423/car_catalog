@@ -2,9 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/begin-html.jsp"%>
 
-<c:out value="${msg}"></c:out>
+<br>
+<c:if test="${msg!=null}">
+	<div class="alert alert-danger" role="alert">
+		<c:out value="${msg}"></c:out>
+	</div>
+</c:if>
 
-<form class="form-horizontal" action="do?command=Signup" method="POST">
+<form class="form-horizontal" action="do?action=signup_action"
+	method="POST">
 	<fieldset>
 
 		<!-- Form Name -->
@@ -14,7 +20,7 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="Login">Login</label>
 			<div class="col-md-4">
-				<input id="Login" name="Login" type="text" placeholder="Login"
+				<input id="login" name="login" type="text" placeholder="Login"
 					class="form-control input-md">
 
 			</div>
@@ -24,7 +30,7 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="Email">Email</label>
 			<div class="col-md-4">
-				<input id="Email" name="Email" type="text" placeholder="Email"
+				<input id="email" name="email" type="text" placeholder="Email"
 					class="form-control input-md">
 
 			</div>
@@ -34,41 +40,8 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="Password">Password</label>
 			<div class="col-md-4">
-				<input id="Password" name="Password" type="password"
+				<input id="password" name="password" type="password"
 					placeholder="Password" class="form-control input-md">
-
-			</div>
-		</div>
-
-		<!-- Select Basic -->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="City">Город</label>
-			<div class="col-md-4">
-				<select id="City" name="City" class="form-control">
-					<c:forEach items="${cities}" var="city">
-						<option value="${city.id}">${city.city}</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>
-
-		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="Address">Адрес</label>
-			<div class="col-md-4">
-				<input id="Address" name="Address" type="text" placeholder="Address"
-					class="form-control input-md">
-
-			</div>
-		</div>
-
-		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="PhoneNumber">Номер
-				телефона</label>
-			<div class="col-md-4">
-				<input id="PhoneNumber" name="PhoneNumber" type="text"
-					placeholder="PhoneNumber" class="form-control input-md">
 
 			</div>
 		</div>

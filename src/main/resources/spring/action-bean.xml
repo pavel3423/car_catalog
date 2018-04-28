@@ -9,13 +9,15 @@
 	</bean>
 
 	<bean name="signup_action"
-		class="by.htp.car_catalog.web.action.impl.SignUpAction" />
+		class="by.htp.car_catalog.web.action.impl.SignUpAction">
+		<property name="userService" ref="userService" />
+	</bean>
 
 	<bean name="login_action"
 		class="by.htp.car_catalog.web.action.impl.LogInAction">
 		<property name="userService" ref="userService" />
 	</bean>
-	
+
 	<bean name="logout_action"
 		class="by.htp.car_catalog.web.action.impl.LogOutAction" />
 

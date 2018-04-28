@@ -16,7 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import by.htp.car_catalog.web.action.ActionManagerContext;
 import by.htp.car_catalog.web.action.BaseAction;
-import by.htp.car_catalog.web.util.RequestIOException;
+import by.htp.car_catalog.web.util.exception.runtimeException.RequestIOException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
