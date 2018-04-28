@@ -2,7 +2,6 @@ package by.htp.car_catalog.dao.hbn;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -18,7 +17,8 @@ public class UserDaoHibernateImpl implements UserDao {
 		session.beginTransaction();
 		session.save(entity);
 		session.getTransaction().commit();
-		
+		session.close();
+
 		return entity;
 	}
 
@@ -27,8 +27,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		session.beginTransaction();
-
-		return (User) session.load(User.class, id);
+		User user = (User) session.load(User.class, id);
+		session.close();
+		return user;
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
 		session.createCriteria(User.class).add(Restrictions.eq("login", login)).list();
 		List<User> users = session.createCriteria(User.class).add(Restrictions.eq("login", login))
 				.add(Restrictions.eq("password", password)).list();
-
+		session.close();
 		if (users.size() > 0) {
 
 			return users.get(0);
@@ -54,7 +55,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
 		Session session = SessionFactoryManager.getSessionFactory().openSession();
 		List<User> users = session.createCriteria(User.class).list();
-
+		session.close();
 		return users;
 	}
 
@@ -65,7 +66,7 @@ public class UserDaoHibernateImpl implements UserDao {
 		session.beginTransaction();
 		session.update(entity);
 		session.getTransaction().commit();
-
+		session.close();
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class UserDaoHibernateImpl implements UserDao {
 		session.beginTransaction();
 		session.delete(new User(id));
 		session.getTransaction().commit();
-
+		session.close();
 	}
 
 }

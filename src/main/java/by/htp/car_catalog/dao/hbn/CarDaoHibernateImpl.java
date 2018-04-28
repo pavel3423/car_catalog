@@ -16,7 +16,7 @@ public class CarDaoHibernateImpl implements CarDao {
 		session.beginTransaction();
 		session.save(entity);
 		session.getTransaction().commit();
-
+		
 		return entity;
 	}
 
