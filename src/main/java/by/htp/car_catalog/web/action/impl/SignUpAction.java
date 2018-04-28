@@ -16,6 +16,9 @@ import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamE
 
 public class SignUpAction implements BaseAction {
 
+	private static final String MSG_NO_REGISTRATION_USER = "Не удаётся зарегестрироваться. Пожалуйста проверьте правильность введённых данных.";
+	private static final String MSG_USER_DUBLICATE = "Пользователь с этой электронной почтой или именем пользователя уже зарегестрирован.";
+
 	private UserService userService;
 
 	public void setUserService(UserService userService) {
@@ -49,10 +52,10 @@ public class SignUpAction implements BaseAction {
 			return null;
 		} catch (ValidateNullParamException e) {
 
-			req.setAttribute(REQUEST_MSG, "Не все поля заполнены");
+			req.setAttribute(REQUEST_MSG, MSG_NO_REGISTRATION_USER);
 			return PAGE_USER_SIGNUP;
 		} catch (ConstraintViolationException e) {
-			req.setAttribute(REQUEST_MSG, "Пользователь с таким login или email уже  существует");
+			req.setAttribute(REQUEST_MSG, MSG_USER_DUBLICATE);
 			return PAGE_USER_SIGNUP;
 		}
 	}

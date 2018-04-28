@@ -10,13 +10,13 @@ import by.htp.car_catalog.web.action.BaseAction;
 import by.htp.car_catalog.web.util.FormUtil;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.SessionUser;
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
 import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
 
 public class LogInAction implements BaseAction {
 
 	private UserService userService;
+
+	private static final String MSG_NO_USER = "Не удаётся войти. Пожалуйста проверьте правильность введённых данных.";
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -48,11 +48,8 @@ public class LogInAction implements BaseAction {
 			SessionUser.addUserSession(req, user, ACTION_NAME_PROFILE);
 
 			return null;
-		} catch (ValidateNullStringException e) {
-			req.setAttribute(REQUEST_MSG, "Заполните все поля");
-			return PAGE_USER_LOGIN;
-		} catch (ValidateNullObjectException e) {
-			req.setAttribute(REQUEST_MSG, "Пользователь с таким login или password не существует");
+		} catch (ValidateNullParamException e) {
+			req.setAttribute(REQUEST_MSG, MSG_NO_USER);
 			return PAGE_USER_LOGIN;
 		}
 	}
