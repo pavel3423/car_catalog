@@ -10,4 +10,4 @@
 
 <h3> Схема базы данных: </h3>
  
-![alt text] https://github.com/pavel3423/car_catalog/blob/master/src/main/sqlScript/Diagram.png)
+![GitHub Logo](https://github.com/pavel3423/car_catalog/blob/master/src/main/sqlScript/Diagram.png)
