@@ -9,6 +9,9 @@ public class SessionFactoryManager {
 
 	private static SessionFactory sessionFactory;
 
+	private SessionFactoryManager() {
+	}
+
 	private static SessionFactory buildSessionFactory() {
 
 		Configuration configuration = new Configuration();

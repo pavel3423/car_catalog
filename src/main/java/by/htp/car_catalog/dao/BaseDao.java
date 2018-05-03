@@ -3,7 +3,6 @@ package by.htp.car_catalog.dao;
 import java.util.List;
 
 import by.htp.car_catalog.domain.Entity;
-import by.htp.car_catalog.domain.User;
 
 public interface BaseDao<T extends Entity> {
 
