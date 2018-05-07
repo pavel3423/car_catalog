@@ -3,7 +3,8 @@
 "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="true">
-	<class name="by.htp.car_catalog.domain.Car" table="cars">
+	<class name="by.htp.car_catalog.domain.ModelCar"
+		table="models_car">
 
 		<id name="id" type="int">
 			<column name="id" />
@@ -15,23 +16,9 @@
 			<column name="brandID" />
 		</many-to-one>
 
-		<many-to-one name="modelCar"
-			class="by.htp.car_catalog.domain.ModelCar" not-null="true">
-			<column name="modelID" />
-		</many-to-one>
-
-		<property name="carClass" type="java.lang.String"
+		<property name="model" type="java.lang.String"
 			not-null="true">
-			<column name="carClass" />
-		</property>
-
-		<property name="equipment" type="java.lang.String"
-			not-null="true">
-			<column name="equipment" />
-		</property>
-
-		<property name="price" type="int" not-null="true">
-			<column name="price" />
+			<column name="model" />
 		</property>
 
 	</class>

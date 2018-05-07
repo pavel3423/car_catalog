@@ -1,7 +1,5 @@
 package by.htp.car_catalog.domain;
 
-import java.util.List;
-
 public class User extends Entity {
 
     private static final long serialVersionUID = -1919018243680435461L;
@@ -10,7 +8,6 @@ public class User extends Entity {
     private String email;
     private String password;
     private Role role;
-    private List<Favorite> favorites;
 
     public User() {
     }
@@ -19,13 +16,12 @@ public class User extends Entity {
 	super(id);
     }
 
-    public User(int id, String login, String email, String password, Role role, List<Favorite> favorites) {
+    public User(int id, String login, String email, String password, Role role) {
 	super(id);
 	this.login = login;
 	this.email = email;
 	this.password = password;
 	this.role = role;
-	this.favorites = favorites;
     }
 
     public String getLogin() {
@@ -60,18 +56,10 @@ public class User extends Entity {
 	this.role = role;
     }
 
-    public List<Favorite> getFavorites() {
-	return favorites;
-    }
-
-    public void setFavorites(List<Favorite> favorites) {
-	this.favorites = favorites;
-    }
-
     @Override
     public String toString() {
 	return "User [getId()=" + getId() + ", login=" + login + ", email=" + email + ", password=" + password
-		+ ", role=" + role + ", favorites=" + favorites + "]";
+		+ ", role=" + role + "]";
     }
 
     @Override
@@ -79,7 +67,6 @@ public class User extends Entity {
 	final int prime = 31;
 	int result = super.hashCode();
 	result = prime * result + ((email == null) ? 0 : email.hashCode());
-	result = prime * result + ((favorites == null) ? 0 : favorites.hashCode());
 	result = prime * result + ((login == null) ? 0 : login.hashCode());
 	result = prime * result + ((password == null) ? 0 : password.hashCode());
 	result = prime * result + ((role == null) ? 0 : role.hashCode());
@@ -99,11 +86,6 @@ public class User extends Entity {
 	    if (other.email != null)
 		return false;
 	} else if (!email.equals(other.email))
-	    return false;
-	if (favorites == null) {
-	    if (other.favorites != null)
-		return false;
-	} else if (!favorites.equals(other.favorites))
 	    return false;
 	if (login == null) {
 	    if (other.login != null)

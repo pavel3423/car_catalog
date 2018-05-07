@@ -3,18 +3,23 @@
 "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="true">
-	<class name="by.htp.car_catalog.domain.BrandCar"
-		table="brands_car">
+	<class name="by.htp.car_catalog.domain.Favorite"
+		table="favorites">
 
 		<id name="id" type="int">
 			<column name="id" />
 			<generator class="increment" />
 		</id>
 
-		<property name="brand" type="java.lang.String"
-			not-null="true">
-			<column name="brand" />
-		</property>
+		<many-to-one name="user"
+			class="by.htp.car_catalog.domain.User" not-null="true">
+			<column name="userID" />
+		</many-to-one>
+
+		<many-to-one name="car"
+			class="by.htp.car_catalog.domain.Car" not-null="true">
+			<column name="carID" />
+		</many-to-one>
 
 	</class>
 </hibernate-mapping>
