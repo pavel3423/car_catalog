@@ -10,6 +10,10 @@ public class Favorite extends Entity {
     public Favorite() {
     }
 
+    public Favorite(int id) {
+	super(id);
+    }
+
     public Favorite(int id, User user, Car car) {
 	super(id);
 	this.user = user;

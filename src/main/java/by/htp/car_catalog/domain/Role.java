@@ -12,6 +12,10 @@ public class Role extends Entity {
     public Role() {
     }
 
+    public Role(int id) {
+	super(id);
+    }
+
     public Role(int id, String role, List<User> users) {
 	super(id);
 	this.role = role;

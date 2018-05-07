@@ -13,6 +13,10 @@ public class ModelCar extends Entity {
     public ModelCar() {
     }
 
+    public ModelCar(int id) {
+	super(id);
+    }
+
     public ModelCar(int id, BrandCar brandCar, String model, List<Car> cars) {
 	super(id);
 	this.brandCar = brandCar;
