@@ -1,6 +1,6 @@
 package by.htp.car_catalog.domain;
 
-public class User extends Entity {
+public class User extends Entity implements Cloneable {
 
     private static final long serialVersionUID = -1919018243680435461L;
 
@@ -103,6 +103,12 @@ public class User extends Entity {
 	} else if (!role.equals(other.role))
 	    return false;
 	return true;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+	// TODO Auto-generated method stub
+	return super.clone();
     }
 
 }

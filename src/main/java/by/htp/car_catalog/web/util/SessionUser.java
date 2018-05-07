@@ -9,15 +9,20 @@ import by.htp.car_catalog.domain.User;
 
 public class SessionUser {
 
-	private SessionUser() {
-	}
+    private SessionUser() {
+    }
 
-	public static void addUserSession(HttpServletRequest req, User user, String action) {
+    public static void addUserSession(HttpServletRequest req, User user, String action) {
 
-		HttpSession session = req.getSession();
-		session.setAttribute(REQUEST_PARAM_USER, user);
-		req.setAttribute(REQUEST_PARAM_ACTION, action);
+	HttpSession session = req.getSession();
+	session.setAttribute(REQUEST_PARAM_USER, user);
+	req.setAttribute(REQUEST_PARAM_ACTION, action);
 
-	}
+    }
+
+    public static User getUserSession(HttpServletRequest req) {
+	HttpSession session = req.getSession();
+	return (User) session.getAttribute(REQUEST_PARAM_USER);
+    }
 
 }
