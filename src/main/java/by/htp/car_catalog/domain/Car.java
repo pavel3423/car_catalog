@@ -1,112 +1,123 @@
 package by.htp.car_catalog.domain;
 
+import java.util.List;
+
 public class Car extends Entity {
 
-	private static final long serialVersionUID = 1984566728743718380L;
+    private static final long serialVersionUID = 1984566728743718380L;
 
-	private int brandID;
-	private int modelID;
-	private String carClass;
-	private int minPrice;
-	private int maxPrice;
+    private BrandCar brandCar;
+    private ModelCar modelCar;
+    private String carClass;
+    private int price;
+    private List<Favorite> favorites;
 
-	public Car() {
-	}
+    public Car() {
+    }
 
-	public Car(int id) {
-		super(id);
-	}
+    public Car(int id) {
+	super(id);
+    }
 
-	public Car(int id, int brandID, int modelID, String carClass, int minPrice, int maxPrice) {
-		super(id);
-		this.brandID = brandID;
-		this.modelID = modelID;
-		this.carClass = carClass;
-		this.minPrice = minPrice;
-		this.maxPrice = maxPrice;
-	}
+    public Car(int id, BrandCar brandCar, ModelCar modelCar, String carClass, int price, List<Favorite> favorites) {
+	super(id);
+	this.brandCar = brandCar;
+	this.modelCar = modelCar;
+	this.carClass = carClass;
+	this.price = price;
+	this.favorites = favorites;
+    }
 
-	public int getBrandID() {
-		return brandID;
-	}
+    public BrandCar getBrandCar() {
+	return brandCar;
+    }
 
-	public void setBrandID(int brandID) {
-		this.brandID = brandID;
-	}
+    public void setBrandCar(BrandCar brandCar) {
+	this.brandCar = brandCar;
+    }
 
-	public int getModelID() {
-		return modelID;
-	}
+    public ModelCar getModelCar() {
+	return modelCar;
+    }
 
-	public void setModelID(int modelID) {
-		this.modelID = modelID;
-	}
+    public void setModelCar(ModelCar modelCar) {
+	this.modelCar = modelCar;
+    }
 
-	public String getCarClass() {
-		return carClass;
-	}
+    public String getCarClass() {
+	return carClass;
+    }
 
-	public void setCarClass(String carClass) {
-		this.carClass = carClass;
-	}
+    public void setCarClass(String carClass) {
+	this.carClass = carClass;
+    }
 
-	public int getMinPrice() {
-		return minPrice;
-	}
+    public int getPrice() {
+	return price;
+    }
 
-	public void setMinPrice(int minPrice) {
-		this.minPrice = minPrice;
-	}
+    public void setPrice(int price) {
+	this.price = price;
+    }
 
-	public int getMaxPrice() {
-		return maxPrice;
-	}
+    public List<Favorite> getFavorites() {
+	return favorites;
+    }
 
-	public void setMaxPrice(int maxPrice) {
-		this.maxPrice = maxPrice;
-	}
+    public void setFavorites(List<Favorite> favorites) {
+	this.favorites = favorites;
+    }
 
-	@Override
-	public String toString() {
-		return "Car [brandID=" + brandID + ", modelID=" + modelID + ", carClass=" + carClass + ", minPrice=" + minPrice
-				+ ", maxPrice=" + maxPrice + ", getId()=" + getId() + "]";
-	}
+    @Override
+    public String toString() {
+	return "Car [getId()=" + getId() + ", brandCar=" + brandCar + ", modelCar=" + modelCar + ", carClass="
+		+ carClass + ", price=" + price + ", favorites=" + favorites + "]";
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + brandID;
-		result = prime * result + ((carClass == null) ? 0 : carClass.hashCode());
-		result = prime * result + maxPrice;
-		result = prime * result + minPrice;
-		result = prime * result + modelID;
-		return result;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + ((brandCar == null) ? 0 : brandCar.hashCode());
+	result = prime * result + ((carClass == null) ? 0 : carClass.hashCode());
+	result = prime * result + ((favorites == null) ? 0 : favorites.hashCode());
+	result = prime * result + ((modelCar == null) ? 0 : modelCar.hashCode());
+	result = prime * result + price;
+	return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Car other = (Car) obj;
-		if (brandID != other.brandID)
-			return false;
-		if (carClass == null) {
-			if (other.carClass != null)
-				return false;
-		} else if (!carClass.equals(other.carClass))
-			return false;
-		if (maxPrice != other.maxPrice)
-			return false;
-		if (minPrice != other.minPrice)
-			return false;
-		if (modelID != other.modelID)
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!super.equals(obj))
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Car other = (Car) obj;
+	if (brandCar == null) {
+	    if (other.brandCar != null)
+		return false;
+	} else if (!brandCar.equals(other.brandCar))
+	    return false;
+	if (carClass == null) {
+	    if (other.carClass != null)
+		return false;
+	} else if (!carClass.equals(other.carClass))
+	    return false;
+	if (favorites == null) {
+	    if (other.favorites != null)
+		return false;
+	} else if (!favorites.equals(other.favorites))
+	    return false;
+	if (modelCar == null) {
+	    if (other.modelCar != null)
+		return false;
+	} else if (!modelCar.equals(other.modelCar))
+	    return false;
+	if (price != other.price)
+	    return false;
+	return true;
+    }
 
 }

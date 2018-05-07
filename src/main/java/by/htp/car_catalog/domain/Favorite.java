@@ -2,64 +2,70 @@ package by.htp.car_catalog.domain;
 
 public class Favorite extends Entity {
 
-	private static final long serialVersionUID = 4235851146511954994L;
+    private static final long serialVersionUID = 4235851146511954994L;
 
-	private int userID;
-	private int carID;
+    private User user;
+    private Car car;
 
-	public Favorite() {
-	}
+    public Favorite() {
+    }
 
-	public Favorite(int id, int userID, int carID) {
-		super(id);
-		this.userID = userID;
-		this.carID = carID;
-	}
+    public Favorite(int id, User user, Car car) {
+	super(id);
+	this.user = user;
+	this.car = car;
+    }
 
-	public int getUserID() {
-		return userID;
-	}
+    public User getUser() {
+	return user;
+    }
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+    public void setUser(User user) {
+	this.user = user;
+    }
 
-	public int getCarID() {
-		return carID;
-	}
+    public Car getCar() {
+	return car;
+    }
 
-	public void setCarID(int carID) {
-		this.carID = carID;
-	}
+    public void setCar(Car car) {
+	this.car = car;
+    }
 
-	@Override
-	public String toString() {
-		return "Favorite [userID=" + userID + ", carID=" + carID + ", getId()=" + getId() + "]";
-	}
+    @Override
+    public String toString() {
+	return "Favorite [user=" + user + ", car=" + car + ", getId()=" + getId() + "]";
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + carID;
-		result = prime * result + userID;
-		return result;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + ((car == null) ? 0 : car.hashCode());
+	result = prime * result + ((user == null) ? 0 : user.hashCode());
+	return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Favorite other = (Favorite) obj;
-		if (carID != other.carID)
-			return false;
-		if (userID != other.userID)
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!super.equals(obj))
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Favorite other = (Favorite) obj;
+	if (car == null) {
+	    if (other.car != null)
+		return false;
+	} else if (!car.equals(other.car))
+	    return false;
+	if (user == null) {
+	    if (other.user != null)
+		return false;
+	} else if (!user.equals(other.user))
+	    return false;
+	return true;
+    }
 
 }
