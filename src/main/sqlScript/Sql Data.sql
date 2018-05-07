@@ -1,6 +1,6 @@
--- Дамп данных таблицы car_catalog.brands_car
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.brands_car: ~9 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `brands_car`;
-
+/*!40000 ALTER TABLE `brands_car` DISABLE KEYS */;
 INSERT INTO `brands_car` (`id`, `brand`) VALUES
 	(1, 'Audi'),
 	(2, 'BMW'),
@@ -11,39 +11,44 @@ INSERT INTO `brands_car` (`id`, `brand`) VALUES
 	(7, 'Honda\r\n'),
 	(8, 'Hyundai'),
 	(9, 'KIA');
+/*!40000 ALTER TABLE `brands_car` ENABLE KEYS */;
 
--- Дамп данных таблицы car_catalog.cars
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.cars: ~0 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `cars`;
+/*!40000 ALTER TABLE `cars` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cars` ENABLE KEYS */;
 
--- Дамп данных таблицы car_catalog.favorites
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.favorites: ~0 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `favorites`;
+/*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
 
--- Дамп данных таблицы car_catalog.models_car
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.models_car: ~9 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `models_car`;
-
+/*!40000 ALTER TABLE `models_car` DISABLE KEYS */;
 INSERT INTO `models_car` (`id`, `brandID`, `model`) VALUES
 	(1, 1, 'A3 Sportback'),
-	(2, 1, 'A4 седан'),
-	(3, 1, 'A4 универсал'),
-	(4, 2, '3 серия седан'),
-	(5, 2, '5 серия седан'),
-	(6, 2, 'M5 седан'),
-	(7, 3, 'Cruze седан'),
+	(2, 1, 'A4 СЃРµРґР°РЅ'),
+	(3, 1, 'A4 СѓРЅРёРІРµСЂСЃР°Р»'),
+	(4, 2, '3 СЃРµСЂРёСЏ СЃРµРґР°РЅ'),
+	(5, 2, '5 СЃРµСЂРёСЏ СЃРµРґР°РЅ'),
+	(6, 2, 'M5 СЃРµРґР°РЅ'),
+	(7, 3, 'Cruze СЃРµРґР°РЅ'),
 	(8, 3, 'Captiva'),
 	(9, 3, 'Orlando');
+/*!40000 ALTER TABLE `models_car` ENABLE KEYS */;
 
-
--- Дамп данных таблицы car_catalog.roles
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.roles: ~2 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `roles`;
-
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `role`) VALUES
 	(1, 'admin'),
 	(2, 'user');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
-
--- Дамп данных таблицы car_catalog.users
+-- Р”Р°РјРї РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹ car_catalog.users: ~3 rows (РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅРѕ)
 DELETE FROM `users`;
-
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `roleID`) VALUES
 	(1, 'admin', 'admin@gmail.com', 'admin', 1),
 	(2, 'user', 'user@gmail.com', 'user', 2);

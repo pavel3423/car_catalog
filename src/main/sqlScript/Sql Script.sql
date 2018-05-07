@@ -1,9 +1,8 @@
--- Дамп структуры базы данных car_catalog
 DROP DATABASE IF EXISTS `car_catalog`;
-CREATE DATABASE IF NOT EXISTS `car_catalog` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `car_catalog`;
 USE `car_catalog`;
 
--- Дамп структуры для таблица car_catalog.brands_car
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.brands_car
 DROP TABLE IF EXISTS `brands_car`;
 CREATE TABLE IF NOT EXISTS `brands_car` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -11,15 +10,15 @@ CREATE TABLE IF NOT EXISTS `brands_car` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп структуры для таблица car_catalog.cars
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.cars
 DROP TABLE IF EXISTS `cars`;
 CREATE TABLE IF NOT EXISTS `cars` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `brandID` int(11) NOT NULL DEFAULT '0',
   `modelID` int(11) NOT NULL DEFAULT '0',
   `carClass` varchar(50) NOT NULL DEFAULT '0',
-  `minPrice` int(11) NOT NULL DEFAULT '0',
-  `maxPrice` int(11) NOT NULL DEFAULT '0',
+  `equipment` varchar(50) NOT NULL,
+  `price` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_cars_brand` (`brandID`),
   KEY `fk_cars_model` (`modelID`),
@@ -27,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   CONSTRAINT `fk_cars_model` FOREIGN KEY (`modelID`) REFERENCES `models_car` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп структуры для таблица car_catalog.favorites
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.favorites
 DROP TABLE IF EXISTS `favorites`;
 CREATE TABLE IF NOT EXISTS `favorites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -40,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   CONSTRAINT `fk_favorites_user` FOREIGN KEY (`userID`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп структуры для таблица car_catalog.models_car
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.models_car
 DROP TABLE IF EXISTS `models_car`;
 CREATE TABLE IF NOT EXISTS `models_car` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `models_car` (
   CONSTRAINT `fk_models_brands` FOREIGN KEY (`brandID`) REFERENCES `brands_car` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп структуры для таблица car_catalog.roles
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.roles
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп структуры для таблица car_catalog.users
+-- Р”Р°РјРї СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ С‚Р°Р±Р»РёС†Р° car_catalog.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -72,4 +71,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   KEY `fk_users_roles_idx` (`roleID`),
   CONSTRAINT `fk_users_roles` FOREIGN KEY (`roleID`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
