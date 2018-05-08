@@ -1,9 +1,13 @@
 package by.htp.car_catalog.domain;
 
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "roles")
 public class Role extends Entity {
 
     private static final long serialVersionUID = -6226794434941096791L;
-
+    @Column(name = "role")
     private String role;
 
     public Role() {
@@ -17,6 +21,21 @@ public class Role extends Entity {
 	super(id);
 	this.role = role;
 
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @Override
+    public int getId() {
+	// TODO Auto-generated method stub
+	return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+	// TODO Auto-generated method stub
+	super.setId(id);
     }
 
     public String getRole() {

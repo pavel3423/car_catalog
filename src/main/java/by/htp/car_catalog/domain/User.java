@@ -1,11 +1,18 @@
 package by.htp.car_catalog.domain;
 
-public class User extends Entity implements Cloneable {
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "users")
+
+public class User extends Entity {
 
     private static final long serialVersionUID = -1919018243680435461L;
-
+    @Column(name = "login", unique = true, nullable = false)
     private String login;
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
+    @Column(name = "password", unique = true, nullable = false)
     private String password;
     private Role role;
 
@@ -22,6 +29,19 @@ public class User extends Entity implements Cloneable {
 	this.email = email;
 	this.password = password;
 	this.role = role;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    @Override
+    public int getId() {
+	return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+	super.setId(id);
     }
 
     public String getLogin() {
@@ -48,6 +68,8 @@ public class User extends Entity implements Cloneable {
 	this.password = password;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "roleID", nullable = true)
     public Role getRole() {
 	return role;
     }
@@ -103,12 +125,6 @@ public class User extends Entity implements Cloneable {
 	} else if (!role.equals(other.role))
 	    return false;
 	return true;
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-	// TODO Auto-generated method stub
-	return super.clone();
     }
 
 }

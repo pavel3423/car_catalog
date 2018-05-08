@@ -1,17 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>by.htp.car_catalog</groupId>
-  <artifactId>car_catalog</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>by.htp.car_catalog</groupId>
+	<artifactId>car_catalog</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
 		<javax.servlet-api.version>4.0.0</javax.servlet-api.version>
 		<jstl.version>1.2</jstl.version>
 		<mysql-connector.version>6.0.6</mysql-connector.version>
 		<log4j.version>2.11.0</log4j.version>
 		<spring-framework.version>5.0.5.RELEASE</spring-framework.version>
 		<hibernate-core.version>4.3.11.Final</hibernate-core.version>
+
 		<javassist.version>3.22.0-GA</javassist.version>
 		<bootstrap.version>4.1.0</bootstrap.version>
 		<jquery.version>3.3.1-1</jquery.version>
@@ -68,6 +71,8 @@
 			<version>${hibernate-core.version}</version>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -102,5 +107,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

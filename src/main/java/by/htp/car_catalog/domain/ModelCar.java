@@ -1,10 +1,17 @@
 package by.htp.car_catalog.domain;
 
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "models_car")
 public class ModelCar extends Entity {
 
     private static final long serialVersionUID = 6379681683695619732L;
 
+    @ManyToOne
+    @JoinColumn(name = "brandID")
     private BrandCar brandCar;
+    @Column(name = "model")
     private String model;
 
     public ModelCar() {
@@ -18,6 +25,21 @@ public class ModelCar extends Entity {
 	super(id);
 	this.brandCar = brandCar;
 	this.model = model;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @Override
+    public int getId() {
+	// TODO Auto-generated method stub
+	return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+	// TODO Auto-generated method stub
+	super.setId(id);
     }
 
     public BrandCar getBrandCar() {

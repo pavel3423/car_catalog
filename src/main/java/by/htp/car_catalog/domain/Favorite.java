@@ -1,10 +1,18 @@
 package by.htp.car_catalog.domain;
 
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "favorites")
 public class Favorite extends Entity {
 
     private static final long serialVersionUID = 4235851146511954994L;
 
+    @ManyToOne
+    @JoinColumn(name = "user")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "car")
     private Car car;
 
     public Favorite() {
@@ -18,6 +26,21 @@ public class Favorite extends Entity {
 	super(id);
 	this.user = user;
 	this.car = car;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @Override
+    public int getId() {
+	// TODO Auto-generated method stub
+	return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+	// TODO Auto-generated method stub
+	super.setId(id);
     }
 
     public User getUser() {

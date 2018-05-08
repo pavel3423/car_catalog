@@ -2,10 +2,14 @@ package by.htp.car_catalog.domain;
 
 import java.util.List;
 
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "brands_car")
 public class BrandCar extends Entity {
 
     private static final long serialVersionUID = -6226794434941096791L;
-
+    @Column(name = "brand")
     private String brand;
 
     public BrandCar() {
@@ -18,6 +22,21 @@ public class BrandCar extends Entity {
     public BrandCar(int id, String brand, List<ModelCar> models, List<Car> cars) {
 	super(id);
 	this.brand = brand;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @Override
+    public int getId() {
+	// TODO Auto-generated method stub
+	return super.getId();
+    }
+
+    @Override
+    public void setId(int id) {
+	// TODO Auto-generated method stub
+	super.setId(id);
     }
 
     public String getBrand() {
