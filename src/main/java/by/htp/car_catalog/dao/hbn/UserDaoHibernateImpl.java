@@ -17,20 +17,20 @@ public class UserDaoHibernateImpl implements UserDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	session.save(entity);
+	User user = (User) session.merge(entity);
 	session.getTransaction().commit();
 	session.close();
 
-	return entity;
+	return user;
     }
 
     @Override
     public User read(int id) {
-
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
 	User user = (User) session.load(User.class, id);
 	session.close();
+
 	return user;
     }
 
@@ -39,8 +39,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	List<User> users = session.createCriteria(User.class).add(Restrictions.eq("login", login))
-		.add(Restrictions.eq("password", password)).list();
+	Criteria criteria = session.createCriteria(User.class);
+	criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("password", password));
+	List<User> users = criteria.list();
 	session.close();
 
 	if (users.size() > 0) {

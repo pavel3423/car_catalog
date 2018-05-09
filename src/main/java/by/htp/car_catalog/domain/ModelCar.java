@@ -8,8 +8,6 @@ public class ModelCar extends Entity {
 
     private static final long serialVersionUID = 6379681683695619732L;
 
-    @ManyToOne
-    @JoinColumn(name = "brandID")
     private BrandCar brandCar;
     @Column(name = "model")
     private String model;
@@ -32,16 +30,16 @@ public class ModelCar extends Entity {
     @Column(name = "id")
     @Override
     public int getId() {
-	// TODO Auto-generated method stub
 	return super.getId();
     }
 
     @Override
     public void setId(int id) {
-	// TODO Auto-generated method stub
 	super.setId(id);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "brandID", nullable = true)
     public BrandCar getBrandCar() {
 	return brandCar;
     }

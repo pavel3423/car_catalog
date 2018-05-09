@@ -37,10 +37,11 @@ public class SessionFactoryManager {
 	configuration.setProperty("hibernate.connection.username", "root");
 	configuration.setProperty("hibernate.connection.password", "root");
 	configuration.setProperty("hibernate.show_sql", "true");
-	configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+//	configuration.setProperty("hibernate.hbm2ddl.auto", "create");
 	configuration.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 	configuration.setProperty("current_session_context_class", "thread");
 	configuration.setProperty("hibernate.jdbc.serverTimezone", "UTC");
+	configuration.setProperty("hibernate.connection.useSSL", "false");
 
 	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
 		.applySettings(configuration.getProperties());

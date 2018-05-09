@@ -33,16 +33,16 @@ public class Favorite extends Entity {
     @Column(name = "id")
     @Override
     public int getId() {
-	// TODO Auto-generated method stub
 	return super.getId();
     }
 
     @Override
     public void setId(int id) {
-	// TODO Auto-generated method stub
 	super.setId(id);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "userID", nullable = true)
     public User getUser() {
 	return user;
     }
@@ -51,6 +51,8 @@ public class Favorite extends Entity {
 	this.user = user;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "carID", nullable = true)
     public Car getCar() {
 	return car;
     }

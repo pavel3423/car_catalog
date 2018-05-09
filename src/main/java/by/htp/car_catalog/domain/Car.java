@@ -7,11 +7,8 @@ import javax.persistence.*;
 public class Car extends Entity {
 
     private static final long serialVersionUID = 1984566728743718380L;
-    @ManyToOne
-    @JoinColumn(name = "brandID")
+
     private BrandCar brandCar;
-    @ManyToOne
-    @JoinColumn(name = "modelID")
     private ModelCar modelCar;
     @Column(name = "carClass")
     private String carClass;
@@ -41,16 +38,16 @@ public class Car extends Entity {
     @Column(name = "id")
     @Override
     public int getId() {
-	// TODO Auto-generated method stub
 	return super.getId();
     }
 
     @Override
     public void setId(int id) {
-	// TODO Auto-generated method stub
 	super.setId(id);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "brandID", nullable = true)
     public BrandCar getBrandCar() {
 	return brandCar;
     }
@@ -59,6 +56,8 @@ public class Car extends Entity {
 	this.brandCar = brandCar;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "modelID", nullable = true)
     public ModelCar getModelCar() {
 	return modelCar;
     }

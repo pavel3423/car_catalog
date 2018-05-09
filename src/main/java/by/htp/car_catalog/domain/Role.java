@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Role extends Entity {
 
     private static final long serialVersionUID = -6226794434941096791L;
-    @Column(name = "role")
+
+    @Column(name = "role", unique = true)
     private String role;
 
     public Role() {
@@ -20,7 +21,6 @@ public class Role extends Entity {
     public Role(int id, String role) {
 	super(id);
 	this.role = role;
-
     }
 
     @Id
@@ -28,13 +28,11 @@ public class Role extends Entity {
     @Column(name = "id")
     @Override
     public int getId() {
-	// TODO Auto-generated method stub
 	return super.getId();
     }
 
     @Override
     public void setId(int id) {
-	// TODO Auto-generated method stub
 	super.setId(id);
     }
 
