@@ -6,13 +6,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import by.htp.car_catalog.dao.UserDao;
-import by.htp.car_catalog.domain.User;
+import by.htp.car_catalog.dao.ModelCarDao;
+import by.htp.car_catalog.domain.ModelCar;
 
-public class UserDaoHibernateImpl implements UserDao {
+public class ModelDaoHibernateImpl implements ModelCarDao {
 
     @Override
-    public User create(User entity) {
+    public ModelCar create(ModelCar entity) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
@@ -24,46 +24,26 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public User read(int id) {
+    public ModelCar read(int id) {
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	User user = (User) session.load(User.class, id);
+	ModelCar model = (ModelCar) session.load(ModelCar.class, id);
 	session.close();
 
-	return user;
+	return model;
     }
 
     @Override
-    public User read(String login, String password) {
+    public List<ModelCar> readAll() {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
-	session.beginTransaction();
-	Criteria criteria = session.createCriteria(User.class);
-	criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("password", password));
-	List<User> users = criteria.list();
-
+	List<ModelCar> models = session.createCriteria(ModelCar.class).list();
 	session.close();
-
-	if (!users.isEmpty()) {
-
-	    return users.get(0);
-	} else {
-
-	    return null;
-	}
+	return models;
     }
 
     @Override
-    public List<User> readAll() {
-
-	Session session = SessionFactoryManager.getSessionFactory().openSession();
-	List<User> users = session.createCriteria(User.class).list();
-	session.close();
-	return users;
-    }
-
-    @Override
-    public void update(User entity) {
+    public void update(ModelCar entity) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
@@ -73,14 +53,28 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(ModelCar model) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	user.setRoleID(null);
-	session.delete(user);
+	session.delete(model);
 	session.getTransaction().commit();
 	session.close();
+    }
+
+    @Override
+    public List<ModelCar> readByBrand(String brand) {
+
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	Criteria criteria = session.createCriteria(ModelCar.class, "models_car")
+		.createAlias("models_car.brandID", "brands_car").add(Restrictions.eq("brands_car.brand", brand));
+
+	List<ModelCar> models = criteria.list();
+
+	session.close();
+
+	return models;
     }
 
 }

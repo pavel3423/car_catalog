@@ -15,4 +15,8 @@
 		class="by.htp.car_catalog.dao.hbn.BrandDaoHibernateImpl">
 	</bean>
 
+	<bean name="modelDao"
+		class="by.htp.car_catalog.dao.hbn.ModelDaoHibernateImpl">
+	</bean>
+
 </beans>

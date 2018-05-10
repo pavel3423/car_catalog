@@ -14,7 +14,7 @@ public class User extends Entity {
     private String email;
     @Column(name = "password", unique = true, nullable = false)
     private String password;
-    private Role role;
+    private Role roleID;
 
     public User() {
     }
@@ -23,12 +23,12 @@ public class User extends Entity {
 	super(id);
     }
 
-    public User(int id, String login, String email, String password, Role role) {
+    public User(int id, String login, String email, String password, Role roleID) {
 	super(id);
 	this.login = login;
 	this.email = email;
 	this.password = password;
-	this.role = role;
+	this.roleID = roleID;
     }
 
     @Id
@@ -70,18 +70,18 @@ public class User extends Entity {
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "roleID")
-    public Role getRole() {
-	return role;
+    public Role getRoleID() {
+	return roleID;
     }
 
-    public void setRole(Role role) {
-	this.role = role;
+    public void setRoleID(Role roleID) {
+	this.roleID = roleID;
     }
 
     @Override
     public String toString() {
 	return "User [getId()=" + getId() + ", login=" + login + ", email=" + email + ", password=" + password
-		+ ", role=" + role + "]";
+		+ ", roleID=" + roleID + "]";
     }
 
     @Override
@@ -91,7 +91,7 @@ public class User extends Entity {
 	result = prime * result + ((email == null) ? 0 : email.hashCode());
 	result = prime * result + ((login == null) ? 0 : login.hashCode());
 	result = prime * result + ((password == null) ? 0 : password.hashCode());
-	result = prime * result + ((role == null) ? 0 : role.hashCode());
+	result = prime * result + ((roleID == null) ? 0 : roleID.hashCode());
 	return result;
     }
 
@@ -119,10 +119,10 @@ public class User extends Entity {
 		return false;
 	} else if (!password.equals(other.password))
 	    return false;
-	if (role == null) {
-	    if (other.role != null)
+	if (roleID == null) {
+	    if (other.roleID != null)
 		return false;
-	} else if (!role.equals(other.role))
+	} else if (!roleID.equals(other.roleID))
 	    return false;
 	return true;
     }

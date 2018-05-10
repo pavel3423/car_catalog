@@ -8,7 +8,7 @@ public class ModelCar extends Entity {
 
     private static final long serialVersionUID = 6379681683695619732L;
 
-    private BrandCar brandCar;
+    private BrandCar brandID;
     @Column(name = "model")
     private String model;
 
@@ -19,9 +19,9 @@ public class ModelCar extends Entity {
 	super(id);
     }
 
-    public ModelCar(int id, BrandCar brandCar, String model) {
+    public ModelCar(int id, BrandCar brandID, String model) {
 	super(id);
-	this.brandCar = brandCar;
+	this.brandID = brandID;
 	this.model = model;
     }
 
@@ -38,14 +38,14 @@ public class ModelCar extends Entity {
 	super.setId(id);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "brandID", nullable = true)
-    public BrandCar getBrandCar() {
-	return brandCar;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "brandID")
+    public BrandCar getBrandID() {
+	return brandID;
     }
 
-    public void setBrandCar(BrandCar brandCar) {
-	this.brandCar = brandCar;
+    public void setBrandID(BrandCar brandID) {
+	this.brandID = brandID;
     }
 
     public String getModel() {
@@ -58,14 +58,14 @@ public class ModelCar extends Entity {
 
     @Override
     public String toString() {
-	return "ModelCar [getId()=" + getId() + ", brandCar=" + brandCar + ", model=" + model + "]";
+	return "ModelCar [getId()=" + getId() + ", brandID=" + brandID + ", model=" + model + "]";
     }
 
     @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = super.hashCode();
-	result = prime * result + ((brandCar == null) ? 0 : brandCar.hashCode());
+	result = prime * result + ((brandID == null) ? 0 : brandID.hashCode());
 	result = prime * result + ((model == null) ? 0 : model.hashCode());
 	return result;
     }
@@ -79,10 +79,10 @@ public class ModelCar extends Entity {
 	if (getClass() != obj.getClass())
 	    return false;
 	ModelCar other = (ModelCar) obj;
-	if (brandCar == null) {
-	    if (other.brandCar != null)
+	if (brandID == null) {
+	    if (other.brandID != null)
 		return false;
-	} else if (!brandCar.equals(other.brandCar))
+	} else if (!brandID.equals(other.brandID))
 	    return false;
 	if (model == null) {
 	    if (other.model != null)

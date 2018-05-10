@@ -22,6 +22,11 @@
 		class="by.htp.car_catalog.web.action.impl.LogOutAction" />
 
 	<bean name="profile_action"
-		class="by.htp.car_catalog.web.action.impl.ProfileAction"></bean>
+		class="by.htp.car_catalog.web.action.impl.ProfileAction" />
+
+	<bean name="models_action"
+		class="by.htp.car_catalog.web.action.impl.ModelsAction">
+		<property name="modelService" ref="modelService" />
+	</bean>
 
 </beans>

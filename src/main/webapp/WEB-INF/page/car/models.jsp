@@ -4,13 +4,16 @@
 
 <div class="row">
 
-	<c:forEach items="${brands}" var="brand">
+	<h4>
+		<br>
+		<c:out value="${brand}" />
+	</h4>
+	<div class="col-md-12"></div>
+	<c:forEach items="${models}" var="model">
 
 		<div class="col-md-2" align="center">
-			<br> <img src="image/car_brands/${brand.brand}_logo.png"
-				width="160" align="middle" alt="${brand.brand}"> <a
-				href="do?action=models_action&brand=${brand.brand}"
-				style="color: black">${brand.brand}</a>
+			<br> <a href="do?action=car_action&model=${model.model}"
+				style="color: black">${model.model}</a>
 		</div>
 
 	</c:forEach>

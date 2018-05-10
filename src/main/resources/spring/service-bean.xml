@@ -13,4 +13,9 @@
 		<property name="brandDao" ref="brandDao" />
 	</bean>
 
+	<bean id="modelService"
+		class="by.htp.car_catalog.service.impl.ModelServiceImpl">
+		<property name="modelDao" ref="modelDao" />
+	</bean>
+
 </beans>
