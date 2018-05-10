@@ -25,7 +25,7 @@
 				<c:out value="${msg}"></c:out>
 			</p>
 			<hr class="my-4">
-			<p>Здесь можно выводить дополнительную информацию в будущем</p>
+			<p>   </p>
 			<a class="btn btn-primary btn-lg" href="do?action=main_action"
 				role="button">Вернуться на главную страницу</a>
 		</div>
