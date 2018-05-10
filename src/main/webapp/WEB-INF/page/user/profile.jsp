@@ -8,6 +8,4 @@ Profile
 
 <c:out value="${user}"></c:out>
 
-<c:out value="${users}"></c:out>
-
 <%@ include file="../include/end-html.jsp"%>

@@ -7,9 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-	// User user = new User(0, "test2", "test@test2", "test", new Role(3, "user1"));
+	User user = new User(0, "test2", "test@test2", "test", new Role(2, "user"));
 	UserDaoHibernateImpl dao = new UserDaoHibernateImpl();
-	dao.delete(new User(20));
+	dao.create(user);
 
     }
 

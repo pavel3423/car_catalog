@@ -16,5 +16,7 @@ public class UserSignInTest {
 	dao.create(user);
 	Assert.assertNotEquals("id user equals 0", 0, user.getId());
 	dao.delete(user);
+	user = dao.read("test", "test");
+	Assert.assertNull("String test found in database", user);
     }
 }
