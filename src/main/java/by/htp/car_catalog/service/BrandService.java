@@ -6,6 +6,6 @@ import by.htp.car_catalog.domain.BrandCar;
 
 public interface BrandService {
 
-	List<BrandCar> getAllBrands();
+    List<BrandCar> getAllBrands();
 
 }

@@ -16,11 +16,11 @@ public class UserDaoHibernateImpl implements UserDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	User user = (User) session.merge(entity);
+	session.save(entity);
 	session.getTransaction().commit();
 	session.close();
 
-	return user;
+	return entity;
     }
 
     @Override
@@ -43,10 +43,9 @@ public class UserDaoHibernateImpl implements UserDao {
 	List<User> users = criteria.list();
 	session.close();
 
-	if (users.size() > 0) {
-	    User user = users.get(0);
+	if (users.isEmpty()) {
 
-	    return user;
+	    return users.get(0);
 	} else {
 
 	    return null;
