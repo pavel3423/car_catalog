@@ -18,5 +18,4 @@
 	<bean name="modelDao"
 		class="by.htp.car_catalog.dao.hbn.ModelDaoHibernateImpl">
 	</bean>
-
 </beans>

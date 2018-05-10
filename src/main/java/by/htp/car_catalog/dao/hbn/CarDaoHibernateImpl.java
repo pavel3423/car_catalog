@@ -2,7 +2,9 @@ package by.htp.car_catalog.dao.hbn;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import by.htp.car_catalog.dao.CarDao;
 import by.htp.car_catalog.domain.Car;
@@ -56,6 +58,22 @@ public class CarDaoHibernateImpl implements CarDao {
 	session.delete(car);
 	session.getTransaction().commit();
 
+    }
+
+    @Override
+    public List<Car> readByBrandAndModel(String brand, String model) {
+
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	Criteria criteria = session.createCriteria(Car.class, "cars").createAlias("cars.modelID", "models_car")
+		.createAlias("models_car.brandID", "brands_car").add(Restrictions.eq("models_car.model", model))
+		.add(Restrictions.eq("brands_car.brand", brand));
+
+	List<Car> cars = criteria.list();
+
+	session.close();
+
+	return cars;
     }
 
 }

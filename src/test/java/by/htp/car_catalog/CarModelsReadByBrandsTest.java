@@ -11,7 +11,7 @@ import by.htp.car_catalog.domain.ModelCar;
 public class CarModelsReadByBrandsTest {
 
     @Test
-    public void signinUser() {
+    public void readModelsByBrand() {
 	List<ModelCar> models = new ModelDaoHibernateImpl().readByBrand("Audi");
 	Assert.assertNotNull("Models not found", models);
     }

@@ -12,7 +12,8 @@
 	<c:forEach items="${models}" var="model">
 
 		<div class="col-md-2" align="center">
-			<br> <a href="do?action=car_action&model=${model.model}"
+			<br> <a
+				href="do?action=car_view_action&brand=${brand}&model=${model.model}"
 				style="color: black">${model.model}</a>
 		</div>
 

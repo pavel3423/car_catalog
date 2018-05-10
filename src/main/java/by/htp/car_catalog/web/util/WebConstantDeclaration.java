@@ -9,7 +9,9 @@ public class WebConstantDeclaration {
     public static final String REQUEST_PARAM_USER_PASSWORD = "password";
     public static final String REQUEST_PARAM_USER_EMAIL = "email";
     public static final String REQUEST_PARAM_CAR_BRAND = "brand";
+    public static final String REQUEST_PARAM_CAR_MODEL = "model";
     public static final String REQUEST_PARAM_CAR_MODELS = "models";
+    public static final String REQUEST_PARAM_CARS = "cars";
 
     public static final String REQUEST_MSG = "msg";
 
@@ -25,6 +27,7 @@ public class WebConstantDeclaration {
     public static final String PAGE_USER_SIGNUP = "/WEB-INF/page/user/signup.jsp";
     public static final String PAGE_USER_PROFILE = "/WEB-INF/page/user/profile.jsp";
     public static final String PAGE_CAR_MODELS = "/WEB-INF/page/car/models.jsp";
+    public static final String PAGE_CAR_VIEW = "/WEB-INF/page/car/carView.jsp";
 
     public static final String PAGE_USER_ERROR = "/WEB-INF/page/user/error.jsp";
 

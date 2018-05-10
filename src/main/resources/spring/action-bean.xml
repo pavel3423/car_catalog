@@ -29,4 +29,9 @@
 		<property name="modelService" ref="modelService" />
 	</bean>
 
+	<bean name="car_view_action"
+		class="by.htp.car_catalog.web.action.impl.CarViewAction">
+		<property name="carService" ref="carService" />
+	</bean>
+
 </beans>
