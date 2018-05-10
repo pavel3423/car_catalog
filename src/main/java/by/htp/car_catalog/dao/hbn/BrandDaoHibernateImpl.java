@@ -49,11 +49,11 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(BrandCar brandCar) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	session.delete(new BrandCar(id));
+	session.delete(brandCar);
 	session.getTransaction().commit();
 
     }

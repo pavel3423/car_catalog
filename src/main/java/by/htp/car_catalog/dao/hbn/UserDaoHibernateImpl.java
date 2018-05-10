@@ -41,9 +41,10 @@ public class UserDaoHibernateImpl implements UserDao {
 	Criteria criteria = session.createCriteria(User.class);
 	criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("password", password));
 	List<User> users = criteria.list();
+
 	session.close();
 
-	if (users.isEmpty()) {
+	if (!users.isEmpty()) {
 
 	    return users.get(0);
 	} else {
@@ -72,11 +73,11 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(User user) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	session.delete(new User(id));
+	session.delete(user);
 	session.getTransaction().commit();
 	session.close();
     }

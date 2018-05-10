@@ -9,53 +9,53 @@ import by.htp.car_catalog.domain.Car;
 
 public class CarDaoHibernateImpl implements CarDao {
 
-	@Override
-	public Car create(Car entity) {
+    @Override
+    public Car create(Car entity) {
 
-		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.save(entity);
-		session.getTransaction().commit();
-		
-		return entity;
-	}
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	session.save(entity);
+	session.getTransaction().commit();
 
-	@Override
-	public Car read(int id) {
+	return entity;
+    }
 
-		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		session.beginTransaction();
+    @Override
+    public Car read(int id) {
 
-		return (Car) session.load(Car.class, id);
-	}
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
 
-	@Override
-	public List<Car> readAll() {
+	return (Car) session.load(Car.class, id);
+    }
 
-		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		List<Car> cars = session.createCriteria(Car.class).list();
+    @Override
+    public List<Car> readAll() {
 
-		return cars;
-	}
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	List<Car> cars = session.createCriteria(Car.class).list();
 
-	@Override
-	public void update(Car entity) {
+	return cars;
+    }
 
-		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.update(entity);
-		session.getTransaction().commit();
+    @Override
+    public void update(Car entity) {
 
-	}
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	session.update(entity);
+	session.getTransaction().commit();
 
-	@Override
-	public void delete(int id) {
+    }
 
-		Session session = SessionFactoryManager.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.delete(new Car(id));
-		session.getTransaction().commit();
+    @Override
+    public void delete(Car car) {
 
-	}
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	session.delete(car);
+	session.getTransaction().commit();
+
+    }
 
 }

@@ -68,7 +68,7 @@ public class User extends Entity {
 	this.password = password;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "roleID")
     public Role getRole() {
 	return role;

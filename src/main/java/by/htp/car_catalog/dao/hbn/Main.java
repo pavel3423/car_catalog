@@ -1,16 +1,16 @@
 package by.htp.car_catalog.dao.hbn;
 
-import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 
 public class Main {
 
     public static void main(String[] args) {
 
-	User user = (User) new UserDaoHibernateImpl()
-		.create(new User(0, "lfcgbhfghjj", "ffghdfgjjh", "fgfghfghjjh", new Role(2, "user")));
+	// User user = new User(0, "test", "test@test", "test", new Role(2, "user"));
+	UserDaoHibernateImpl dao = new UserDaoHibernateImpl();
+	// dao.create(new User(13));
 
-	System.out.println(user);
+	dao.delete(new User(13));
     }
 
 }
