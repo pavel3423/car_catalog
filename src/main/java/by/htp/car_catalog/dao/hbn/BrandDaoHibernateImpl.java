@@ -33,9 +33,8 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
     public List<BrandCar> readAll() {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
-	List<BrandCar> brands = session.createCriteria(BrandCar.class).list();
 
-	return brands;
+	return session.createCriteria(BrandCar.class).list();
     }
 
     @Override
