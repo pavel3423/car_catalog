@@ -16,6 +16,8 @@ public class Car extends Entity {
     private String equipment;
     @Column(name = "price")
     private int price;
+    @Column(name = "image")
+    private String image;
 
     public Car() {
     }
@@ -88,6 +90,14 @@ public class Car extends Entity {
 
     public void setPrice(int price) {
 	this.price = price;
+    }
+
+    public String getImage() {
+	return image;
+    }
+
+    public void setImage(String image) {
+	this.image = image;
     }
 
     @Override

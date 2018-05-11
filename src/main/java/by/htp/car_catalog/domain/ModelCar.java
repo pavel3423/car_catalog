@@ -11,6 +11,8 @@ public class ModelCar extends Entity {
     private BrandCar brandID;
     @Column(name = "model")
     private String model;
+    @Column(name = "image")
+    private String image;
 
     public ModelCar() {
     }
@@ -54,6 +56,14 @@ public class ModelCar extends Entity {
 
     public void setModel(String model) {
 	this.model = model;
+    }
+
+    public String getImage() {
+	return image;
+    }
+
+    public void setImage(String image) {
+	this.image = image;
     }
 
     @Override

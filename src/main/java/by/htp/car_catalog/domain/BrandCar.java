@@ -11,6 +11,8 @@ public class BrandCar extends Entity {
     private static final long serialVersionUID = -6226794434941096791L;
     @Column(name = "brand")
     private String brand;
+    @Column(name = "image")
+    private String image;
 
     public BrandCar() {
     }
@@ -22,6 +24,14 @@ public class BrandCar extends Entity {
     public BrandCar(int id, String brand, List<ModelCar> models, List<Car> cars) {
 	super(id);
 	this.brand = brand;
+    }
+
+    public String getImage() {
+	return image;
+    }
+
+    public void setImage(String image) {
+	this.image = image;
     }
 
     @Id
