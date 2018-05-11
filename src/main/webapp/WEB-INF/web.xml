@@ -11,12 +11,27 @@
 	<servlet>
 		<servlet-name>MainServlet</servlet-name>
 		<servlet-class>by.htp.car_catalog.web.controller.MainServlet</servlet-class>
+
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>MainServlet</servlet-name>
 		<url-pattern>/do</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NewServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>NewServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
