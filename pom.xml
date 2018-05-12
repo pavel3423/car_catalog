@@ -8,17 +8,17 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<javax.servlet-api.version>4.0.0</javax.servlet-api.version>
-		<jstl.version>1.2</jstl.version>
-		<mysql-connector.version>6.0.6</mysql-connector.version>
-		<log4j.version>2.11.0</log4j.version>
-		<spring-framework.version>5.0.5.RELEASE</spring-framework.version>
-		<hibernate-core.version>4.3.11.Final</hibernate-core.version>
-		<javassist.version>3.22.0-GA</javassist.version>
-		<bootstrap.version>4.1.0</bootstrap.version>
-		<jquery.version>3.3.1-1</jquery.version>
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-		<org.JUnit.version>4.12</org.JUnit.version>
+		<javax.servlet-api-version>4.0.0</javax.servlet-api-version>
+		<jstl-version>1.2</jstl-version>
+		<mysql-connector-version>6.0.6</mysql-connector-version>
+		<log4j-version>2.11.0</log4j-version>
+		<spring-framework-version>5.0.5.RELEASE</spring-framework-version>
+		<hibernate-core-version>4.3.11.Final</hibernate-core-version>
+		<javassist-version>3.22.0-GA</javassist-version>
+		<bootstrap-version>4.1.0</bootstrap-version>
+		<jquery-version>3.3.1-1</jquery-version>
+		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+		<org.JUnit-version>4.12</org.JUnit-version>
 	</properties>
 
 	<dependencies>
@@ -26,61 +26,61 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet-api.version}</version>
+			<version>${javax.servlet-api-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
+			<version>${jstl-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector.version}</version>
+			<version>${mysql-connector-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>${log4j.version}</version>
+			<version>${log4j-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
+			<version>${log4j-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring-framework.version}</version>
+			<version>${spring-framework-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${spring-framework.version}</version>
+			<version>${spring-framework-version}</version>
 		</dependency>
 				
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring-framework.version}</version>
+			<version>${spring-framework-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring-framework.version}</version>
+			<version>${spring-framework-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate-core.version}</version>
+			<version>${hibernate-core-version}</version>
 		</dependency>
 
 
@@ -88,26 +88,26 @@
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>${javassist.version}</version>
+			<version>${javassist-version}</version>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<version>${bootstrap.version}</version>
+			<version>${bootstrap-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
-			<version>${jquery.version}</version>
+			<version>${jquery-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${org.JUnit.version}</version>
+			<version>${org.JUnit-version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -118,7 +118,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
+				<version>${maven-compiler-plugin-version}</version>
 				<configuration>
 					<source>9</source>
 					<target>9</target>
