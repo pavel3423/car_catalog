@@ -24,7 +24,7 @@ public class IndexAction {
 	this.brandService = brandService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
 
 	List<BrandCar> brands = brandService.getAllBrands();

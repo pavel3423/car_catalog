@@ -25,9 +25,9 @@
 				<c:out value="${msg}"></c:out>
 			</p>
 			<hr class="my-4">
-			<p>   </p>
-			<a class="btn btn-primary btn-lg" href="do?action=main_action"
-				role="button">Вернуться на главную страницу</a>
+			<p></p>
+			<a class="btn btn-primary btn-lg" href="/car_catalog" role="button">Вернуться
+				на главную страницу</a>
 		</div>
 	</div>
 

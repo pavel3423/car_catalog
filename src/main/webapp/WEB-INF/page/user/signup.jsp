@@ -9,8 +9,7 @@
 	</div>
 </c:if>
 
-<form class="form-horizontal" action="do?action=signup_action"
-	method="POST">
+<form class="form-horizontal" action="signup" method="POST">
 	<fieldset>
 
 		<!-- Form Name -->

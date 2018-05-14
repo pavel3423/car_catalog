@@ -1,61 +1,64 @@
-package by.htp.car_catalog.web.action.impl;
+package by.htp.car_catalog.web.action.spring_action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
-import by.htp.car_catalog.web.action.BaseAction;
-import by.htp.car_catalog.web.util.FormUtil;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
-import by.htp.car_catalog.web.util.SessionUser;
 import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
 
-public class SignUpAction implements BaseAction {
+@Controller
+@RequestMapping("/signup")
+public class SignupAction {
 
     private static final String MSG_NO_REGISTRATION_USER = "Не удаётся зарегестрироваться. Пожалуйста проверьте правильность введённых данных.";
     private static final String MSG_USER_DUBLICATE = "Пользователь с этим именем или электронной почтой уже зарегестрирован.";
 
+    @Autowired
     private UserService userService;
 
     public void setUserService(UserService userService) {
 	this.userService = userService;
     }
 
-    @Override
-    public String executeAction(HttpServletRequest req) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String signup() {
 
-	if (!FormUtil.isPost(req)) {
-
-	    return PAGE_USER_SIGNUP;
-	} else {
-
-	    return registration(req);
-	}
+	return PAGE_USER_SIGNUP;
     }
 
-    private String registration(HttpServletRequest req) {
+    @RequestMapping(method = RequestMethod.POST)
+    private String registration(@RequestParam Map<String, String> params, HttpSession session, Model model) {
 
-	String login = req.getParameter(REQUEST_PARAM_USER_LOGIN);
-	String email = req.getParameter(REQUEST_PARAM_USER_EMAIL);
-	String password = req.getParameter(REQUEST_PARAM_USER_PASSWORD);
+	String login = params.get(REQUEST_PARAM_USER_LOGIN);
+	String email = params.get(REQUEST_PARAM_USER_EMAIL);
+	String password = params.get(REQUEST_PARAM_USER_PASSWORD);
 
 	try {
 	    HttpRequestParamValidator.validateStringNotNull(login, email, password);
 	    User user = userService.addUser(login, email, password);
 
-	    SessionUser.addUserSession(req, user, ACTION_NAME_PROFILE);
-
-	    return null;
+	    session.setAttribute(REQUEST_PARAM_USER, user);
+	    return REDIRECT_TO + "profile";
 	} catch (ValidateNullParamException e) {
 
-	    req.setAttribute(REQUEST_MSG, MSG_NO_REGISTRATION_USER);
+	    model.addAttribute(REQUEST_MSG, MSG_NO_REGISTRATION_USER);
 	    return PAGE_USER_SIGNUP;
 	} catch (ConstraintViolationException e) {
-	    req.setAttribute(REQUEST_MSG, MSG_USER_DUBLICATE);
+
+	    model.addAttribute(REQUEST_MSG, MSG_USER_DUBLICATE);
 	    return PAGE_USER_SIGNUP;
 	}
     }

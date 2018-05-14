@@ -4,13 +4,14 @@ import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
@@ -18,26 +19,26 @@ import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
 
 @Controller
-@SessionAttributes(types = User.class)
+@RequestMapping("/login")
 public class LoginAction {
+
+    private static final String MSG_NO_USER = "Не удаётся войти. Пожалуйста проверьте правильность введённых данных.";
 
     @Autowired
     private UserService userService;
-
-    private static final String MSG_NO_USER = "Не удаётся войти. Пожалуйста проверьте правильность введённых данных.";
 
     public void setUserService(UserService userService) {
 	this.userService = userService;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    @RequestMapping(method = RequestMethod.GET)
+    public String login(@RequestParam Map<String, String> params, Model model) {
 
 	return PAGE_USER_LOGIN;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    private String authorization(@RequestParam Map<String, String> params, Model model) {
+    @RequestMapping(method = RequestMethod.POST)
+    private String authorization(@RequestParam Map<String, String> params, HttpSession session, Model model) {
 
 	String login = params.get(REQUEST_PARAM_USER_LOGIN);
 	String passwors = params.get(REQUEST_PARAM_USER_PASSWORD);
@@ -48,7 +49,7 @@ public class LoginAction {
 	    User user = userService.getUser(login, passwors);
 	    HttpRequestParamValidator.validateObjectNotNull(user);
 
-	    model.addAttribute(user);
+	    session.setAttribute(REQUEST_PARAM_USER, user);
 
 	    return REDIRECT_TO + "profile";
 	} catch (ValidateNullParamException e) {
