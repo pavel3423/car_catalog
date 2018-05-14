@@ -16,4 +16,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<import resource="dao-bean.xml" />
+	<import resource="service-bean.xml" />
+
 </beans>

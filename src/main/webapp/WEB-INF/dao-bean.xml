@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="userDao"
+		class="by.htp.car_catalog.dao.hbn.UserDaoHibernateImpl">
+	</bean>
+
+	<bean name="carDao"
+		class="by.htp.car_catalog.dao.hbn.CarDaoHibernateImpl">
+	</bean>
+
+	<bean name="brandDao"
+		class="by.htp.car_catalog.dao.hbn.BrandDaoHibernateImpl">
+	</bean>
+
+	<bean name="modelDao"
+		class="by.htp.car_catalog.dao.hbn.ModelDaoHibernateImpl">
+	</bean>
+</beans>

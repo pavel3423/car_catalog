@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.impl;
+/*package by.htp.car_catalog.web.action.impl;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,3 +22,4 @@ public class MainAction implements BaseAction {
 	}
 
 }
+*/
