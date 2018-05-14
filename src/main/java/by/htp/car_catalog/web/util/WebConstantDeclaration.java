@@ -22,6 +22,8 @@ public class WebConstantDeclaration {
     public static final String ACTION_NAME_PROFILE = "profile_action";
 
     // Page command
+    public static final String REDIRECT_TO = "redirect:";
+
     public static final String PAGE_INDEX = "user/index";
     public static final String PAGE_USER_LOGIN = "user/login";
     public static final String PAGE_USER_SIGNUP = "user/signup";

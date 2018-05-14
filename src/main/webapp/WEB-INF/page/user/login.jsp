@@ -9,7 +9,7 @@
 	</div>
 </c:if>
 
-<form class="form-horizontal" action="do?action=login_action"
+<form class="form-horizontal" action="login"
 	method="POST">
 	<fieldset>
 

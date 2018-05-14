@@ -2,7 +2,7 @@ package by.htp.car_catalog.web.action.spring_action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +25,7 @@ public class IndexAction {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(ModelMap model) {
+    public String index(Model model) {
 
 	List<BrandCar> brands = brandService.getAllBrands();
 	model.addAttribute(REQUEST_PARAM_ALL_BRANDS, brands);
