@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action;
+package by.htp.car_catalog.web.action.spring_action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class MainAction {
 	List<BrandCar> brands = brandService.getAllBrands();
 	model.addAttribute(REQUEST_PARAM_ALL_BRANDS, brands);
 
-	return "main";
+	return "user/main";
     }
 
 }

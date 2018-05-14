@@ -1,9 +1,9 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean name="main_action"
+<!-- 	<bean name="main_action"
 		class="by.htp.car_catalog.web.action.impl.MainAction">
 		<property name="brandService" ref="brandService" />
 	</bean>
@@ -32,7 +32,6 @@
 	<bean name="car_view_action"
 		class="by.htp.car_catalog.web.action.impl.CarViewAction">
 		<property name="carService" ref="carService" />
-	</bean>
+	</bean> -->
 
 </beans>
- -->

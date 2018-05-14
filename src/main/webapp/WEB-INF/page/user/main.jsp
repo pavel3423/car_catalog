@@ -3,7 +3,6 @@
 <%@ include file="../include/begin-html.jsp"%>
 
 <div class="row">
-	${msg }
 	<c:forEach items="${brands}" var="brand">
 
 		<div class="col-md-2" align="center">
@@ -14,7 +13,6 @@
 		</div>
 
 	</c:forEach>
-
 </div>
 
 <%@ include file="../include/end-html.jsp"%>
