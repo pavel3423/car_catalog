@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
-public class MainAction {
+public class IndexAction {
 
     @Autowired
     private BrandService brandService;
@@ -25,12 +25,12 @@ public class MainAction {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getBrands(ModelMap model) {
+    public String index(ModelMap model) {
 
 	List<BrandCar> brands = brandService.getAllBrands();
 	model.addAttribute(REQUEST_PARAM_ALL_BRANDS, brands);
 
-	return "user/main";
+	return PAGE_INDEX;
     }
 
 }

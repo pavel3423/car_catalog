@@ -22,14 +22,14 @@ public class WebConstantDeclaration {
     public static final String ACTION_NAME_PROFILE = "profile_action";
 
     // Page command
-    public static final String PAGE_USER_MAIN = "/WEB-INF/page/user/main.jsp";
-    public static final String PAGE_USER_LOGIN = "/WEB-INF/page/user/login.jsp";
-    public static final String PAGE_USER_SIGNUP = "/WEB-INF/page/user/signup.jsp";
-    public static final String PAGE_USER_PROFILE = "/WEB-INF/page/user/profile.jsp";
-    public static final String PAGE_CAR_MODELS = "/WEB-INF/page/car/models.jsp";
-    public static final String PAGE_CAR_VIEW = "/WEB-INF/page/car/carView.jsp";
+    public static final String PAGE_INDEX = "user/index";
+    public static final String PAGE_USER_LOGIN = "user/login";
+    public static final String PAGE_USER_SIGNUP = "user/signup";
+    public static final String PAGE_USER_PROFILE = "user/profile";
+    public static final String PAGE_CAR_MODELS = "car/models";
+    public static final String PAGE_CAR_VIEW = "car/carView";
 
-    public static final String PAGE_USER_ERROR = "/WEB-INF/page/user/error.jsp";
+    public static final String PAGE_USER_ERROR = "user/error";
 
     private WebConstantDeclaration() {
     }
