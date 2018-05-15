@@ -29,7 +29,7 @@ public class WebConstantDeclaration {
     public static final String PAGE_USER_SIGNUP = "user/signup";
     public static final String PAGE_USER_PROFILE = "user/profile";
     public static final String PAGE_CAR_MODELS = "car/models";
-    public static final String PAGE_CAR_VIEW = "car/carView";
+    public static final String PAGE_CAR_VIEW = "car/car_view";
 
     public static final String PAGE_USER_ERROR = "user/error";
 
