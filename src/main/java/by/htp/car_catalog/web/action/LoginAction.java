@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.spring_action;
+package by.htp.car_catalog.web.action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 

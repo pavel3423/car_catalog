@@ -16,15 +16,12 @@
 		location="/resources/" />
 
 	<context:component-scan
-		base-package="by.htp.car_catalog.web.action.spring_action" />
+		base-package="by.htp.car_catalog.web.action" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/page/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<import resource="spring_beans/dao-bean.xml" />
-	<import resource="spring_beans/service-bean.xml" />
 
 </beans>

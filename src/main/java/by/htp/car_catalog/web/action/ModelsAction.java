@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.spring_action;
+package by.htp.car_catalog.web.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.ModelService;
 

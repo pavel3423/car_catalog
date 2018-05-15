@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.spring_action;
+package by.htp.car_catalog.web.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class BrandAction {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
+    public String brands(Model model) {
 
 	List<BrandCar> brands = brandService.getAllBrands();
 	model.addAttribute(REQUEST_PARAM_ALL_BRANDS, brands);
