@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/begin-html.jsp"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <br>
 <c:if test="${msg!=null}">
@@ -9,8 +10,9 @@
 	</div>
 </c:if>
 
-<form class="form-horizontal" action="login"
-	method="POST">
+<h2>Войти</h2>
+
+<form class="form-horizontal" action="login" method="POST">
 	<fieldset>
 
 

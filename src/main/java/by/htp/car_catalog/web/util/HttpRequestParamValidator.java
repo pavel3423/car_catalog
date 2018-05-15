@@ -4,28 +4,28 @@ import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObject
 import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
 
 public final class HttpRequestParamValidator {
-	private HttpRequestParamValidator() {
+    private HttpRequestParamValidator() {
+    }
+
+    public static void validateObjectNotNull(Object... objects) {
+	for (Object o : objects) {
+
+	    if (o == null) {
+
+		throw new ValidateNullObjectException();
+	    }
+
 	}
+    }
 
-	public static void validateObjectNotNull(Object... objects) {
-		for (Object o : objects) {
+    public static void validateStringNotNull(String... str) {
+	for (String s : str) {
 
-			if (o == null) {
+	    if ("".equals(s)) {
 
-				throw new ValidateNullObjectException();
-			}
+		throw new ValidateNullStringException();
+	    }
 
-		}
 	}
-
-	public static void validateStringNotNull(String... str) {
-		for (String s : str) {
-
-			if ("".equals(s)) {
-
-				throw new ValidateNullStringException();
-			}
-
-		}
-	}
+    }
 }
