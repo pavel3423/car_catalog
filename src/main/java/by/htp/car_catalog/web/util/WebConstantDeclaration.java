@@ -24,7 +24,7 @@ public class WebConstantDeclaration {
     // Page command
     public static final String REDIRECT_TO = "redirect:";
 
-    public static final String PAGE_INDEX = "user/index";
+    public static final String PAGE_CAR_BRANDS = "car/brands";
     public static final String PAGE_USER_LOGIN = "user/login";
     public static final String PAGE_USER_SIGNUP = "user/signup";
     public static final String PAGE_USER_PROFILE = "user/profile";

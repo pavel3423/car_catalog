@@ -13,8 +13,7 @@
 
 		<div class="col-md-2" align="center">
 			<br> <img src="${model.image}" width="160" align="middle"
-				alt="${model.model}"> <a
-				href="do?action=car_view_action&brand=${brand}&model=${model.model}"
+				alt="${model.model}"> <a href="${brand}/${model.model}"
 				style="color: black">${model.model}</a>
 		</div>
 
