@@ -4,6 +4,8 @@ import by.htp.car_catalog.dao.UserDao;
 import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
+import by.htp.car_catalog.web.util.HttpRequestParamValidator;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
 
 public class UserServiceImpl implements UserService {
 
@@ -15,15 +17,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(String login, String email, String password) {
-	
+
 	User user = new User(0, login, email, password, new Role(2, "user"));
 	return userDao.create(user);
     }
 
     @Override
-    public User getUser(String login, String password) {
+    public User getUser(User user) {
 
-	return userDao.read(login, password);
+	user = userDao.read(user.getLogin(), user.getPassword());
+	HttpRequestParamValidator.validateObjectNotNull(user);
+
+	return user;
+
     }
 
 }

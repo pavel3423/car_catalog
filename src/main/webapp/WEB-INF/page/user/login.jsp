@@ -10,43 +10,24 @@
 	</div>
 </c:if>
 
-<h2>Войти</h2>
+<form:form class="form-horizontal" method="post" action="login">
 
-<form class="form-horizontal" action="login" method="POST">
+	<legend>Войти</legend>
+
 	<fieldset>
-
-
-		<!-- Form Name -->
-		<legend>Войти</legend>
-
-		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="Login">Login</label>
-			<div class="col-md-4">
-				<input id="login" name="login" type="text" placeholder="Login"
-					class="form-control input-md">
-
-			</div>
+		<div class="form-group col-4">
+			<form:label class="control-label" for="Login" path="login">Login:</form:label>
+			<form:input class="form-control input-md" path="login" />
 		</div>
-
-		<!-- Password input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="Password">Password</label>
-			<div class="col-md-4">
-				<input id="password" name="password" type="password"
-					placeholder="Password" class="form-control input-md">
-			</div>
-		</div>
-
-		<!-- Button -->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="button"></label>
-			<div class="col-md-4">
-				<button id="button" name="button" class="btn btn-success">Войти</button>
-			</div>
+		<div class="form-group col-4">
+			<form:label class="control-label" for="Password" path="password">Password:</form:label>
+			<form:password class="form-control input-md" path="password" />
 		</div>
 
 	</fieldset>
-</form>
+	<div class="form-group col-4">
+		<input class="btn btn-success" type="submit" value="Войти" />
+	</div>
+</form:form>
 
 <%@ include file="../include/end-html.jsp"%>
