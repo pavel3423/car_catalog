@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/brand/{brand}")
 public class ModelsAction {
 
-    private final String BRAND_NOT_FOUND = "Brand not found: ";
+    private static final String BRAND_NOT_FOUND = "Brand not found: ";
 
     @Autowired
     private ModelService modelService;
