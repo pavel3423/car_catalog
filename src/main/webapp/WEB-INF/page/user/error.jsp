@@ -26,8 +26,8 @@
 			</p>
 			<hr class="my-4">
 			<p></p>
-			<a class="btn btn-primary btn-lg" href="/car_catalog" role="button">Вернуться
-				на главную страницу</a>
+			<a class="btn btn-primary btn-lg" href="<c:url value="/"/>"
+				role="button">Вернуться на главную страницу</a>
 		</div>
 	</div>
 
