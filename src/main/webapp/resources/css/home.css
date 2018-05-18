@@ -1,0 +1,44 @@
+.card {
+	border-radius: 1rem;
+	margin: 12;
+}
+
+.card-img-top {
+	overflow: hidden;
+}
+
+.card img {
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	-webkit-transition: all 0.4s ease-out;
+}
+
+.card img:hover {
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-o-transform: scale(1.05);
+}
+
+.cardModel {
+	padding: 3px;
+}
+
+.card-body {
+	text-align: center;
+	padding-top: 23px;
+}
+
+.imageModel {
+	height: 100px;
+	width: 160px;
+	margin: auto;
+}
+
+.form-horizontal {
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -227px;
+	position: absolute;
+}

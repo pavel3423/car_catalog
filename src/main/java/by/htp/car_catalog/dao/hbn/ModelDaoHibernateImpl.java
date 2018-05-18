@@ -5,10 +5,12 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.ModelCarDao;
 import by.htp.car_catalog.domain.ModelCar;
 
+@Component(value = "modelDao")
 public class ModelDaoHibernateImpl implements ModelCarDao {
 
     @Override

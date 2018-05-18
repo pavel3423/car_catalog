@@ -3,10 +3,12 @@ package by.htp.car_catalog.dao.hbn;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.BrandCarDao;
 import by.htp.car_catalog.domain.BrandCar;
 
+@Component(value = "brandDao")
 public class BrandDaoHibernateImpl implements BrandCarDao {
 
     @Override

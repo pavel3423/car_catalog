@@ -1,6 +1,7 @@
 package by.htp.car_catalog.web.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +22,8 @@ public class ModelsAction {
     private static final String BRAND_NOT_FOUND = "Brand not found: ";
 
     @Autowired
+    @Qualifier(value = "modelService")
     private ModelService modelService;
-
-    public void setModelService(ModelService modelService) {
-	this.modelService = modelService;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String models(@PathVariable("brand") String brand, Model model) {

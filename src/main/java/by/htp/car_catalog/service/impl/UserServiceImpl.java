@@ -1,18 +1,21 @@
 package by.htp.car_catalog.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import by.htp.car_catalog.dao.UserDao;
 import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 
+@Component(value = "userService")
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    @Qualifier(value = "userDao")
     private UserDao userDao;
-
-    public void setUserDao(UserDao userDao) {
-	this.userDao = userDao;
-    }
 
     @Override
     public User addUser(String login, String email, String password) {

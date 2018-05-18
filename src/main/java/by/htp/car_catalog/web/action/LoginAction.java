@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,11 +28,8 @@ public class LoginAction {
     private static final String MSG_NO_USER = "Не удаётся войти. Пожалуйста проверьте правильность введённых данных.";
 
     @Autowired
+    @Qualifier(value = "userService")
     private UserService userService;
-
-    public void setUserService(UserService userService) {
-	this.userService = userService;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView login(@RequestParam Map<String, String> params, Model model) {

@@ -5,10 +5,12 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.UserDao;
 import by.htp.car_catalog.domain.User;
 
+@Component(value = "userDao")
 public class UserDaoHibernateImpl implements UserDao {
 
     @Override

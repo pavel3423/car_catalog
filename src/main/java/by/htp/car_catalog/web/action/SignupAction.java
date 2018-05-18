@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,8 @@ public class SignupAction {
     private static final String MSG_USER_DUBLICATE = "Пользователь с этим именем или электронной почтой уже зарегестрирован.";
 
     @Autowired
+    @Qualifier(value = "userService")
     private UserService userService;
-
-    public void setUserService(UserService userService) {
-	this.userService = userService;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String signup() {

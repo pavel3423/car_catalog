@@ -1,6 +1,7 @@
 package by.htp.car_catalog.web.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,14 +19,11 @@ import java.util.List;
 @RequestMapping("brand/{brand}/{model}")
 public class CarViewAction {
 
-    private final String CAR_NOT_FOUND = "Car not found: ";
+    private static final String CAR_NOT_FOUND = "Car not found: ";
 
     @Autowired
+    @Qualifier(value = "carService")
     private CarService carService;
-
-    public void setCarService(CarService carService) {
-	this.carService = carService;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String carView(@PathVariable("brand") String brand, @PathVariable("model") String modelCar, Model model) {
