@@ -11,7 +11,8 @@
 
 			<div class="card col-md-2">
 				<br> <a href="brand/${brand.brand}"> <img
-					class="card-img-top" src="${brand.image}" alt="${brand.brand}"></a>
+					class="card-img-top" src="<c:url value="${brand.image }" />"
+					alt="${brand.brand}"></a>
 				<div class="card-body" align="center">
 					<a href="brand/${brand.brand}" class="btn btn-outline-info">${brand.brand}</a>
 				</div>
