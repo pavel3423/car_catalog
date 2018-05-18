@@ -16,7 +16,7 @@ import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("brand/{brand}/{model}")
+@RequestMapping("/{brand}/{model}")
 public class CarViewAction {
 
     private static final String CAR_NOT_FOUND = "Car not found: ";

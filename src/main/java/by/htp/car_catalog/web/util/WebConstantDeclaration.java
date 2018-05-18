@@ -31,7 +31,7 @@ public class WebConstantDeclaration {
     public static final String PAGE_CAR_MODELS = "car/models";
     public static final String PAGE_CAR_VIEW = "car/car_view";
 
-    public static final String PAGE_USER_ERROR = "user/error";
+    public static final String PAGE_USER_ERROR = "error";
 
     private WebConstantDeclaration() {
     }
