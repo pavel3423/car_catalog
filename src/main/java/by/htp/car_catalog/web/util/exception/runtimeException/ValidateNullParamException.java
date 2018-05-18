@@ -1,36 +1,31 @@
 package by.htp.car_catalog.web.util.exception.runtimeException;
 
-public class ValidateNullParamException extends RuntimeException {
+import java.io.IOException;
 
-	private static final long serialVersionUID = -6927051771242956629L;
+public class ValidateNullParamException extends IOException {
 
-	public ValidateNullParamException() {
-		super();
-	}
+    private static final long serialVersionUID = -6927051771242956629L;
 
-	public ValidateNullParamException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
+    public ValidateNullParamException() {
+	super();
+    }
 
-		super(message, cause, enableSuppression, writableStackTrace);
+    public ValidateNullParamException(String message, Throwable cause) {
 
-	}
+	super(message, cause);
 
-	public ValidateNullParamException(String message, Throwable cause) {
+    }
 
-		super(message, cause);
+    public ValidateNullParamException(String message) {
 
-	}
+	super(message);
 
-	public ValidateNullParamException(String message) {
+    }
 
-		super(message);
+    public ValidateNullParamException(Throwable cause) {
 
-	}
+	super(cause);
 
-	public ValidateNullParamException(Throwable cause) {
-
-		super(cause);
-
-	}
+    }
 
 }

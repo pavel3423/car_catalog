@@ -19,6 +19,7 @@
 		<jquery-version>3.3.1-1</jquery-version>
 		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
 		<org.JUnit-version>4.12</org.JUnit-version>
+		<commons-fileupload>1.3.3</commons-fileupload>
 	</properties>
 
 	<dependencies>
@@ -64,7 +65,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring-framework-version}</version>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -109,6 +110,12 @@
 			<artifactId>junit</artifactId>
 			<version>${org.JUnit-version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload}</version>
 		</dependency>
 
 	</dependencies>

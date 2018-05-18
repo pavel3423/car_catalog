@@ -25,7 +25,19 @@
 
 .card-body {
 	text-align: center;
+	padding-top: 15px;
+}
+
+.card-body-model {
+	text-align: center;
 	padding-top: 23px;
+}
+
+.imageBrand {
+	padding-top: 15px;
+	height: 182px;
+	width: 158px;
+	margin: auto;
 }
 
 .imageModel {

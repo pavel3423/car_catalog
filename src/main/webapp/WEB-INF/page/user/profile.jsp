@@ -43,11 +43,22 @@
 	</fieldset>
 </form>
 
-<form action="http://localhost:8080/upload" method="post"
-	enctype="multipart/form-data">
-	<input name="description" type="text"><br> <input
-		name="data" type="file"><br> <input type="submit"><br>
-</form>
+<form:form method="post" enctype="multipart/form-data"
+	modelAttribute="uploadedFile" action="uploadFile">
+	<table>
+		<tr>
+			<td>Upload File:</td>
+			<td><input type="file" name="file" /></td>
+			<td style="color: red; font-style: italic;"><form:errors
+					path="file" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Upload" /></td>
+			<td></td>
+		</tr>
+	</table>
+</form:form>
 
 
 <%@ include file="../include/end-html.jsp"%>

@@ -9,6 +9,7 @@ import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
+import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
 
 @Component(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(User user) {
+    public User getUser(User user) throws ValidateNullObjectException {
 
 	user = userDao.read(user.getLogin(), user.getPassword());
 	HttpRequestParamValidator.validateObjectNotNull(user);

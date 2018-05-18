@@ -7,7 +7,7 @@ public final class HttpRequestParamValidator {
     private HttpRequestParamValidator() {
     }
 
-    public static void validateObjectNotNull(Object... objects) {
+    public static void validateObjectNotNull(Object... objects) throws ValidateNullObjectException {
 	for (Object o : objects) {
 
 	    if (o == null) {
@@ -18,10 +18,10 @@ public final class HttpRequestParamValidator {
 	}
     }
 
-    public static void validateStringNotNull(String... str) {
+    public static void validateStringNotNull(String... str) throws ValidateNullStringException {
 	for (String s : str) {
 
-	    if ("".equals(s)) {
+	    if ("".equals(s) || s == null) {
 
 		throw new ValidateNullStringException();
 	    }

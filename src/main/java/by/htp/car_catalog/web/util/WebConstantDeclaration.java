@@ -33,6 +33,9 @@ public class WebConstantDeclaration {
 
     public static final String PAGE_USER_ERROR = "error";
 
+    // root path for images
+    public static final String IMAGE_ROOT = "C:\\car_catalog\\image";
+
     private WebConstantDeclaration() {
     }
 }

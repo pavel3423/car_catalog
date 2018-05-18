@@ -4,22 +4,22 @@
 
 <div class="container">
 	<div class="row">
-		<h4>
-			<br>
-			<c:out value="${brand}" />
-		</h4>
 		<div class="col-md-12">
-			<br>
+			<h4>
+				<br>
+				<c:out value="${brand}" />
+				<br>
+			</h4>
 		</div>
 		<c:forEach items="${models}" var="model">
 
 			<div class="card col-md-2 cardModel">
 				<div class="imageModel">
 					<a href="${brand}/${model.model}"> <img class="card-img-top"
-						src="${model.image}" width="158" alt="${model.model}"></a>
+						src="${model.image}" alt="${model.model}"></a>
 				</div>
 
-				<div class="card-body">
+				<div class="card-body card-body-model">
 					<a href="${brand}/${model.model}" class="btn btn-outline-success">${model.model}</a>
 				</div>
 

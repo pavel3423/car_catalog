@@ -10,9 +10,11 @@
 		<c:forEach items="${brands}" var="brand">
 
 			<div class="card col-md-2">
-				<br> <a href="${brand.brand}"> <img
-					class="card-img-top" src="<c:url value="${brand.image }" />"
-					alt="${brand.brand}"></a>
+				<div class="imageBrand">
+					<a href="${brand.brand}"> <img class="card-img-top"
+						src="<c:url value="${brand.image}" />" alt="${brand.brand}"></a>
+				</div>
+
 				<div class="card-body" align="center">
 					<a href="${brand.brand}" class="btn btn-outline-info">${brand.brand}</a>
 				</div>
