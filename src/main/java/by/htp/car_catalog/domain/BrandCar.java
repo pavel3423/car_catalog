@@ -1,7 +1,5 @@
 package by.htp.car_catalog.domain;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @javax.persistence.Entity
@@ -21,9 +19,10 @@ public class BrandCar extends Entity {
 	super(id);
     }
 
-    public BrandCar(int id, String brand, List<ModelCar> models, List<Car> cars) {
+    public BrandCar(int id, String brand, String image) {
 	super(id);
 	this.brand = brand;
+	this.image = image;
     }
 
     public String getImage() {

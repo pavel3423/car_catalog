@@ -1,10 +1,11 @@
-package by.htp.car_catalog.web.action;
+package by.htp.car_catalog.service.util.uploadFile;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadedFile {
 
     private MultipartFile file;
+    private String path;
 
     public MultipartFile getFile() {
 	return file;
@@ -12,5 +13,13 @@ public class UploadedFile {
 
     public void setFile(MultipartFile file) {
 	this.file = file;
+    }
+
+    public String getPath() {
+	return path;
+    }
+
+    public void setPath(String path) {
+	this.path = path;
     }
 }

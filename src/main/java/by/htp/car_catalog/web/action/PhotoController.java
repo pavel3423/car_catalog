@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,9 +18,9 @@ import by.htp.car_catalog.web.util.WebConstantDeclaration;
 
 @Controller
 public class PhotoController {
-    @RequestMapping("image/{param}")
+    @RequestMapping("image/{param:.+}")
     @ResponseBody
-    public HttpEntity<byte[]> getCarPhoto(@PathVariable("param") String param) {
+    public HttpEntity<byte[]> getCarPhoto(@PathVariable("param") String param, HttpServletRequest req) {
 
 	byte[] image = read(param);
 
@@ -36,7 +38,6 @@ public class PhotoController {
 	for (String string : params) {
 	    path.append("\\").append(string);
 	}
-	path.append(".png");
 
 	File fi = new File(path.toString());
 	byte[] fileContent;

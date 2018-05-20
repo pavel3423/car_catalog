@@ -16,7 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import by.htp.car_catalog.web.util.FileValidator;
+import by.htp.car_catalog.service.util.uploadFile.FileValidator;
+import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 
 @Controller
 @SessionAttributes("filename")

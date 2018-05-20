@@ -37,7 +37,7 @@ public class ModelsAction {
 	} else {
 
 	    model.addAttribute(REQUEST_MSG, BRAND_NOT_FOUND + brand);
-	    return PAGE_USER_ERROR;
+	    return PAGE_ERROR;
 	}
     }
 

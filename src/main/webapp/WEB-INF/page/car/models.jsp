@@ -5,11 +5,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h4>
-				<br>
-				<c:out value="${brand}" />
-				<br>
-			</h4>
+			<div class="head-h4">
+				<h4>
+					<c:out value="${brand}" />
+				</h4>
+			</div>
 		</div>
 		<c:forEach items="${models}" var="model">
 

@@ -54,3 +54,16 @@
 	margin-left: -227px;
 	position: absolute;
 }
+
+.card-panel {
+	margin: 0;
+	border-radius: .25rem;
+}
+
+.panel-elements {
+	margin-bottom: 10px;
+}
+
+.form-add-text-image>form>.form-group {
+	margin-bottom: 2rem;
+}

@@ -31,7 +31,10 @@ public class WebConstantDeclaration {
     public static final String PAGE_CAR_MODELS = "car/models";
     public static final String PAGE_CAR_VIEW = "car/car_view";
 
-    public static final String PAGE_USER_ERROR = "error";
+    public static final String PAGE_CAR_PANEL = "car_panel/panel";
+    public static final String PAGE_PANEL_BRAND_ADD = "car_panel/add_brand";
+
+    public static final String PAGE_ERROR = "error";
 
     // root path for images
     public static final String IMAGE_ROOT = "C:\\car_catalog\\image";

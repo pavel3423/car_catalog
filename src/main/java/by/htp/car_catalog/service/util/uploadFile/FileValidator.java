@@ -1,8 +1,6 @@
-package by.htp.car_catalog.web.util;
+package by.htp.car_catalog.service.util.uploadFile;
 
 import java.io.FileNotFoundException;
-
-import by.htp.car_catalog.web.action.UploadedFile;
 
 public class FileValidator {
 
