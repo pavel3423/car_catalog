@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.htp.car_catalog.web.util.exception.runtimeException.UnknownCommandException;
+
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 @ControllerAdvice
@@ -15,7 +17,15 @@ public class GlobalExceptionHandler {
     public ModelAndView jdbcConnectionException(Exception ex) {
 	LogManager.getLogger().error("No connection on JDBC driver", ex);
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
-	modelAndView.addObject("error", "No connection on JDBC driver");
+	modelAndView.addObject(REQUEST_ERROR, "No connection on JDBC driver");
+	return modelAndView;
+    }
+
+    @ExceptionHandler(UnknownCommandException.class)
+    public ModelAndView unknownCommandException(Exception ex) {
+	LogManager.getLogger().error("Unknown command error", ex);
+	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
+	modelAndView.addObject(REQUEST_ERROR, "Unknown command error");
 	return modelAndView;
     }
 
@@ -23,7 +33,7 @@ public class GlobalExceptionHandler {
     public ModelAndView handleBadFileNameException(Exception ex) {
 	LogManager.getLogger().error("Unknown error", ex);
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
-	modelAndView.addObject("error", "Unknown error");
+	modelAndView.addObject(REQUEST_ERROR, "Unknown error");
 	return modelAndView;
     }
 }

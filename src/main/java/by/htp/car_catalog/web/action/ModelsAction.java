@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.ModelService;
+import by.htp.car_catalog.web.util.exception.runtimeException.UnknownCommandException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
@@ -19,14 +20,12 @@ import java.util.List;
 @RequestMapping("/{brand}")
 public class ModelsAction {
 
-    private static final String BRAND_NOT_FOUND = "Brand not found: ";
-
     @Autowired
     @Qualifier(value = "modelService")
     private ModelService modelService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String models(@PathVariable("brand") String brand, Model model) {
+    public String models(@PathVariable("brand") String brand, Model model) throws UnknownCommandException {
 
 	List<ModelCar> models = modelService.readByBrand(brand);
 
@@ -36,8 +35,7 @@ public class ModelsAction {
 	    return PAGE_CAR_MODELS;
 	} else {
 
-	    model.addAttribute(REQUEST_ERROR, BRAND_NOT_FOUND + brand);
-	    return PAGE_ERROR;
+	    throw new UnknownCommandException();
 	}
     }
 

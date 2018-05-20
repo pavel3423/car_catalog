@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.htp.car_catalog.domain.Car;
 import by.htp.car_catalog.service.CarService;
+import by.htp.car_catalog.web.util.exception.runtimeException.UnknownCommandException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
@@ -19,14 +20,13 @@ import java.util.List;
 @RequestMapping("/{brand}/{model}")
 public class CarViewAction {
 
-    private static final String CAR_NOT_FOUND = "Car not found: ";
-
     @Autowired
     @Qualifier(value = "carService")
     private CarService carService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String carView(@PathVariable("brand") String brand, @PathVariable("model") String modelCar, Model model) {
+    public String carView(@PathVariable("brand") String brand, @PathVariable("model") String modelCar, Model model)
+	    throws UnknownCommandException {
 
 	List<Car> cars = carService.readByBrandAndModel(brand, modelCar);
 
@@ -36,9 +36,7 @@ public class CarViewAction {
 	    return PAGE_CAR_VIEW;
 	} else {
 
-	    model.addAttribute(REQUEST_ERROR, CAR_NOT_FOUND + brand + " " + modelCar);
-	    return PAGE_ERROR;
+	    throw new UnknownCommandException();
 	}
     }
-
 }
