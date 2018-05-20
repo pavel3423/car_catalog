@@ -21,10 +21,11 @@ public class ModelCar extends Entity {
 	super(id);
     }
 
-    public ModelCar(int id, BrandCar brandID, String model) {
+    public ModelCar(int id, BrandCar brandID, String model, String image) {
 	super(id);
 	this.brandID = brandID;
 	this.model = model;
+	this.image = image;
     }
 
     @Id

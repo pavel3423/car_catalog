@@ -34,6 +34,8 @@ public class WebConstantDeclaration {
     public static final String PAGE_CAR_PANEL = "car_panel/panel";
     public static final String PAGE_PANEL_BRAND_ADD = "car_panel/add_brand";
 
+    public static final String PAGE_PANEL_MODEL_ADD = "car_panel/add_model";
+
     public static final String PAGE_ERROR = "error";
 
     // root path for images

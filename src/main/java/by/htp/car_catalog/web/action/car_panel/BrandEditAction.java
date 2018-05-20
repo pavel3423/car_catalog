@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
@@ -17,6 +18,7 @@ import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 @RequestMapping("/panel/")
 public class BrandEditAction {
 
+    private static final String BRAND_ADDED = "Бренд добавлен.";
     @Autowired
     @Qualifier(value = "brandService")
     BrandService brandService;
@@ -28,10 +30,13 @@ public class BrandEditAction {
     }
 
     @RequestMapping(value = "addBrand", method = RequestMethod.POST)
-    public String brandAdd(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand) {
+    public String brandAdd(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
+	    RedirectAttributes redirectAttributes) {
 
 	brandService.addBrand(brand, uploadedFile);
-	return REDIRECT_TO + "add";
+
+	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_ADDED);
+	return REDIRECT_TO + "addBrand";
     }
 
 }

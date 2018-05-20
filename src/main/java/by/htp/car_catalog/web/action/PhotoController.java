@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import by.htp.car_catalog.web.util.WebConstantDeclaration;
+import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 @Controller
 public class PhotoController {
@@ -33,7 +33,7 @@ public class PhotoController {
     public byte[] read(String param) {
 
 	String[] params = param.split("&");
-	StringBuilder path = new StringBuilder(WebConstantDeclaration.IMAGE_ROOT);
+	StringBuilder path = new StringBuilder(IMAGE_ROOT);
 
 	for (String string : params) {
 	    path.append("\\").append(string);

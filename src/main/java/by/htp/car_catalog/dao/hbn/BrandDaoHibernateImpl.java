@@ -2,11 +2,14 @@ package by.htp.car_catalog.dao.hbn;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.BrandCarDao;
 import by.htp.car_catalog.domain.BrandCar;
+import by.htp.car_catalog.domain.User;
 
 @Component(value = "brandDao")
 public class BrandDaoHibernateImpl implements BrandCarDao {
@@ -29,6 +32,26 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 	session.beginTransaction();
 
 	return (BrandCar) session.load(BrandCar.class, id);
+    }
+
+    @Override
+    public BrandCar read(String brand) {
+
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	Criteria criteria = session.createCriteria(BrandCar.class);
+	criteria.add(Restrictions.eq("brand", brand));
+	List<BrandCar> brands = criteria.list();
+
+	session.close();
+
+	if (!brands.isEmpty()) {
+
+	    return brands.get(0);
+	} else {
+
+	    return null;
+	}
     }
 
     @Override

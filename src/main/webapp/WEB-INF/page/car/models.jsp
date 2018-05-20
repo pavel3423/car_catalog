@@ -16,7 +16,7 @@
 			<div class="card col-md-2 cardModel">
 				<div class="imageModel">
 					<a href="${brand}/${model.model}"> <img class="card-img-top"
-						src="${model.image}" alt="${model.model}"></a>
+						src="<c:url value="${model.image}" />" alt="${model.model}"></a>
 				</div>
 
 				<div class="card-body card-body-model">

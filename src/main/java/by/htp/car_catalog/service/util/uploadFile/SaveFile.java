@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class SaveFile {
 
-    public static String saveFile(UploadedFile uploadedFile, String brand) {
+    public static String saveFile(UploadedFile uploadedFile, String name) {
 
 	MultipartFile file = uploadedFile.getFile();
 
@@ -18,7 +18,7 @@ public class SaveFile {
 
 	    byte[] bytes = file.getBytes();
 
-	    String fileName = brand + getFileExtension(file.getOriginalFilename());
+	    String fileName = name + getFileExtension(file.getOriginalFilename());
 
 	    File dir = new File(uploadedFile.getPath());
 

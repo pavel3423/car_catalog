@@ -13,15 +13,20 @@
 						бренд</li>
 				</ol>
 			</nav>
-			<div class="head-h4">
-				<h4>Добавить бренд.</h4>
-			</div>
+			
+			<c:if test="${msg!=null}">
+				<div class="alert alert-success" role="alert">
+					<c:out value="${msg}"></c:out>
+				</div>
+			</c:if>
 		</div>
+
+
 
 		<div class="col-md-5">
 			<div class="form-add-text-image">
 				<form:form enctype="multipart/form-data"
-					modelAttribute="uploadedFile" method="POST" action="add">
+					modelAttribute="uploadedFile" method="POST" action="addBrand">
 
 					<div class="form-group">
 						<label>Название бренда</label> <input name="brand" type="text"

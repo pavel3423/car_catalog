@@ -10,21 +10,35 @@
 					<li class="breadcrumb-item"><a href="<c:url value="/panel/"/>">Панель
 							редактирования</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Добавить
-						бренд</li>
+						модель</li>
 				</ol>
 			</nav>
-			<div class="head-h4">
-				<h4>Добавить бренд.</h4>
-			</div>
+
+			<c:if test="${msg!=null}">
+				<div class="alert alert-success" role="alert">
+					<c:out value="${msg}"></c:out>
+				</div>
+			</c:if>
+
 		</div>
 
 		<div class="col-md-5">
 			<div class="form-add-text-image">
 				<form:form enctype="multipart/form-data"
-					modelAttribute="uploadedFile" method="POST" action="add">
+					modelAttribute="uploadedFile" method="POST" action="addModel">
 
 					<div class="form-group">
-						<label>Название бренда</label> <input name="brand" type="text"
+						<label>Название бренда</label> <select class="form-control"
+							name="brand">
+							<c:forEach items="${brands}" var="brand">
+								<option>${brand.brand }</option>
+							</c:forEach>
+
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label>Название модели</label> <input name="model" type="text"
 							class="form-control" id="input">
 					</div>
 
