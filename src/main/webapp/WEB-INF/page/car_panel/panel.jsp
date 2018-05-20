@@ -15,24 +15,30 @@
 		<div class="col-md-12 ">
 			<div class="panel-elements">
 				<h5>Бренд</h5>
-				<a role="button" class="btn btn-primary btn-sm" href="addBrand">Добавить</a>
-				<a role="button" class="btn btn-secondary btn-sm" href="editBrand">Изменить</a>
+				<a role="button" class="btn btn-primary btn-sm"
+					href='<c:url value="/panel/addBrand" />'>Добавить</a> <a
+					role="button" class="btn btn-secondary btn-sm"
+					href="<c:url value="/panel/editBrand" />">Изменить</a>
 			</div>
 		</div>
 
 		<div class="col-md-12">
 			<div class="panel-elements">
 				<h5>Модель</h5>
-				<a role="button" class="btn btn-primary btn-sm" href="addModel">Добавить</a>
-				<a role="button" class="btn btn-secondary btn-sm" href="editModel">Изменить</a>
+				<a role="button" class="btn btn-primary btn-sm"
+					href="<c:url value="/panel/addModel" />">Добавить</a> <a
+					role="button" class="btn btn-secondary btn-sm"
+					href="<c:url value="/panel/editModel" />">Изменить</a>
 			</div>
 		</div>
 
 		<div class="col-md-12">
 			<div class="panel-elements">
 				<h5>Автомобиль</h5>
-				<a role="button" class="btn btn-primary btn-sm" href="addCar">Добавить</a>
-				<a role="button" class="btn btn-secondary btn-sm" href="editCar">Изменить</a>
+				<a role="button" class="btn btn-primary btn-sm"
+					href="<c:url value="/panel/addCar" />">Добавить</a> <a
+					role="button" class="btn btn-secondary btn-sm"
+					href="<c:url value="/panel/editCar" />">Изменить</a>
 			</div>
 		</div>
 	</div>
