@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -72,6 +73,7 @@ public class ModelDaoHibernateImpl implements ModelCarDao {
 	Criteria criteria = session.createCriteria(ModelCar.class, "models_car");
 	criteria.createAlias("models_car.brandID", "brands_car");
 	criteria.add(Restrictions.eq("brands_car.brand", brand));
+	criteria.addOrder(Order.asc("model"));
 
 	List<ModelCar> models = criteria.list();
 

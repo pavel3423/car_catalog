@@ -36,7 +36,7 @@ public class ModelsAction {
 	    return PAGE_CAR_MODELS;
 	} else {
 
-	    model.addAttribute(REQUEST_MSG, BRAND_NOT_FOUND + brand);
+	    model.addAttribute(REQUEST_ERROR, BRAND_NOT_FOUND + brand);
 	    return PAGE_ERROR;
 	}
     }

@@ -5,6 +5,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="<c:url value="/"/>">К
+							списку производителей</a></li>
+					<li class="breadcrumb-item active" aria-current="page"><c:out
+							value="${brand}" /></li>
+				</ol>
+			</nav>
 			<div class="head-h4">
 				<h4>
 					<c:out value="${brand}" />

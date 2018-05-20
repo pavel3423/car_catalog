@@ -36,7 +36,7 @@ public class CarViewAction {
 	    return PAGE_CAR_VIEW;
 	} else {
 
-	    model.addAttribute(REQUEST_MSG, CAR_NOT_FOUND + brand + " " + modelCar);
+	    model.addAttribute(REQUEST_ERROR, CAR_NOT_FOUND + brand + " " + modelCar);
 	    return PAGE_ERROR;
 	}
     }

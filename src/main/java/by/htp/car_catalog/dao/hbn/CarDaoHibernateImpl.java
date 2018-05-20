@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -67,9 +68,10 @@ public class CarDaoHibernateImpl implements CarDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-	Criteria criteria = session.createCriteria(Car.class, "cars").createAlias("cars.modelID", "models_car")
-		.createAlias("models_car.brandID", "brands_car").add(Restrictions.eq("models_car.model", model))
-		.add(Restrictions.eq("brands_car.brand", brand));
+	Criteria criteria = session.createCriteria(Car.class, "cars");
+	criteria.createAlias("cars.modelID", "models_car").createAlias("models_car.brandID", "brands_car");
+	criteria.add(Restrictions.eq("models_car.model", model)).add(Restrictions.eq("brands_car.brand", brand));
+	criteria.addOrder(Order.asc("price"));
 
 	List<Car> cars = criteria.list();
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -58,8 +59,10 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
     public List<BrandCar> readAll() {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	Criteria criteria = session.createCriteria(BrandCar.class);
+	criteria.addOrder(Order.asc("brand"));
 
-	return session.createCriteria(BrandCar.class).list();
+	return criteria.list();
     }
 
     @Override
