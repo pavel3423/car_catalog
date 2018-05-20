@@ -25,6 +25,9 @@ import java.io.IOException;
 public class BrandEditAction {
 
     private static final String BRAND_ADDED = "Бренд добавлен.";
+    private static final String CHECK_DATA = "Проверьте введённые данные";
+    private static final String ERROR_SAVE = "Ошибка сохранения изображения";
+
     @Autowired
     @Qualifier(value = "brandService")
     BrandService brandService;
@@ -48,14 +51,14 @@ public class BrandEditAction {
     @ExceptionHandler(value = { FileNotFoundException.class, ValidateNullStringException.class })
     public String fileException(Exception ex, RedirectAttributes redirectAttributes) {
 
-	redirectAttributes.addFlashAttribute(REQUEST_ERROR, "Проверьте введённые данные");
+	redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
 	return REDIRECT_TO + "addBrand";
     }
 
     @ExceptionHandler(IOException.class)
     public ModelAndView ioException(Exception ex) {
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
-	modelAndView.addObject("error", "Ошибка сохранения изображения");
+	modelAndView.addObject("error", ERROR_SAVE);
 	return modelAndView;
     }
 

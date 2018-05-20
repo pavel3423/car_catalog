@@ -29,6 +29,8 @@ import java.util.List;
 public class ModelEditAction {
 
     private static final String MODEL_ADDED = "Модель добавлена";
+    private static final String CHECK_DATA = "Проверьте введённые данные";
+    private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
     @Autowired
     @Qualifier(value = "brandService")
@@ -60,14 +62,14 @@ public class ModelEditAction {
     @ExceptionHandler(value = { FileNotFoundException.class, ValidateNullStringException.class })
     public String fileException(Exception ex, RedirectAttributes redirectAttributes) {
 
-	redirectAttributes.addFlashAttribute(REQUEST_ERROR, "Проверьте введённые данные");
+	redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
 	return REDIRECT_TO + "addModel";
     }
 
     @ExceptionHandler(IOException.class)
     public ModelAndView ioException(Exception ex) {
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
-	modelAndView.addObject("error", "Ошибка сохранения изображения");
+	modelAndView.addObject("error", ERROR_SAVE);
 	return modelAndView;
     }
 
