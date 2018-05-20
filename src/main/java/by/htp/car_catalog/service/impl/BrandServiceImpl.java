@@ -1,5 +1,6 @@
 package by.htp.car_catalog.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.util.uploadFile.SaveFile;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
+import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.WebConstantDeclaration;
 
 @Component(value = "brandService")
@@ -21,7 +23,9 @@ public class BrandServiceImpl implements BrandService {
     private BrandCarDao brandDao;
 
     @Override
-    public void addBrand(String brand, UploadedFile uploadedFile) {
+    public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
+	HttpRequestParamValidator.validateStringNotNull(brand);
+
 	uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
 
 	String path = "/image/car&" + SaveFile.saveFile(uploadedFile, brand);

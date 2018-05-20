@@ -9,35 +9,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class SaveFile {
 
-    public static String saveFile(UploadedFile uploadedFile, String name) {
+    public static String saveFile(UploadedFile uploadedFile, String name) throws IOException {
 
 	MultipartFile file = uploadedFile.getFile();
 
-	try {
-	    FileValidator.validate(uploadedFile);
+	FileValidator.validate(uploadedFile);
 
-	    byte[] bytes = file.getBytes();
+	byte[] bytes = file.getBytes();
 
-	    String fileName = name + getFileExtension(file.getOriginalFilename());
+	String fileName = name + getFileExtension(file.getOriginalFilename());
 
-	    File dir = new File(uploadedFile.getPath());
+	File dir = new File(uploadedFile.getPath());
 
-	    if (!dir.exists()) {
-		dir.mkdirs();
-	    }
+	if (!dir.exists()) {
+	    dir.mkdirs();
+	}
 
-	    File loadFile = new File(dir.getAbsolutePath() + File.separator + fileName);
-
-	    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile));
+	File loadFile = new File(dir.getAbsolutePath() + File.separator + fileName);
+	try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile))) {
 	    stream.write(bytes);
 	    stream.flush();
-	    stream.close();
-
-	    return fileName;
-	} catch (IOException e) {
-	    e.printStackTrace();
-	    return null;
 	}
+
+	return fileName;
     }
 
     private static String getFileExtension(String str) {

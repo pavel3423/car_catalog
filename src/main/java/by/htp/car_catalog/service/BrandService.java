@@ -1,5 +1,6 @@
 package by.htp.car_catalog.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import by.htp.car_catalog.domain.BrandCar;
@@ -9,6 +10,6 @@ public interface BrandService {
 
     List<BrandCar> getAllBrands();
 
-    void addBrand(String brand, UploadedFile uploadedFile);
+    void addBrand(String brand, UploadedFile uploadedFile) throws IOException;
 
 }

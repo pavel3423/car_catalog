@@ -19,6 +19,12 @@
 					<c:out value="${msg}"></c:out>
 				</div>
 			</c:if>
+			
+			<c:if test="${error!=null}">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${error}"></c:out>
+				</div>
+			</c:if>
 		</div>
 
 

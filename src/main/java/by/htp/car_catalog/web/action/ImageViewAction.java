@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 @Controller
-public class PhotoController {
+public class ImageViewAction {
     @RequestMapping("image/{param:.+}")
     @ResponseBody
     public HttpEntity<byte[]> getCarPhoto(@PathVariable("param") String param, HttpServletRequest req) {

@@ -22,7 +22,7 @@
 		<div class="jumbotron">
 			<h1 class="display-4">Error</h1>
 			<p class="lead">
-				<c:out value="${msg}"></c:out>
+				<c:out value="${error}"></c:out>
 			</p>
 			<hr class="my-4">
 			<p></p>

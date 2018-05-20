@@ -14,6 +14,7 @@ public class WebConstantDeclaration {
     public static final String REQUEST_PARAM_CARS = "cars";
 
     public static final String REQUEST_MSG = "msg";
+    public static final String REQUEST_ERROR = "error";
 
     // Action command
     public static final String ACTION_NAME_MAIN = "main_action";

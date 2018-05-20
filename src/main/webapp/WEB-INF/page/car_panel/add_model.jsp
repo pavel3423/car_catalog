@@ -20,6 +20,12 @@
 				</div>
 			</c:if>
 
+			<c:if test="${error!=null}">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${error}"></c:out>
+				</div>
+			</c:if>
+
 		</div>
 
 		<div class="col-md-5">
@@ -44,7 +50,7 @@
 
 					<div class="form-group">
 						<label for="exampleFormControlFile1">Выберите изображение.
-							(рекомендуемый размер 500 x 500 px и не больше 3 Mb)</label> <input
+							(рекомендуемый размер 500 x 375 px и не больше 3 Mb)</label> <input
 							type="file" name="file" class="form-control-file"
 							id="uploadedFile">
 					</div>
