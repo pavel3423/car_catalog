@@ -23,7 +23,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnknownCommandException.class)
     public ModelAndView unknownCommandException(Exception ex) {
-	LogManager.getLogger().error("Unknown command error", ex);
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
 	modelAndView.addObject(REQUEST_ERROR, "Unknown command error");
 	return modelAndView;
