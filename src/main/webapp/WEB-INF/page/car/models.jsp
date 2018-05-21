@@ -13,26 +13,22 @@
 							value="${brand}" /></li>
 				</ol>
 			</nav>
-			<div class="head-h4">
-				<h4>
-					<c:out value="${brand}" />
-				</h4>
-			</div>
 		</div>
 		<c:forEach items="${models}" var="model">
+			<div class=" col-md-3">
+				<div class="card cardModel">
+					<div class="imageModel">
+						<a href="${brand}/${model.model}"> <img class="card-img-top"
+							src="<c:url value="${model.image}" />" height="120"
+							alt="${model.model}"></a>
+					</div>
 
-			<div class="card col-md-2 cardModel">
-				<div class="imageModel">
-					<a href="${brand}/${model.model}"> <img class="card-img-top"
-						src="<c:url value="${model.image}" />" alt="${model.model}"></a>
+					<div class="card-body card-body-model">
+						<a href="${brand}/${model.model}" class="btn btn-outline-success">${model.model}</a>
+					</div>
+
 				</div>
-
-				<div class="card-body card-body-model">
-					<a href="${brand}/${model.model}" class="btn btn-outline-success">${model.model}</a>
-				</div>
-
 			</div>
-
 		</c:forEach>
 	</div>
 </div>

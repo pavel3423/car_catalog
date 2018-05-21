@@ -8,18 +8,18 @@
 			<br>
 		</div>
 		<c:forEach items="${brands}" var="brand">
+			<div class=" col-md-3">
+				<div class="card">
+					<div class="imageBrand">
+						<a href="${brand.brand}"> <img class="card-img-top"
+							src="<c:url value="${brand.image}" />" alt="${brand.brand}"></a>
+					</div>
 
-			<div class="card col-md-2">
-				<div class="imageBrand">
-					<a href="${brand.brand}"> <img class="card-img-top"
-						src="<c:url value="${brand.image}" />" alt="${brand.brand}"></a>
-				</div>
-
-				<div class="card-body" align="center">
-					<a href="${brand.brand}" class="btn btn-outline-info">${brand.brand}</a>
+					<div class="card-body" align="center">
+						<a href="${brand.brand}" class="btn btn-outline-info">${brand.brand}</a>
+					</div>
 				</div>
 			</div>
-
 		</c:forEach>
 	</div>
 </div>
