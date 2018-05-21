@@ -12,4 +12,5 @@ public interface BrandService {
 
     void addBrand(String brand, UploadedFile uploadedFile) throws IOException;
 
+    void deleteBrand(String brand);
 }

@@ -31,6 +31,7 @@ import java.util.List;
 public class CarEditorAction {
 
     private static final String BRAND_ADDED = "Бренд добавлен";
+    private static final String BRAND_DELETED = "Бренд удалён";
     private static final String MODEL_ADDED = "Модель добавлена";
     private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
@@ -85,6 +86,16 @@ public class CarEditorAction {
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
 	}
 	return REDIRECT_TO + "/editor/" + brand;
+
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String brandDelete(@RequestParam String brand, RedirectAttributes redirectAttributes) {
+
+	brandService.deleteBrand(brand);
+	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_DELETED);
+
+	return REDIRECT_TO + "/editor";
 
     }
 

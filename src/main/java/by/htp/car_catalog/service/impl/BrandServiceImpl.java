@@ -38,4 +38,11 @@ public class BrandServiceImpl implements BrandService {
 	return brandDao.readAll();
     }
 
+    @Override
+    public void deleteBrand(String brand) {
+
+	BrandCar brandCar = brandDao.read(brand);
+	brandDao.delete(brandCar);
+    }
+
 }

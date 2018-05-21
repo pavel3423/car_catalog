@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.BrandCarDao;
 import by.htp.car_catalog.domain.BrandCar;
-import by.htp.car_catalog.domain.User;
 
 @Component(value = "brandDao")
 public class BrandDaoHibernateImpl implements BrandCarDao {
