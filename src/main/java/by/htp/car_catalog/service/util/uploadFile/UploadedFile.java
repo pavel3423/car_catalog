@@ -22,4 +22,8 @@ public class UploadedFile {
     public void setPath(String path) {
 	this.path = path;
     }
+
+    public long length() {
+	return this.file.getSize();
+    }
 }

@@ -1,5 +1,7 @@
 package by.htp.car_catalog.service.util.uploadFile;
 
+import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,7 +9,10 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class SaveFile {
+public class FileEditor {
+
+    private FileEditor() {
+    }
 
     public static String saveFile(UploadedFile uploadedFile, String name) throws IOException {
 
@@ -32,6 +37,36 @@ public class SaveFile {
 	}
 
 	return fileName;
+    }
+
+    public static void updateFileName(String param, String oldName, String newName) {
+
+	String[] params = param.split("&");
+	StringBuilder path = new StringBuilder(ROOT);
+
+	for (String string : params) {
+	    path.append("\\").append(string);
+	}
+
+	File file = new File(path.toString());
+	if (file.exists()) {
+	    file.renameTo(new File(path.toString().replace(oldName, newName)));
+	}
+    }
+
+    public static void deleteFile(String param) {
+
+	String[] params = param.split("&");
+	StringBuilder path = new StringBuilder(ROOT);
+
+	for (String string : params) {
+	    path.append("\\").append(string);
+	}
+
+	File file = new File(path.toString());
+	if (file.exists()) {
+	    file.delete();
+	}
     }
 
     private static String getFileExtension(String str) {

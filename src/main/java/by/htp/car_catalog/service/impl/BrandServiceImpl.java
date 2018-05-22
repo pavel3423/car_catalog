@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import by.htp.car_catalog.dao.BrandCarDao;
 import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.service.BrandService;
-import by.htp.car_catalog.service.util.uploadFile.SaveFile;
+import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.WebConstantDeclaration;
@@ -23,12 +23,17 @@ public class BrandServiceImpl implements BrandService {
     private BrandCarDao brandDao;
 
     @Override
+    public BrandCar getBrand(String brand) {
+	return brandDao.read(brand);
+    }
+
+    @Override
     public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 
 	uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
 
-	String path = "/image/car&" + SaveFile.saveFile(uploadedFile, brand);
+	String path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
 	brandDao.create(new BrandCar(0, brand, path));
 
     }
@@ -42,7 +47,31 @@ public class BrandServiceImpl implements BrandService {
     public void deleteBrand(String brand) {
 
 	BrandCar brandCar = brandDao.read(brand);
+	FileEditor.deleteFile(brandCar.getImage());
 	brandDao.delete(brandCar);
+    }
+
+    @Override
+    public void editBrand(String brand, String newBrand, UploadedFile uploadedFile) throws IOException {
+
+	HttpRequestParamValidator.validateStringNotNull(newBrand);
+	BrandCar brandCar = brandDao.read(brand);
+	String path = brandCar.getImage();
+
+	if (brand != newBrand) {
+	    brandCar.setBrand(newBrand);
+	    brandCar.setImage(path.replace(brand, newBrand));
+	    FileEditor.updateFileName(path, brand, newBrand);
+	}
+
+	if (uploadedFile.length() > 0) {
+	    FileEditor.deleteFile(path);
+	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
+	    path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
+	    brandCar.setImage(path);
+	}
+
+	brandDao.update(brandCar);
     }
 
 }

@@ -7,11 +7,9 @@ public class FileValidator {
     private FileValidator() {
     }
 
-    public static void validate(Object uploadedFile) throws FileNotFoundException {
+    public static void validate(UploadedFile uploadedFile) throws FileNotFoundException {
 
-	UploadedFile file = (UploadedFile) uploadedFile;
-
-	if (file.getFile().getSize() == 0) {
+	if (uploadedFile.getFile().getSize() == 0) {
 
 	    throw new FileNotFoundException();
 	}

@@ -25,10 +25,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/editor")
-public class MainCarEditorAction {
+public class BrandCarEditorAction {
 
     private static final String BRAND_ADDED = "Бренд добавлен";
     private static final String BRAND_DELETED = "Бренд удалён";
+    private static final String BRAND_UPDATED = "Бренд обновлён";
+    private static final String BRAND_NO_DATA = "Нет данных для обновления";
     private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
@@ -62,6 +64,23 @@ public class MainCarEditorAction {
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_DELETED);
 
 	return REDIRECT_TO + "/editor";
+
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String brandEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
+	    @RequestParam String newBrand, RedirectAttributes redirectAttributes) throws IOException {
+	try {
+
+	    brandService.editBrand(brand, newBrand, uploadedFile);
+
+	    redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_UPDATED);
+	    return REDIRECT_TO + "/editor/" + newBrand;
+
+	} catch (ValidateNullStringException e) {
+	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
+	    return REDIRECT_TO + "/editor/" + brand;
+	}
 
     }
 

@@ -26,7 +26,10 @@
 				</div>
 			</c:if>
 		</div>
+
 		<div class="col-md-12">
+			<button type="button" class="btn btn-warning" data-toggle="modal"
+				data-target="#exampleModalCenterEdit">Изменить бренд</button>
 			<button type="button" class="btn btn-danger" data-toggle="modal"
 				data-target="#exampleModalCenter">Удалить бренд и все
 				связанные с ним автомобили</button>
@@ -45,15 +48,54 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						Это приведёт к удалению всех автомобилей этого бренда без возможности восстановления<br> Вы действительно хотите удалить ${brand }?
+						Это приведёт к удалению всех автомобилей этого бренда без
+						возможности восстановления<br> Вы действительно хотите
+						удалить ${brand }?
 					</div>
 					<div class="modal-footer">
 						<form action="delete" method="POST">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Отмена</button>
-							<button type="submit" name="brand" value="${brand }" class="btn btn-danger">Удалить</button>
+							<button type="submit" name="brand" value="${brand }"
+								class="btn btn-danger">Удалить</button>
 						</form>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="exampleModalCenterEdit" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form:form enctype="multipart/form-data"
+						modelAttribute="uploadedFile" method="POST" action="edit">
+						<div class="modal-body">
+							<label>Название бренда</label> <input name="newBrand" type="text"
+								class="form-control" id="input" value="${brand}"> <label
+								for="exampleFormControlFile1">Выберите изображение.
+								(рекомендуемый размер 500 x 500 px и не больше 3 Mb)</label> <input
+								type="file" name="file" class="form-control-file"
+								id="uploadedFile">
+						</div>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Отмена</button>
+							<button type="submit" name="brand" value="${brand}"
+								class="btn btn-success">Сохранить</button>
+
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>

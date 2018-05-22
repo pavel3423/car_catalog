@@ -12,7 +12,7 @@ import by.htp.car_catalog.dao.ModelCarDao;
 import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.ModelService;
-import by.htp.car_catalog.service.util.uploadFile.SaveFile;
+import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.WebConstantDeclaration;
@@ -39,7 +39,7 @@ public class ModelServiceImpl implements ModelService {
 	HttpRequestParamValidator.validateStringNotNull(brand, model);
 
 	uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car\\" + brand);
-	String path = "/image/car&" + brand + "&" + SaveFile.saveFile(uploadedFile, model);
+	String path = "/image/car&" + brand + "&" + FileEditor.saveFile(uploadedFile, model);
 
 	BrandCar brandCar = brandDao.read(brand);
 	modelDao.create(new ModelCar(0, brandCar, model, path));

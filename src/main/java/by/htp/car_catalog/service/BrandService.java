@@ -13,4 +13,8 @@ public interface BrandService {
     void addBrand(String brand, UploadedFile uploadedFile) throws IOException;
 
     void deleteBrand(String brand);
+
+    void editBrand(String brand, String newBrand, UploadedFile uploadedFile) throws IOException;
+
+    BrandCar getBrand(String brand);
 }

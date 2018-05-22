@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.domain.ModelCar;
+import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 
@@ -31,12 +33,19 @@ public class ModelCarEditorAction {
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
     @Autowired
+    @Qualifier(value = "brandService")
+    BrandService brandService;
+
+    @Autowired
     @Qualifier(value = "modelService")
     ModelService modelService;
 
     @RequestMapping(value = "{brand}", method = RequestMethod.GET)
-    public String brandEdit(@PathVariable("brand") String brand, Model model) {
-
+    public String brandEdit(@PathVariable("brand") String brand, Model model) throws Exception {
+	BrandCar brandCar = brandService.getBrand(brand);
+	if (brandCar == null) {
+	    throw new Exception();
+	}
 	List<ModelCar> models = modelService.readByBrand(brand);
 
 	model.addAttribute(REQUEST_PARAM_CAR_MODELS, models);
