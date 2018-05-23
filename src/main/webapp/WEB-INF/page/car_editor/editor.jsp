@@ -23,6 +23,7 @@
 				</div>
 			</c:if>
 		</div>
+		
 		<c:forEach items="${brands}" var="brand">
 			<div class=" col-md-3">
 				<div class="card">
@@ -52,6 +53,7 @@
 								id="uploadedFile">
 						</div>
 					</div>
+					
 					<div class="card-body" align="center" style="margin-bottom: -40px;">
 						<div class="form-group" style="margin-top: -70px">
 							<label>Название бренда</label> <input name="brand" type="text"
@@ -60,11 +62,9 @@
 						<button type="submit" class="btn btn-primary mb-2">Добавить</button>
 					</div>
 				</form:form>
-
 			</div>
-
-
 		</div>
+		
 	</div>
 </div>
 
