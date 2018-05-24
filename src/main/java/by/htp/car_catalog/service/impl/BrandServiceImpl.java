@@ -14,6 +14,7 @@ import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.WebConstantDeclaration;
+import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 @Component(value = "brandService")
 public class BrandServiceImpl implements BrandService {
@@ -31,11 +32,15 @@ public class BrandServiceImpl implements BrandService {
     public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 
-	uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
+	if (brandDao.read(brand) == null) {
+	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
 
-	String path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
-	brandDao.create(new BrandCar(0, brand, path));
+	    String path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
+	    brandDao.create(new BrandCar(0, brand, path));
 
+	}else {
+	    throw new RepeatorException();
+	}
     }
 
     @Override
@@ -44,10 +49,11 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void deleteBrand(String brand) {
+    public void deleteBrand(String brand) throws IOException {
 
 	BrandCar brandCar = brandDao.read(brand);
 	FileEditor.deleteFile(brandCar.getImage());
+	FileEditor.deletePackage(brand);
 	brandDao.delete(brandCar);
     }
 

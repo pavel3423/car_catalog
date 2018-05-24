@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<a href='<c:url value="/editor/" />'>Редактор</a>
+<a href='<c:url value="/editor" />'>Редактор</a>
 
 <form class="form-horizontal col-md-4" action="profile" method="POST">
 	<fieldset>

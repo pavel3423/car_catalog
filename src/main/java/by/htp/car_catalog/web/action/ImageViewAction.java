@@ -45,9 +45,17 @@ public class ImageViewAction {
 	    fileContent = Files.readAllBytes(fi.toPath());
 	    return fileContent;
 	} catch (IOException e) {
-
-	    return null;
+	    fileContent = noImage();
+	    return fileContent;
 	}
 
+    }
+
+    private byte[] noImage() {
+	try {
+	    return Files.readAllBytes(new File(NO_IMAGE).toPath());
+	} catch (IOException e) {
+	    return null;
+	}
     }
 }

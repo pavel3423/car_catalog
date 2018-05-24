@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.util.exception.runtimeException;
+package by.htp.car_catalog.web.util.exception.IOException;
 
 public class ValidateNullObjectException extends ValidateNullParamException {
 

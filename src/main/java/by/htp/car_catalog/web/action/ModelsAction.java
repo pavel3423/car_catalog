@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.ModelService;
-import by.htp.car_catalog.web.util.exception.runtimeException.UnknownCommandException;
+import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 

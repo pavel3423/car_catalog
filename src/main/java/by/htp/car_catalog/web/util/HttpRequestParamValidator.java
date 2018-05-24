@@ -1,7 +1,7 @@
 package by.htp.car_catalog.web.util;
 
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullObjectException;
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
+import by.htp.car_catalog.web.util.exception.IOException.ValidateNullObjectException;
+import by.htp.car_catalog.web.util.exception.IOException.ValidateNullStringException;
 
 public final class HttpRequestParamValidator {
     private HttpRequestParamValidator() {

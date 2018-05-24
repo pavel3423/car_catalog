@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.htp.car_catalog.web.util.exception.runtimeException.UnknownCommandException;
+import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 

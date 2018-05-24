@@ -16,6 +16,7 @@ import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.WebConstantDeclaration;
+import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 @Component(value = "modelService")
 public class ModelServiceImpl implements ModelService {
@@ -37,13 +38,15 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public void addModel(String brand, String model, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand, model);
+	if (modelDao.read(brand, model) == null) {
+	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car\\" + brand);
+	    String path = "/image/car&" + brand + "&" + FileEditor.saveFile(uploadedFile, model);
 
-	uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car\\" + brand);
-	String path = "/image/car&" + brand + "&" + FileEditor.saveFile(uploadedFile, model);
-
-	BrandCar brandCar = brandDao.read(brand);
-	modelDao.create(new ModelCar(0, brandCar, model, path));
-
+	    BrandCar brandCar = brandDao.read(brand);
+	    modelDao.create(new ModelCar(0, brandCar, model, path));
+	} else {
+	    throw new RepeatorException();
+	}
     }
 
 }

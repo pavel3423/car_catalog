@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileEditor {
@@ -67,6 +68,15 @@ public class FileEditor {
 	if (file.exists()) {
 	    file.delete();
 	}
+    }
+
+    public static void deletePackage(String name) throws IOException {
+
+	StringBuilder path = new StringBuilder(IMAGE_ROOT).append("\\car\\");
+	path.append(name);
+
+	File file = new File(path.toString());
+	FileUtils.deleteDirectory(file);
     }
 
     private static String getFileExtension(String str) {

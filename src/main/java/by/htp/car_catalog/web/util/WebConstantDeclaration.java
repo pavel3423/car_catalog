@@ -39,6 +39,7 @@ public class WebConstantDeclaration {
 
     // root path for images
     public static final String IMAGE_ROOT = "C:\\car_catalog\\image";
+    public static final String NO_IMAGE = "C:\\car_catalog\\image\\default-no-image.png";
     public static final String ROOT = "C:\\car_catalog";
 
     private WebConstantDeclaration() {

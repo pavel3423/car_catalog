@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.io.IOException;
+import java.util.List;
 
 import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
+import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
-
-import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/editor/")
@@ -41,7 +41,7 @@ public class ModelCarEditorAction {
     ModelService modelService;
 
     @RequestMapping(value = "{brand}", method = RequestMethod.GET)
-    public String brandEdit(@PathVariable("brand") String brand, Model model) throws Exception {
+    public String modelEdit(@PathVariable("brand") String brand, Model model) throws Exception {
 	BrandCar brandCar = brandService.getBrand(brand);
 	if (brandCar == null) {
 	    throw new Exception();
@@ -54,19 +54,17 @@ public class ModelCarEditorAction {
     }
 
     @RequestMapping(value = "{brand}", method = RequestMethod.POST)
-    public String brandEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
+    public String modelAdd(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
 	    @RequestParam String model, RedirectAttributes redirectAttributes) {
-
 	try {
 
 	    modelService.addModel(brand, model, uploadedFile);
 	    redirectAttributes.addFlashAttribute(REQUEST_MSG, MODEL_ADDED);
 
-	} catch (IOException e) {
+	} catch (IOException | RepeatorException e) {
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
 	}
 	return REDIRECT_TO + "/editor/" + brand;
-
     }
 
     @ExceptionHandler(IOException.class)

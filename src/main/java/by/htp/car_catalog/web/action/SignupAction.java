@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullParamException;
+import by.htp.car_catalog.web.util.exception.IOException.ValidateNullParamException;
 
 @Controller
 @RequestMapping("/signup")

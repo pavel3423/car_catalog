@@ -37,6 +37,24 @@ public class ModelDaoHibernateImpl implements ModelCarDao {
     }
 
     @Override
+    public ModelCar read(String brand, String model) {
+	Session session = SessionFactoryManager.getSessionFactory().openSession();
+	session.beginTransaction();
+	Criteria criteria = session.createCriteria(ModelCar.class, "models_car");
+	criteria.createAlias("models_car.brandID", "brands_car");
+	criteria.add(Restrictions.eq("brands_car.brand", brand));
+	criteria.add(Restrictions.eq("models_car.model", model));
+	List<ModelCar> models = criteria.list();
+	session.close();
+
+	if (!models.isEmpty()) {
+	    return models.get(0);
+	} else {
+	    return null;
+	}
+    }
+
+    @Override
     public List<ModelCar> readAll() {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();

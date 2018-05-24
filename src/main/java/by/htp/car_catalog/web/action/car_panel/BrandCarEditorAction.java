@@ -15,7 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
-import by.htp.car_catalog.web.util.exception.runtimeException.ValidateNullStringException;
+import by.htp.car_catalog.web.util.exception.IOException.ValidateNullStringException;
+import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
@@ -30,7 +31,6 @@ public class BrandCarEditorAction {
     private static final String BRAND_ADDED = "Бренд добавлен";
     private static final String BRAND_DELETED = "Бренд удалён";
     private static final String BRAND_UPDATED = "Бренд обновлён";
-    private static final String BRAND_NO_DATA = "Нет данных для обновления";
     private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
@@ -58,7 +58,7 @@ public class BrandCarEditorAction {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String brandDelete(@RequestParam String brand, RedirectAttributes redirectAttributes) {
+    public String brandDelete(@RequestParam String brand, RedirectAttributes redirectAttributes) throws IOException {
 
 	brandService.deleteBrand(brand);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_DELETED);
@@ -84,7 +84,8 @@ public class BrandCarEditorAction {
 
     }
 
-    @ExceptionHandler(value = { FileNotFoundException.class, ValidateNullStringException.class })
+    @ExceptionHandler(value = { FileNotFoundException.class, ValidateNullStringException.class,
+	    RepeatorException.class })
     public String fileException(Exception ex, RedirectAttributes redirectAttributes) {
 
 	redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
