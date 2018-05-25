@@ -8,7 +8,7 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
-						href="<c:url value="/editor/"/>">Панель редактирования </a></li>
+						href="<c:url value="/editor"/>">Панель редактирования </a></li>
 					<li class="breadcrumb-item active" aria-current="page"><c:out
 							value="${brand}" /></li>
 				</ol>
