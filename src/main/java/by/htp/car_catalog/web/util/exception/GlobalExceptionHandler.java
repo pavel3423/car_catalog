@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web;
+package by.htp.car_catalog.web.util.exception;
 
 import org.apache.logging.log4j.LogManager;
 import org.hibernate.exception.JDBCConnectionException;

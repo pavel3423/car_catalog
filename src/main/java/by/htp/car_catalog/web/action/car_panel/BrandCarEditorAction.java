@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,8 +58,9 @@ public class BrandCarEditorAction {
 	return REDIRECT_TO + "/editor";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String brandDelete(@RequestParam String brand, RedirectAttributes redirectAttributes) throws IOException {
+    @RequestMapping(value = "/{brand}/delete", method = RequestMethod.POST)
+    public String brandDelete(@PathVariable("brand") String brand, RedirectAttributes redirectAttributes)
+	    throws IOException {
 
 	brandService.deleteBrand(brand);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_DELETED);
@@ -67,9 +69,10 @@ public class BrandCarEditorAction {
 
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String brandEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
-	    @RequestParam String newBrand, RedirectAttributes redirectAttributes) throws IOException {
+    @RequestMapping(value = "/{brand}/edit", method = RequestMethod.POST)
+    public String brandEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile,
+	    @PathVariable("brand") String brand, @RequestParam String newBrand, RedirectAttributes redirectAttributes)
+	    throws IOException {
 	try {
 
 	    brandService.editBrand(brand, newBrand, uploadedFile);

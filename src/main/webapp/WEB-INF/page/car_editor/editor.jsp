@@ -23,7 +23,7 @@
 				</div>
 			</c:if>
 		</div>
-		
+
 		<c:forEach items="${brands}" var="brand">
 			<div class=" col-md-3">
 				<div class="card">
@@ -43,8 +43,9 @@
 
 		<div class="col-md-3">
 			<div class="card">
+				<c:url var="edit_url" value="/editor" />
 				<form:form enctype="multipart/form-data"
-					modelAttribute="uploadedFile" method="POST" action="editor">
+					modelAttribute="uploadedFile" action='${edit_url }' method="POST">
 					<div class="imageBrand">
 						<div class="form-group" style="font-size: 9pt;">
 							<label for="exampleFormControlFile1">Выберите
@@ -53,7 +54,7 @@
 								id="uploadedFile">
 						</div>
 					</div>
-					
+
 					<div class="card-body" align="center" style="margin-bottom: -40px;">
 						<div class="form-group" style="margin-top: -70px">
 							<label>Название бренда</label> <input name="brand" type="text"
@@ -64,7 +65,7 @@
 				</form:form>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 

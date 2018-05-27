@@ -7,8 +7,8 @@
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a
-						href="<c:url value="/editor"/>">Панель редактирования </a></li>
+					<li class="breadcrumb-item"><a href="<c:url value="/editor"/>">Панель
+							редактирования </a></li>
 					<li class="breadcrumb-item active" aria-current="page"><c:out
 							value="${brand}" /></li>
 				</ol>
@@ -53,11 +53,11 @@
 						удалить ${brand }?
 					</div>
 					<div class="modal-footer">
-						<form action="delete" method="POST">
+						<form action='<c:url value="/editor/${brand}/delete"/>'
+							method="POST">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Отмена</button>
-							<button type="submit" name="brand" value="${brand }"
-								class="btn btn-danger">Удалить</button>
+							<button type="submit" class="btn btn-danger">Удалить</button>
 						</form>
 					</div>
 				</div>
@@ -77,8 +77,9 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<c:url var="edit_url" value="/editor/${brand}/edit" />
 					<form:form enctype="multipart/form-data"
-						modelAttribute="uploadedFile" method="POST" action="edit">
+						modelAttribute="uploadedFile" method="POST" action="${edit_url }">
 						<div class="modal-body">
 							<label>Название бренда</label> <input name="newBrand" type="text"
 								class="form-control" id="input" value="${brand}"> <label
@@ -119,8 +120,9 @@
 
 		<div class="col-md-3">
 			<div class="card">
+				<c:url var="add_url" value="/editor/${brand }" />
 				<form:form enctype="multipart/form-data"
-					modelAttribute="uploadedFile" method="POST" action="${brand }">
+					modelAttribute="uploadedFile" method="POST" action="${add_url }">
 
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="brand"
