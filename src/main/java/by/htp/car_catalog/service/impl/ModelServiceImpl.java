@@ -49,4 +49,11 @@ public class ModelServiceImpl implements ModelService {
 	}
     }
 
+    @Override
+    public boolean checkBrand(String brand) {
+	BrandCar brandCar = brandDao.read(brand);
+	return brandCar != null;
+
+    }
+
 }

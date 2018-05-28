@@ -24,11 +24,6 @@ public class BrandServiceImpl implements BrandService {
     private BrandCarDao brandDao;
 
     @Override
-    public BrandCar getBrand(String brand) {
-	return brandDao.read(brand);
-    }
-
-    @Override
     public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 

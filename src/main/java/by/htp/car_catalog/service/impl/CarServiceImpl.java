@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.CarDao;
+import by.htp.car_catalog.dao.ModelCarDao;
 import by.htp.car_catalog.domain.Car;
+import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.CarService;
 
 @Component(value = "carService")
@@ -17,10 +19,20 @@ public class CarServiceImpl implements CarService {
     @Qualifier(value = "carDao")
     private CarDao carDao;
 
+    @Autowired
+    @Qualifier(value = "modelDao")
+    private ModelCarDao modelDao;
+
     @Override
-    public List<Car> readByBrandAndModel(String brand, String model) {
+    public Car readByBrandAndModel(String brand, String model) {
 
 	return carDao.readByBrandAndModel(brand, model);
+    }
+
+    @Override
+    public boolean checkModel(String brand, String model) {
+	ModelCar modelCar = modelDao.read(brand, model);
+	return modelCar != null;
     }
 
 }

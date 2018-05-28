@@ -11,4 +11,6 @@ public interface ModelService {
     List<ModelCar> readByBrand(String brand);
 
     void addModel(String brand, String model, UploadedFile uploadedFile) throws IOException;
+
+    boolean checkBrand(String brand);
 }

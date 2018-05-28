@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.car_panel;
+package by.htp.car_catalog.web.action.car_editor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

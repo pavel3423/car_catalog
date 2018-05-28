@@ -14,7 +14,7 @@ public class WebConstantDeclaration {
     public static final String REQUEST_PARAM_CAR_BRAND = "brand";
     public static final String REQUEST_PARAM_CAR_MODEL = "model";
     public static final String REQUEST_PARAM_CAR_MODELS = "models";
-    public static final String REQUEST_PARAM_CARS = "cars";
+    public static final String REQUEST_PARAM_CAR = "car";
 
     public static final String REQUEST_MSG = "msg";
     public static final String REQUEST_ERROR = "error";

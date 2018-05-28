@@ -1,7 +1,5 @@
 package by.htp.car_catalog;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +10,7 @@ public class CarReadByBrandAndModelTest {
 
     @Test
     public void readByBrandAndModel() {
-	List<Car> brands = new CarDaoHibernateImpl().readByBrandAndModel(null, null);
-	Assert.assertNotNull("Cars not found", brands);
+	Car car = new CarDaoHibernateImpl().readByBrandAndModel(null, null);
+	Assert.assertNotNull("Cars not found", car);
     }
 }

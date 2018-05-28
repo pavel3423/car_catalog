@@ -64,20 +64,22 @@ public class CarDaoHibernateImpl implements CarDao {
     }
 
     @Override
-    public List<Car> readByBrandAndModel(String brand, String model) {
+    public Car readByBrandAndModel(String brand, String model) {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
 	Criteria criteria = session.createCriteria(Car.class, "cars");
 	criteria.createAlias("cars.modelID", "models_car").createAlias("models_car.brandID", "brands_car");
 	criteria.add(Restrictions.eq("models_car.model", model)).add(Restrictions.eq("brands_car.brand", brand));
-	criteria.addOrder(Order.asc("price"));
 
 	List<Car> cars = criteria.list();
 
 	session.close();
 
-	return cars;
+	if (!cars.isEmpty()) {
+	    return cars.get(0);
+	}
+	return null;
     }
 
 }

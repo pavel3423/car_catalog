@@ -1,4 +1,4 @@
-package by.htp.car_catalog.web.action.car_panel;
+package by.htp.car_catalog.web.action.car_editor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,6 +20,7 @@ import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
+import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException;
 import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
@@ -33,24 +34,20 @@ public class ModelCarEditorAction {
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
     @Autowired
-    @Qualifier(value = "brandService")
-    BrandService brandService;
-
-    @Autowired
     @Qualifier(value = "modelService")
     ModelService modelService;
 
     @RequestMapping(value = "{brand}", method = RequestMethod.GET)
-    public String modelEdit(@PathVariable("brand") String brand, Model model) throws Exception {
-	BrandCar brandCar = brandService.getBrand(brand);
-	if (brandCar == null) {
-	    throw new Exception();
+    public String modelEdit(@PathVariable("brand") String brand, Model model) throws UnknownCommandException  {
+	if (modelService.checkBrand(brand)) {
+	    List<ModelCar> models = modelService.readByBrand(brand);
+
+	    model.addAttribute(REQUEST_PARAM_CAR_MODELS, models);
+
+	    return PAGE_CAR_MODEL_EDITOR;
+	} else {
+	    throw new UnknownCommandException();
 	}
-	List<ModelCar> models = modelService.readByBrand(brand);
-
-	model.addAttribute(REQUEST_PARAM_CAR_MODELS, models);
-
-	return PAGE_CAR_MODEL_EDITOR;
     }
 
     @RequestMapping(value = "{brand}", method = RequestMethod.POST)
