@@ -13,4 +13,6 @@ public interface ModelService {
     void addModel(String brand, String model, UploadedFile uploadedFile) throws IOException;
 
     boolean checkBrand(String brand);
+
+    void editModel(String brand, String model, String newModel, UploadedFile uploadedFile) throws IOException;
 }

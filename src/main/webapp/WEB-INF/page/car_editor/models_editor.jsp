@@ -28,40 +28,11 @@
 		</div>
 
 		<div class="col-md-12">
-			<button type="button" class="btn btn-warning" data-toggle="modal"
+			<button type="button" class="btn btn-info" data-toggle="modal"
 				data-target="#exampleModalCenterEdit">Изменить бренд</button>
 			<button type="button" class="btn btn-danger" data-toggle="modal"
 				data-target="#exampleModalCenter">Удалить бренд и все
 				связанные с ним автомобили</button>
-		</div>
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Внимание!
-						</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						Это приведёт к удалению всех автомобилей этого бренда без
-						возможности восстановления<br> Вы действительно хотите
-						удалить ${brand }?
-					</div>
-					<div class="modal-footer">
-						<form action='<c:url value="/editor/${brand}/delete"/>'
-							method="POST">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
-							<button type="submit" class="btn btn-danger">Удалить</button>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<div class="modal fade" id="exampleModalCenterEdit" tabindex="-1"
@@ -97,6 +68,36 @@
 
 						</div>
 					</form:form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Внимание!
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Это приведёт к удалению всех автомобилей этого бренда без
+						возможности восстановления<br> Вы действительно хотите
+						удалить ${brand }?
+					</div>
+					<div class="modal-footer">
+						<form action='<c:url value="/editor/${brand}/delete"/>'
+							method="POST">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Отмена</button>
+							<button type="submit" class="btn btn-danger">Удалить</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

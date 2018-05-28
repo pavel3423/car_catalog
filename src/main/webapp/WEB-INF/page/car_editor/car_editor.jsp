@@ -15,6 +15,137 @@
 							value="${model}" /></li>
 				</ol>
 			</nav>
+
+			<c:if test="${msg!=null}">
+				<div class="alert alert-success" role="alert">
+					<c:out value="${msg}"></c:out>
+				</div>
+			</c:if>
+
+			<c:if test="${error!=null}">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${error}"></c:out>
+				</div>
+			</c:if>
+
+		</div>
+
+		<div class="col-md-12">
+			<button type="button" class="btn btn-info" data-toggle="modal"
+				data-target="#exampleModalCenterEditCar">Изменить параметры
+				автомобиля</button>
+			<button type="button" class="btn btn-info" data-toggle="modal"
+				data-target="#exampleModalCenterEdit">Изменить карточку
+				модели</button>
+			<button type="button" class="btn btn-danger" data-toggle="modal"
+				data-target="#exampleModalCenter">Удалить модель и
+				связанный с ней автомобиль</button>
+		</div>
+
+		<div class="modal fade" id="exampleModalCenterEditCar" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<c:url var="edit_url" value="/editor/${brand}/edit" />
+					<form:form enctype="multipart/form-data"
+						modelAttribute="uploadedFile" method="POST" action="${edit_url }">
+						<div class="modal-body">
+							<label>Название бренда</label> <input name="newBrand" type="text"
+								class="form-control" id="input" value="${brand}"> <label
+								for="exampleFormControlFile1">Выберите изображение.
+								(рекомендуемый размер 500 x 500 px и не больше 3 Mb)</label> <input
+								type="file" name="file" class="form-control-file"
+								id="uploadedFile">
+						</div>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Отмена</button>
+							<button type="submit" name="brand" value="${brand}"
+								class="btn btn-success">Сохранить</button>
+
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="exampleModalCenterEdit" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<c:url var="edit_model_url"
+						value="/editor/${brand }/${model }/edit" />
+					<form:form enctype="multipart/form-data"
+						modelAttribute="uploadedFile" method="POST"
+						action="${edit_model_url }">
+						<div class="modal-body">
+							<label>Название модели</label> <input name="newModel" type="text"
+								class="form-control" id="input" value="${model }"> <label
+								for="exampleFormControlFile1">Выберите изображение.
+								(рекомендуемый размер 500 x 375 px и не больше 3 Mb)</label> <input
+								type="file" name="file" class="form-control-file"
+								id="uploadedFile">
+						</div>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Отмена</button>
+							<button type="submit" name="brand" value="${brand}"
+								class="btn btn-success">Сохранить</button>
+
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Внимание!
+						</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Это приведёт к удалению всех автомобилей этого бренда без
+						возможности восстановления<br> Вы действительно хотите
+						удалить ${brand }?
+					</div>
+					<div class="modal-footer">
+						<form action='<c:url value="/editor/${brand}/delete"/>'
+							method="POST">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Отмена</button>
+							<button type="submit" class="btn btn-danger">Удалить</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md-6">
