@@ -15,7 +15,6 @@ import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
-import by.htp.car_catalog.web.util.WebConstantDeclaration;
 import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 @Component(value = "modelService")
@@ -38,12 +37,10 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public void addModel(String brand, String model, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand, model);
-	if (modelDao.read(brand, model) == null) {
-	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car\\" + brand);
-	    String path = "/image/car&" + brand + "&" + FileEditor.saveFile(uploadedFile, model);
 
+	if (modelDao.read(brand, model) == null) {
 	    BrandCar brandCar = brandDao.read(brand);
-	    modelDao.create(new ModelCar(0, brandCar, model, path));
+	    modelDao.create(new ModelCar(0, brandCar, model, FileEditor.saveFile(uploadedFile)));
 	} else {
 	    throw new RepeatorException();
 	}
@@ -61,19 +58,14 @@ public class ModelServiceImpl implements ModelService {
 
 	HttpRequestParamValidator.validateStringNotNull(newModel);
 	ModelCar modelCar = modelDao.read(brand, model);
-	String path = modelCar.getImage();
 
 	if (model != newModel) {
 	    modelCar.setModel(newModel);
-	    modelCar.setImage(path.replace(model, newModel));
-	    FileEditor.updateFileName(path, model, newModel);
 	}
 
 	if (uploadedFile.length() > 0) {
-	    FileEditor.deleteFile(path);
-	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car\\" + brand);
-	    path = "/image/car&" + brand + "&" + FileEditor.saveFile(uploadedFile, brand);
-	    modelCar.setImage(path);
+	    FileEditor.deleteFile(modelCar.getImage());
+	    modelCar.setImage(FileEditor.saveFile(uploadedFile));
 	}
 
 	modelDao.update(modelCar);

@@ -13,7 +13,6 @@ import by.htp.car_catalog.service.BrandService;
 import by.htp.car_catalog.service.util.uploadFile.FileEditor;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
-import by.htp.car_catalog.web.util.WebConstantDeclaration;
 import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 
 @Component(value = "brandService")
@@ -28,12 +27,11 @@ public class BrandServiceImpl implements BrandService {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 
 	if (brandDao.read(brand) == null) {
-	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
 
-	    String path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
-	    brandDao.create(new BrandCar(0, brand, path));
+	    String fileName = FileEditor.saveFile(uploadedFile);
+	    brandDao.create(new BrandCar(0, brand, fileName));
 
-	}else {
+	} else {
 	    throw new RepeatorException();
 	}
     }
@@ -48,7 +46,6 @@ public class BrandServiceImpl implements BrandService {
 
 	BrandCar brandCar = brandDao.read(brand);
 	FileEditor.deleteFile(brandCar.getImage());
-	FileEditor.deletePackage(brand);
 	brandDao.delete(brandCar);
     }
 
@@ -57,19 +54,14 @@ public class BrandServiceImpl implements BrandService {
 
 	HttpRequestParamValidator.validateStringNotNull(newBrand);
 	BrandCar brandCar = brandDao.read(brand);
-	String path = brandCar.getImage();
 
 	if (brand != newBrand) {
 	    brandCar.setBrand(newBrand);
-	    brandCar.setImage(path.replace(brand, newBrand));
-	    FileEditor.updateFileName(path, brand, newBrand);
 	}
 
 	if (uploadedFile.length() > 0) {
-	    FileEditor.deleteFile(path);
-	    uploadedFile.setPath(WebConstantDeclaration.IMAGE_ROOT + "\\car");
-	    path = "/image/car&" + FileEditor.saveFile(uploadedFile, brand);
-	    brandCar.setImage(path);
+	    FileEditor.deleteFile(brandCar.getImage());
+	    brandCar.setImage(FileEditor.saveFile(uploadedFile));
 	}
 
 	brandDao.update(brandCar);

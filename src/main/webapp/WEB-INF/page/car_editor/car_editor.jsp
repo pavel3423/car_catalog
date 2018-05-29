@@ -45,7 +45,8 @@
 		<div class="modal fade" id="exampleModalCenterEditCar" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-dialog modal-dialog-centered" role="document"
+				style="max-width: 1250px;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
@@ -55,16 +56,86 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<c:url var="edit_url" value="/editor/${brand}/edit" />
+					<c:url var="edit_car_url"
+						value="/editor/${brand }/${model }/carEdit" />
 					<form:form enctype="multipart/form-data"
-						modelAttribute="uploadedFile" method="POST" action="${edit_url }">
+						modelAttribute="uploadedFile" method="POST"
+						action="${edit_car_url }">
 						<div class="modal-body">
-							<label>Название бренда</label> <input name="newBrand" type="text"
-								class="form-control" id="input" value="${brand}"> <label
-								for="exampleFormControlFile1">Выберите изображение.
-								(рекомендуемый размер 500 x 500 px и не больше 3 Mb)</label> <input
-								type="file" name="file" class="form-control-file"
-								id="uploadedFile">
+							<div class="col-12">
+								<label for="exampleFormControlFile1">Выберите
+									изображение. (рекомендуемый размер 1920 x 600 px и не больше 3
+									Mb)</label> <input type="file" name="file" class="form-control-file"
+									id="uploadedFile"> <br>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Год</th>
+											<th>Цена от, $</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><input id="textinput" name="year" type="text"
+												value="${car.year }" class="form-control input-md"></td>
+											<td><input id="textinput" name="price" type="text"
+												value="${car.price }" class="form-control input-md"></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table table-bordered">
+
+									<thead>
+										<tr>
+											<th>Тип кузова</th>
+											<th>Длина, мм</th>
+											<th>Ширина, мм</th>
+											<th>Высота, мм</th>
+											<th>База, мм</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><input id="textinput" name="bodyType" type="text"
+												value="${car.bodyType }" class="form-control input-md"></td>
+											<td><input id="textinput" name="length" type="text"
+												value="${car.length }" class="form-control input-md"></td>
+											<td><input id="textinput" name="width" type="text"
+												value="${car.width }" class="form-control input-md"></td>
+											<td><input id="textinput" name="height" type="text"
+												value="${car.height }" class="form-control input-md"></td>
+											<td><input id="textinput" name="base" type="text"
+												value="${car.base }" class="form-control input-md"></td>
+										</tr>
+									</tbody>
+									<thead>
+										<tr>
+											<th>Кол-во дверей</th>
+											<th>Клиренс, мм</th>
+											<th>Багажник, л</th>
+											<th>Объем бака, л</th>
+											<th>Кол-во мест</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><input id="textinput" name="numberOfDoors"
+												type="text" value="${car.numberOfDoors }"
+												class="form-control input-md"></td>
+											<td><input id="textinput" name="clearance" type="text"
+												value="${car.clearance }" class="form-control input-md"></td>
+											<td><input id="textinput" name="trunk" type="text"
+												value="${car.trunk }" class="form-control input-md"></td>
+											<td><input id="textinput" name="volumeOfTheTank"
+												type="text" value="${car.volumeOfTheTank }"
+												class="form-control input-md"></td>
+											<td><input id="textinput" name="numberOfPlaces"
+												type="text" value="${car.numberOfPlaces }"
+												class="form-control input-md"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<div class="modal-footer">
 
@@ -170,8 +241,8 @@
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="d-block w-100" src='<c:url value="${car.image}" />'
-							alt="First slide">
+						<img class="d-block w-100"
+							src='<c:url value="/image/${car.image}" />' alt="First slide">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleFade"

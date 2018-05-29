@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileEditor {
@@ -15,73 +14,42 @@ public class FileEditor {
     private FileEditor() {
     }
 
-    public static String saveFile(UploadedFile uploadedFile, String name) throws IOException {
+    public static String saveFile(UploadedFile uploadedFile) throws IOException {
 
 	MultipartFile file = uploadedFile.getFile();
-
 	FileValidator.validate(uploadedFile);
-
 	byte[] bytes = file.getBytes();
+	String fileName = getGeneratedLong() + getFileExtension(file.getOriginalFilename());
+	File loadFile = new File(IMAGE_ROOT + fileName);
 
-	String fileName = name + getFileExtension(file.getOriginalFilename());
+	if (!loadFile.exists()) {
 
-	File dir = new File(uploadedFile.getPath());
-
-	if (!dir.exists()) {
-	    dir.mkdirs();
+	    try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile))) {
+		stream.write(bytes);
+		stream.flush();
+	    }
+	    return fileName;
+	} else {
+	    return saveFile(uploadedFile);
 	}
-
-	File loadFile = new File(dir.getAbsolutePath() + File.separator + fileName);
-	try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile))) {
-	    stream.write(bytes);
-	    stream.flush();
-	}
-
-	return fileName;
     }
 
-    public static void updateFileName(String param, String oldName, String newName) {
+    public static boolean deleteFile(String image) {
 
-	String[] params = param.split("&");
-	StringBuilder path = new StringBuilder(ROOT);
-
-	for (String string : params) {
-	    path.append("\\").append(string);
-	}
-
-	File file = new File(path.toString());
+	File file = new File(IMAGE_ROOT + image);
 	if (file.exists()) {
-	    file.renameTo(new File(path.toString().replace(oldName, newName)));
+	    return file.delete();
 	}
-    }
-
-    public static void deleteFile(String param) {
-
-	String[] params = param.split("&");
-	StringBuilder path = new StringBuilder(ROOT);
-
-	for (String string : params) {
-	    path.append("\\").append(string);
-	}
-
-	File file = new File(path.toString());
-	if (file.exists()) {
-	    file.delete();
-	}
-    }
-
-    public static void deletePackage(String name) throws IOException {
-
-	StringBuilder path = new StringBuilder(IMAGE_ROOT).append("\\car\\");
-	path.append(name);
-
-	File file = new File(path.toString());
-	FileUtils.deleteDirectory(file);
+	return false;
     }
 
     private static String getFileExtension(String str) {
 	int index = str.indexOf('.');
 	return index == -1 ? null : str.substring(index);
+    }
+
+    private static long getGeneratedLong() {
+	return Double.doubleToLongBits(Math.random());
     }
 
 }

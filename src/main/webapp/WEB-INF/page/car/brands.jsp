@@ -12,7 +12,7 @@
 				<div class="card">
 					<div class="imageBrand">
 						<a href="${brand.brand}"> <img class="card-img-top"
-							src="<c:url value="${brand.image}" />" alt="${brand.brand}"></a>
+							src="<c:url value="/image/${brand.image}" />" alt="${brand.brand}"></a>
 					</div>
 
 					<div class="card-body" align="center">

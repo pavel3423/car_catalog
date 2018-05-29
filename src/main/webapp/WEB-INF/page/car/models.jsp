@@ -19,8 +19,9 @@
 				<div class="card cardModel">
 					<div class="imageModel">
 						<a href="<c:url value="/${brand}/${model.model }"/>"> <img
-							class="card-img-top" src="<c:url value="${model.image}" />"
-							height="120" alt="${model.model}"></a>
+							class="card-img-top"
+							src="<c:url value="/image/${model.image}" />" height="120"
+							alt="${model.model}"></a>
 					</div>
 
 					<div class="card-body card-body-model">

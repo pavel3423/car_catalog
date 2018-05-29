@@ -29,7 +29,8 @@
 				<div class="card">
 					<div class="imageBrand">
 						<a href="<c:url value="/editor/${brand.brand}"/>"> <img
-							class="card-img-top" src="<c:url value="${brand.image}" />"
+							class="card-img-top"
+							src="<c:url value="/image/${brand.image}" />"
 							alt="${brand.brand}"></a>
 					</div>
 

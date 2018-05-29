@@ -38,7 +38,7 @@
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="d-block w-100" src='<c:url value="${car.image}" />'
+						<img class="d-block w-100" src='<c:url value="/image/${car.image}" />'
 							alt="First slide">
 					</div>
 				</div>

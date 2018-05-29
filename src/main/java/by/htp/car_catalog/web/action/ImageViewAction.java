@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,28 +17,20 @@ import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 @Controller
 public class ImageViewAction {
-    @RequestMapping("image/{param:.+}")
+    @RequestMapping("image/{image:.+}")
     @ResponseBody
-    public HttpEntity<byte[]> getCarPhoto(@PathVariable("param") String param, HttpServletRequest req) {
+    public HttpEntity<byte[]> getCarPhoto(@PathVariable("image") String image, HttpServletRequest req) {
 
-	byte[] image = read(param);
+	byte[] imageByte = read(image);
 
 	HttpHeaders headers = new HttpHeaders();
-	headers.setContentType(MediaType.IMAGE_PNG);
-	headers.setContentLength(image.length);
-	return new HttpEntity<byte[]>(image, headers);
+	headers.setContentLength(imageByte.length);
+	return new HttpEntity<byte[]>(imageByte, headers);
     }
 
-    public byte[] read(String param) {
+    public byte[] read(String image) {
 
-	String[] params = param.split("&");
-	StringBuilder path = new StringBuilder(IMAGE_ROOT);
-
-	for (String string : params) {
-	    path.append("\\").append(string);
-	}
-
-	File fi = new File(path.toString());
+	File fi = new File(IMAGE_ROOT + image);
 	byte[] fileContent;
 	try {
 	    fileContent = Files.readAllBytes(fi.toPath());
@@ -48,7 +39,6 @@ public class ImageViewAction {
 	    fileContent = noImage();
 	    return fileContent;
 	}
-
     }
 
     private byte[] noImage() {

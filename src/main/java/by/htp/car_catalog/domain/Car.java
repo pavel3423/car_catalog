@@ -44,6 +44,12 @@ public class Car extends Entity {
 	super(id);
     }
 
+    public Car(int id, BrandCar brandID, ModelCar modelID) {
+	super(id);
+	this.brandID = brandID;
+	this.modelID = modelID;
+    }
+
     public Car(int id, BrandCar brandID, ModelCar modelID, int year, String bodyType, int length, int width, int height,
 	    int base, int numberOfDoors, int clearance, int trunk, int volumeOfTheTank, int numberOfPlaces, int price,
 	    String image) {
