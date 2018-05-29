@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.BrandCarDao;
+import by.htp.car_catalog.dao.CarDao;
 import by.htp.car_catalog.dao.ModelCarDao;
 import by.htp.car_catalog.domain.BrandCar;
+import by.htp.car_catalog.domain.Car;
 import by.htp.car_catalog.domain.ModelCar;
 import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.FileEditor;
@@ -28,6 +30,10 @@ public class ModelServiceImpl implements ModelService {
     @Qualifier(value = "brandDao")
     private BrandCarDao brandDao;
 
+    @Autowired
+    @Qualifier(value = "carDao")
+    private CarDao carDao;
+
     @Override
     public List<ModelCar> readByBrand(String brand) {
 
@@ -40,7 +46,8 @@ public class ModelServiceImpl implements ModelService {
 
 	if (modelDao.read(brand, model) == null) {
 	    BrandCar brandCar = brandDao.read(brand);
-	    modelDao.create(new ModelCar(0, brandCar, model, FileEditor.saveFile(uploadedFile)));
+	    ModelCar modelCar = modelDao.create(new ModelCar(0, brandCar, model, FileEditor.saveFile(uploadedFile)));
+	    carDao.create(new Car(0, modelCar.getBrandID(), modelCar));
 	} else {
 	    throw new RepeatorException();
 	}
@@ -70,6 +77,15 @@ public class ModelServiceImpl implements ModelService {
 
 	modelDao.update(modelCar);
 
+    }
+
+    @Override
+    public void deleteModelAndCar(String brand, String model) {
+	Car car = carDao.readByBrandAndModel(brand, model);
+	ModelCar modelCar = car.getModelID();
+	FileEditor.deleteFile(modelCar.getImage());
+	FileEditor.deleteFile(car.getImage());
+	modelDao.delete(modelCar);
     }
 
 }

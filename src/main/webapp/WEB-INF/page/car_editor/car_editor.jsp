@@ -203,12 +203,11 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						Это приведёт к удалению всех автомобилей этого бренда без
-						возможности восстановления<br> Вы действительно хотите
-						удалить ${brand }?
+						Это приведёт к удалению автомобиля и карточки модели<br> Вы
+						действительно хотите удалить ${brand } ${model }?
 					</div>
 					<div class="modal-footer">
-						<form action='<c:url value="/editor/${brand}/delete"/>'
+						<form action='<c:url value="/editor/${brand }/${model }/delete"/>'
 							method="POST">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Отмена</button>

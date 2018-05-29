@@ -32,6 +32,7 @@ public class ModelCarEditorAction {
 
     private static final String MODEL_ADDED = "Модель добавлена";
     private static final String MODEL_UPDATED = "Карточка модели обновлена";
+    private static final String MODEL_DELETED = "Модель и автомабиль удалены";
     private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
@@ -70,8 +71,8 @@ public class ModelCarEditorAction {
     public String modelEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile,
 	    @PathVariable("brand") String brand, @PathVariable("model") String model, @RequestParam String newModel,
 	    RedirectAttributes redirectAttributes) throws IOException {
-	try {
 
+	try {
 	    modelService.editModel(brand, model, newModel, uploadedFile);
 
 	    redirectAttributes.addFlashAttribute(REQUEST_MSG, MODEL_UPDATED);
@@ -81,6 +82,17 @@ public class ModelCarEditorAction {
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
 	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
 	}
+
+    }
+
+    @RequestMapping(value = "/{brand}/{model}/delete", method = RequestMethod.POST)
+    public String modelAndCarDelete(@PathVariable("brand") String brand, @PathVariable("model") String model,
+	    RedirectAttributes redirectAttributes) throws IOException {
+
+	modelService.deleteModelAndCar(brand, model);
+
+	redirectAttributes.addFlashAttribute(REQUEST_MSG, MODEL_DELETED);
+	return REDIRECT_TO + "/editor/" + brand;
 
     }
 

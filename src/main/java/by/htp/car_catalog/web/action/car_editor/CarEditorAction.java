@@ -17,7 +17,6 @@ import by.htp.car_catalog.domain.Car;
 import by.htp.car_catalog.service.CarService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException;
-import by.htp.car_catalog.web.util.exception.IOException.ValidateNullStringException;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
@@ -30,7 +29,7 @@ import java.util.Map;
 public class CarEditorAction {
 
     private static final String CAR_UPDATED = "Данные об автомобиле обновлены";
-    private static final String CHECK_DATA = "Проверьте введённые данные";
+    private static final String CHECK_DATA = "Проверьте введённые данные (поля не могут быть пустыми)";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
     @Autowired
@@ -58,10 +57,15 @@ public class CarEditorAction {
 	if (car == null) {
 	    car = carService.createCar(brand, model);
 	}
+	try {
 	    carService.editCar(car, params, uploadedFile);
 
 	    redirectAttributes.addFlashAttribute(REQUEST_MSG, CAR_UPDATED);
 	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
+	} catch (NumberFormatException e) {
+	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
+	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
+	}
     }
 
     @ExceptionHandler(IOException.class)

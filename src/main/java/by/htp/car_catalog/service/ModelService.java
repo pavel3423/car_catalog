@@ -15,4 +15,6 @@ public interface ModelService {
     boolean checkBrand(String brand);
 
     void editModel(String brand, String model, String newModel, UploadedFile uploadedFile) throws IOException;
+
+    void deleteModelAndCar(String brand, String model);
 }

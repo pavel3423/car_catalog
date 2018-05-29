@@ -78,6 +78,7 @@ public class ModelDaoHibernateImpl implements ModelCarDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
+	model.setBrandID(null);
 	session.delete(model);
 	session.getTransaction().commit();
 	session.close();
