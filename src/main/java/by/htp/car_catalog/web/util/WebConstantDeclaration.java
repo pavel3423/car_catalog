@@ -6,6 +6,9 @@ public class WebConstantDeclaration {
     public static final String REQUEST_PARAM_ACTION = "action";
 
     public static final String REQUEST_PARAM_USER = "user";
+    public static final String REQUEST_PARAM_ADMIN = "admin";
+    public static final String REQUEST_PARAM_MODERATOR = "moderator";
+
     public static final String REQUEST_PARAM_ALL_BRANDS = "brands";
     public static final String REQUEST_PARAM_USER_LOGIN = "login";
     public static final String REQUEST_PARAM_USER_PASSWORD = "password";

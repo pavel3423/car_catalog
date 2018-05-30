@@ -22,10 +22,10 @@ public class CheckModeratorFilter implements Filter {
 	if (user != null) {
 
 	    Role role = user.getRoleID();
-	    if (role.getId() != 1 && role.getId() != 3) {
-		getError(request, response);
-	    } else {
+	    if (role.getId() == 1 || role.getId() == 3) {
 		chain.doFilter(request, response);
+	    } else {
+		getError(request, response);
 	    }
 
 	} else {
