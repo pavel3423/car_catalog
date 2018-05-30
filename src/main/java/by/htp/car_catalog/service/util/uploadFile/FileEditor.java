@@ -44,12 +44,11 @@ public class FileEditor {
     }
 
     private static String getFileExtension(String str) {
-	int index = str.indexOf('.');
-	return index == -1 ? null : str.substring(index);
+	String[] values = str.split("\\.");
+	return "." + values[values.length - 1];
     }
 
     private static long getGeneratedLong() {
 	return Double.doubleToLongBits(Math.random());
     }
-
 }

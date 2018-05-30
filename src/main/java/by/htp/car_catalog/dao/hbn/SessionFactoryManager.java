@@ -21,7 +21,6 @@ public class SessionFactoryManager {
     private static SessionFactory buildSessionFactory() {
 
 	Configuration configuration = new Configuration();
-	// configuration.configure("config/hibernate.cfg.xml");
 
 	configuration.addAnnotatedClass(User.class);
 	configuration.addAnnotatedClass(Role.class);
@@ -37,7 +36,6 @@ public class SessionFactoryManager {
 	configuration.setProperty("hibernate.connection.username", "root");
 	configuration.setProperty("hibernate.connection.password", "root");
 	configuration.setProperty("hibernate.show_sql", "true");
-//	configuration.setProperty("hibernate.hbm2ddl.auto", "create");
 	configuration.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 	configuration.setProperty("current_session_context_class", "thread");
 	configuration.setProperty("hibernate.jdbc.serverTimezone", "UTC");
