@@ -20,7 +20,7 @@ public class CarDaoHibernateImpl implements CarDao {
 	session.beginTransaction();
 	session.save(entity);
 	session.getTransaction().commit();
-
+	session.close();
 	return entity;
     }
 
@@ -29,8 +29,9 @@ public class CarDaoHibernateImpl implements CarDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-
-	return (Car) session.load(Car.class, id);
+	Car car = (Car) session.load(Car.class, id);
+	session.close();
+	return car;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class CarDaoHibernateImpl implements CarDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	List<Car> cars = session.createCriteria(Car.class).list();
-
+	session.close();
 	return cars;
     }
 
@@ -49,6 +50,7 @@ public class CarDaoHibernateImpl implements CarDao {
 	session.beginTransaction();
 	session.update(entity);
 	session.getTransaction().commit();
+	session.close();
 
     }
 
@@ -59,6 +61,7 @@ public class CarDaoHibernateImpl implements CarDao {
 	session.beginTransaction();
 	session.delete(car);
 	session.getTransaction().commit();
+	session.close();
 
     }
 

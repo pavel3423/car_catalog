@@ -21,7 +21,7 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 	session.beginTransaction();
 	session.save(entity);
 	session.getTransaction().commit();
-
+	session.close();
 	return entity;
     }
 
@@ -30,8 +30,9 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	session.beginTransaction();
-
-	return (BrandCar) session.load(BrandCar.class, id);
+	BrandCar brand = (BrandCar) session.load(BrandCar.class, id);
+	session.close();
+	return brand;
     }
 
     @Override
@@ -60,8 +61,9 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 	Session session = SessionFactoryManager.getSessionFactory().openSession();
 	Criteria criteria = session.createCriteria(BrandCar.class);
 	criteria.addOrder(Order.asc("brand"));
-
-	return criteria.list();
+	List<BrandCar> brands = criteria.list();
+	session.close();
+	return brands;
     }
 
     @Override
@@ -71,6 +73,7 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 	session.beginTransaction();
 	session.update(entity);
 	session.getTransaction().commit();
+	session.close();
 
     }
 
@@ -81,6 +84,7 @@ public class BrandDaoHibernateImpl implements BrandCarDao {
 	session.beginTransaction();
 	session.delete(brandCar);
 	session.getTransaction().commit();
+	session.close();
 
     }
 
