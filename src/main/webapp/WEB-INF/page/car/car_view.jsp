@@ -18,7 +18,6 @@
 
 		<div class="col-md-6">
 			<h4>
-				<br>
 				<c:out value="${car.year}" />
 				<c:out value="${brand}" />
 				<c:out value="${model}" />
@@ -27,7 +26,7 @@
 
 		<div class="col-md-6">
 			<h4 align="right">
-				<br> Цена от
+				Цена от
 				<c:out value="${car.price }" />
 				$
 			</h4>
@@ -38,8 +37,8 @@
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="d-block w-100" src='<c:url value="/image/${car.image}" />'
-							alt="First slide">
+						<img class="d-block w-100"
+							src='<c:url value="/image/${car.image}" />' alt="First slide">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleFade"
