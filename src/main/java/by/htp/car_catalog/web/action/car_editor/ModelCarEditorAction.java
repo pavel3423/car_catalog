@@ -32,7 +32,7 @@ public class ModelCarEditorAction {
 
     private static final String MODEL_ADDED = "Модель добавлена";
     private static final String MODEL_UPDATED = "Карточка модели обновлена";
-    private static final String MODEL_DELETED = "Модель и автомабиль удалены";
+    private static final String MODEL_DELETED = "Модель и автомобиль удалены";
     private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 

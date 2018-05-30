@@ -1,6 +1,7 @@
 package by.htp.car_catalog.service.impl;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,9 +84,21 @@ public class ModelServiceImpl implements ModelService {
     public void deleteModelAndCar(String brand, String model) {
 	Car car = carDao.readByBrandAndModel(brand, model);
 	ModelCar modelCar = car.getModelID();
-	FileEditor.deleteFile(modelCar.getImage());
 	FileEditor.deleteFile(car.getImage());
+	FileEditor.deleteFile(modelCar.getImage());
 	modelDao.delete(modelCar);
+    }
+
+    @Override
+    public void deleteAllModelAndCarImage(String brand) {
+
+	List<ModelCar> modelsCar = modelDao.readByBrand(brand);
+	for (Iterator<ModelCar> iterator = modelsCar.iterator(); iterator.hasNext();) {
+	    ModelCar modelCar = iterator.next();
+	    Car car = carDao.readByBrandAndModel(brand, modelCar.getModel());
+	    FileEditor.deleteFile(car.getImage());
+	    FileEditor.deleteFile(modelCar.getImage());
+	}
     }
 
 }

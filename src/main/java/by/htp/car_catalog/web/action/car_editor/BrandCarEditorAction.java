@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import by.htp.car_catalog.domain.BrandCar;
 import by.htp.car_catalog.service.BrandService;
+import by.htp.car_catalog.service.ModelService;
 import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 import by.htp.car_catalog.web.util.exception.IOException.ValidateNullStringException;
 import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
@@ -38,6 +39,10 @@ public class BrandCarEditorAction {
     @Autowired
     @Qualifier(value = "brandService")
     BrandService brandService;
+    
+    @Autowired
+    @Qualifier(value = "modelService")
+    ModelService modelService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String brandEdit(Model model) {
@@ -61,6 +66,8 @@ public class BrandCarEditorAction {
     @RequestMapping(value = "/{brand}/delete", method = RequestMethod.POST)
     public String brandDelete(@PathVariable("brand") String brand, RedirectAttributes redirectAttributes)
 	    throws IOException {
+	
+	modelService.deleteAllModelAndCarImage(brand);
 
 	brandService.deleteBrand(brand);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, BRAND_DELETED);

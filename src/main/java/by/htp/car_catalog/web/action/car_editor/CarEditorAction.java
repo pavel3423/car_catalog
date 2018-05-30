@@ -20,7 +20,6 @@ import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -29,7 +28,7 @@ import java.util.Map;
 public class CarEditorAction {
 
     private static final String CAR_UPDATED = "Данные об автомобиле обновлены";
-    private static final String CHECK_DATA = "Проверьте введённые данные (поля не могут быть пустыми)";
+    private static final String CHECK_DATA = "Проверьте введённые данные";
     private static final String ERROR_SAVE = "Ошибка сохранения изображения";
 
     @Autowired
