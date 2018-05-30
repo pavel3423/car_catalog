@@ -41,7 +41,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car createCar(String brand, String model) {
 	ModelCar modelCar = modelDao.read(brand, model);
-	return carDao.create(new Car(0, modelCar.getBrandID(), modelCar));
+	return carDao.create(new Car(0, modelCar));
     }
 
     @Override

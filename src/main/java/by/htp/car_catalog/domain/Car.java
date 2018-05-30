@@ -8,7 +8,6 @@ public class Car extends Entity {
 
     private static final long serialVersionUID = 1984566728743718380L;
 
-    private BrandCar brandID;
     private ModelCar modelID;
     @Column(name = "year")
     private int year;
@@ -44,17 +43,15 @@ public class Car extends Entity {
 	super(id);
     }
 
-    public Car(int id, BrandCar brandID, ModelCar modelID) {
+    public Car(int id, ModelCar modelID) {
 	super(id);
-	this.brandID = brandID;
 	this.modelID = modelID;
     }
 
-    public Car(int id, BrandCar brandID, ModelCar modelID, int year, String bodyType, int length, int width, int height,
-	    int base, int numberOfDoors, int clearance, int trunk, int volumeOfTheTank, int numberOfPlaces, int price,
+    public Car(int id, ModelCar modelID, int year, String bodyType, int length, int width, int height, int base,
+	    int numberOfDoors, int clearance, int trunk, int volumeOfTheTank, int numberOfPlaces, int price,
 	    String image) {
 	super(id);
-	this.brandID = brandID;
 	this.modelID = modelID;
 	this.year = year;
 	this.bodyType = bodyType;
@@ -82,16 +79,6 @@ public class Car extends Entity {
     @Override
     public void setId(int id) {
 	super.setId(id);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "brandID", nullable = true)
-    public BrandCar getBrandID() {
-	return brandID;
-    }
-
-    public void setBrandID(BrandCar brandID) {
-	this.brandID = brandID;
     }
 
     @ManyToOne
@@ -210,11 +197,11 @@ public class Car extends Entity {
 
     @Override
     public String toString() {
-	return "Car [getId()=" + getId() + ", brandID=" + brandID + ", modelID=" + modelID + ", year=" + year
-		+ ", bodyType=" + bodyType + ", length=" + length + ", width=" + width + ", height=" + height
-		+ ", base=" + base + ", numberOfDoors=" + numberOfDoors + ", clearance=" + clearance + ", trunk="
-		+ trunk + ", volumeOfTheTank=" + volumeOfTheTank + ", numberOfPlaces=" + numberOfPlaces + ", price="
-		+ price + ", image=" + image + "]";
+	return "Car [getId()=" + getId() + ", modelID=" + modelID + ", year=" + year + ", bodyType=" + bodyType
+		+ ", length=" + length + ", width=" + width + ", height=" + height + ", base=" + base
+		+ ", numberOfDoors=" + numberOfDoors + ", clearance=" + clearance + ", trunk=" + trunk
+		+ ", volumeOfTheTank=" + volumeOfTheTank + ", numberOfPlaces=" + numberOfPlaces + ", price=" + price
+		+ ", image=" + image + "]";
     }
 
     @Override
@@ -223,7 +210,6 @@ public class Car extends Entity {
 	int result = super.hashCode();
 	result = prime * result + base;
 	result = prime * result + ((bodyType == null) ? 0 : bodyType.hashCode());
-	result = prime * result + ((brandID == null) ? 0 : brandID.hashCode());
 	result = prime * result + clearance;
 	result = prime * result + height;
 	result = prime * result + ((image == null) ? 0 : image.hashCode());
@@ -254,11 +240,6 @@ public class Car extends Entity {
 	    if (other.bodyType != null)
 		return false;
 	} else if (!bodyType.equals(other.bodyType))
-	    return false;
-	if (brandID == null) {
-	    if (other.brandID != null)
-		return false;
-	} else if (!brandID.equals(other.brandID))
 	    return false;
 	if (clearance != other.clearance)
 	    return false;

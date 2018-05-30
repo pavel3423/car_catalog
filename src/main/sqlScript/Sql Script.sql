@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `brands_car` (
 DROP TABLE IF EXISTS `cars`;
 CREATE TABLE IF NOT EXISTS `cars` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `brandID` int(11) NOT NULL DEFAULT '0',
   `modelID` int(11) NOT NULL DEFAULT '0',
   `year` int(11) DEFAULT NULL,
   `bodyType` varchar(50) DEFAULT NULL,
@@ -32,13 +31,11 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `numberOfPlaces` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT '0',
   `image` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`,`modelID`,`brandID`),
+  PRIMARY KEY (`id`,`modelID`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_cars_brand_idx` (`modelID`),
-  KEY `fk_cars_brand` (`brandID`),
-  CONSTRAINT `fk_cars_brand` FOREIGN KEY (`brandID`) REFERENCES `models_car` (`brandID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_cars_model` FOREIGN KEY (`modelID`) REFERENCES `models_car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Дамп структуры для таблица car_catalog.favorites
 DROP TABLE IF EXISTS `favorites`;

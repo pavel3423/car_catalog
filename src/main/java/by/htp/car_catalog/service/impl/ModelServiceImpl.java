@@ -48,7 +48,7 @@ public class ModelServiceImpl implements ModelService {
 	if (modelDao.read(brand, model) == null) {
 	    BrandCar brandCar = brandDao.read(brand);
 	    ModelCar modelCar = modelDao.create(new ModelCar(0, brandCar, model, FileEditor.saveFile(uploadedFile)));
-	    carDao.create(new Car(0, modelCar.getBrandID(), modelCar));
+	    carDao.create(new Car(0, modelCar));
 	} else {
 	    throw new RepeatorException();
 	}
