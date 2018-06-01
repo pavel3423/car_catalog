@@ -25,7 +25,6 @@
 
 .card-body {
 	text-align: center;
-	padding-top: 15px;
 }
 
 .card-body-model {
@@ -48,11 +47,7 @@
 
 .form-horizontal {
 	text-align: center;
-	top: 50%;
-	left: 50%;
-	margin-top: -200px;
-	margin-left: -227px;
-	position: absolute;
+	left: 30%;
 }
 
 .card-panel {
@@ -66,4 +61,22 @@
 
 .form-add-text-image>form>.form-group {
 	margin-bottom: 2rem;
+}
+
+footer {
+	margin-top: 20px;
+	background-color: #343a40;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.select-language {
+	margin-right: 12px;
+	text-align: right;
+}
+
+.select-language a {
+	color: white;
 }

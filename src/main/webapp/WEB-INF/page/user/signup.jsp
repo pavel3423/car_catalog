@@ -13,26 +13,32 @@
 	<fieldset>
 
 		<!-- Form Name -->
-		<legend>Регистрация</legend>
+		<legend>
+			<spring:message code="Signup" />
+		</legend>
 
 		<!-- Text input-->
 		<div class="form-group">
-			<label class=" control-label" for="Login">Login</label> <input
-				id="login" name="login" type="text" placeholder="Login"
+			<label class=" control-label" for="Login"><spring:message
+					code="label.login" /></label> <input id="login" name="login" type="text"
+				placeholder="<spring:message code="label.login" />"
 				class="form-control input-md">
 		</div>
 
 		<!-- Text input-->
 		<div class="form-group">
-			<label class="control-label" for="Email">Email</label> <input
-				id="email" name="email" type="text" placeholder="Email"
+			<label class="control-label" for="Email"><spring:message
+					code="label.email" /></label> <input id="email" name="email" type="text"
+				placeholder="<spring:message code="label.email" />"
 				class="form-control input-md">
 		</div>
 
 		<!-- Password input-->
 		<div class="form-group">
-			<label class=" control-label" for="Password">Password</label> <input
-				id="password" name="password" type="password" placeholder="Password"
+			<label class=" control-label" for="Password"><spring:message
+					code="label.password" /></label> <input id="password" name="password"
+				type="password"
+				placeholder="<spring:message code="label.password" />"
 				class="form-control input-md">
 
 		</div>
@@ -40,7 +46,9 @@
 		<!-- Button -->
 		<div class="form-group">
 			<label class="control-label" for="singlebutton"></label>
-			<button id="singlebutton" name="singlebutton" class="btn btn-primary">Зарегистрироваться</button>
+			<button id="singlebutton" name="singlebutton" class="btn btn-primary">
+				<spring:message code="Signup" />
+			</button>
 		</div>
 
 	</fieldset>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -29,8 +30,8 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<a class="navbar-brand" href="<c:url value="/"/>">Каталог
-					автомобилей</a>
+				<a class="navbar-brand" href="<c:url value="/"/>"><spring:message
+						code="Car catalog" /></a>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
 
@@ -41,16 +42,19 @@
 
 						<c:if test="${user==null }">
 							<li class="nav-item active"><a class="nav-link"
-								href="<c:url value="/login"/>">Войти</a></li>
+								href="<c:url value="/login"/>"><spring:message code="Login" /></a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="<c:url value="/signup"/>">Зарегистрироваться</a></li>
+								href="<c:url value="/signup"/>"><spring:message
+										code="Signup" /></a></li>
 						</c:if>
 
 						<c:if test="${user!=null }">
 							<li class="nav-item active"><a class="nav-link"
-								href="<c:url value="/profile"/>">Профиль</a></li>
+								href="<c:url value="/profile"/>"><spring:message
+										code="Profile" /></a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="<c:url value="/logout"/>">Выйти</a></li>
+								href="<c:url value="/logout"/>"><spring:message
+										code="Logout" /></a></li>
 						</c:if>
 
 					</ul>

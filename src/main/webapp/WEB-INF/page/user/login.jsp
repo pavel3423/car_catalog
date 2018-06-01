@@ -12,21 +12,26 @@
 
 <form:form class="form-horizontal col-md-4" method="post" action="login">
 
-	<legend>Войти</legend>
+	<legend>
+		<spring:message code="Login" />
+	</legend>
 
 	<fieldset>
 		<div class="form-group ">
-			<form:label class="control-label" for="Login" path="login">Login:</form:label>
+			<form:label class="control-label" for="Login" path="login">
+				<spring:message code="label.login" />:</form:label>
 			<form:input class="form-control input-md" path="login" />
 		</div>
 		<div class="form-group ">
-			<form:label class="control-label" for="Password" path="password">Password:</form:label>
+			<form:label class="control-label" for="Password" path="password">
+				<spring:message code="label.password" />:</form:label>
 			<form:password class="form-control input-md" path="password" />
 		</div>
 
 	</fieldset>
 	<div class="form-group ">
-		<input class="btn btn-success" type="submit" value="Войти" />
+		<input class="btn btn-success" type="submit"
+			value="<spring:message code="Login" />" />
 	</div>
 </form:form>
 

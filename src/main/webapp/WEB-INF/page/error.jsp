@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -12,22 +13,28 @@
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
 
-<title>Error</title>
+<title><spring:message code="Error" /></title>
 
 </head>
 
 <body>
+
 	<br>
 	<div class="container">
+		<span> <a href="?lang=en">en</a> | <a href="?lang=ru">ru</a>
+		</span>
 		<div class="jumbotron">
-			<h1 class="display-4">Error</h1>
+
+			<h1 class="display-4">
+				<spring:message code="Error" />
+			</h1>
 			<p class="lead">
 				<c:out value="${error}"></c:out>
 			</p>
 			<hr class="my-4">
 			<p></p>
 			<a class="btn btn-primary btn-lg" href="<c:url value="/"/>"
-				role="button">Вернуться на главную страницу</a>
+				role="button"><spring:message code="Go back to main page" /></a>
 		</div>
 	</div>
 

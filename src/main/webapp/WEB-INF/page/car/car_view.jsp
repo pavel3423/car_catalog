@@ -6,8 +6,8 @@
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<c:url value="/"/>">К
-							списку производителей</a></li>
+					<li class="breadcrumb-item"><a href="<c:url value="/"/>"><spring:message
+								code="To the list of manufacturers" /></a></li>
 					<li class="breadcrumb-item" aria-current="page"><a
 						href="<c:url value="/${brand }"/>"><c:out value="${brand}" /></a></li>
 					<li class="breadcrumb-item active" aria-current="page"><c:out
@@ -26,7 +26,7 @@
 
 		<div class="col-md-6">
 			<h4 align="right">
-				Цена от
+				<spring:message code="car.Price from" />
 				<c:out value="${car.price }" />
 				$
 			</h4>
@@ -57,11 +57,11 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Тип кузова</th>
-						<th>Длина, мм</th>
-						<th>Ширина, мм</th>
-						<th>Высота, мм</th>
-						<th>База, мм</th>
+						<th><spring:message code="car.Body type" /></th>
+						<th><spring:message code="car.Length, mm" /></th>
+						<th><spring:message code="car.Width, mm" /></th>
+						<th><spring:message code="car.Height, mm" /></th>
+						<th><spring:message code="car.Base, mm" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,11 +75,11 @@
 				</tbody>
 				<thead>
 					<tr>
-						<th>Кол-во дверей</th>
-						<th>Клиренс, мм</th>
-						<th>Багажник, л</th>
-						<th>Объем бака, л</th>
-						<th>Кол-во мест</th>
+						<th><spring:message code="car.Number of doors" /></th>
+						<th><spring:message code="car.Clearance, mm" /></th>
+						<th><spring:message code="car.Luggage compartment, l" /></th>
+						<th><spring:message code="car.Tank capacity, l" /></th>
+						<th><spring:message code="car.Number of places" /></th>
 					</tr>
 				</thead>
 				<tbody>

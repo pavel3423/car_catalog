@@ -7,8 +7,8 @@
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<c:url value="/"/>">К
-							списку производителей</a></li>
+					<li class="breadcrumb-item"><a href="<c:url value="/"/>"><spring:message
+								code="To the list of manufacturers" /></a></li>
 					<li class="breadcrumb-item active" aria-current="page"><c:out
 							value="${brand}" /></li>
 				</ol>
