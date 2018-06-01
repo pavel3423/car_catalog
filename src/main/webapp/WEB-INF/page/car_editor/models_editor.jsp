@@ -7,8 +7,8 @@
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<c:url value="/editor"/>">Панель
-							редактирования </a></li>
+					<li class="breadcrumb-item"><a href="<c:url value="/editor"/>"><spring:message
+								code="Editing panel" /></a></li>
 					<li class="breadcrumb-item active" aria-current="page"><c:out
 							value="${brand}" /></li>
 				</ol>
@@ -29,10 +29,13 @@
 
 		<div class="col-md-12">
 			<button type="button" class="btn btn-info" data-toggle="modal"
-				data-target="#exampleModalCenterEdit">Изменить бренд</button>
+				data-target="#exampleModalCenterEdit">
+				<spring:message code="Change Brand" />
+			</button>
 			<button type="button" class="btn btn-danger" data-toggle="modal"
-				data-target="#exampleModalCenter">Удалить бренд и все
-				связанные с ним автомобили</button>
+				data-target="#exampleModalCenter">
+				<spring:message code="Remove the brand and all associated cars" />
+			</button>
 		</div>
 
 		<div class="modal fade" id="exampleModalCenterEdit" tabindex="-1"
@@ -41,7 +44,8 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						<h5 class="modal-title" id="exampleModalCenterTitle">
+							<spring:message code="Editing" />
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -52,19 +56,23 @@
 					<form:form enctype="multipart/form-data"
 						modelAttribute="uploadedFile" method="POST" action="${edit_url }">
 						<div class="modal-body">
-							<label>Название бренда</label> <input name="newBrand" type="text"
-								class="form-control" id="input" value="${brand}"> <label
-								for="exampleFormControlFile1">Выберите изображение.
-								(рекомендуемый размер 500 x 500 px и не больше 3 Mb)</label> <input
-								type="file" name="file" class="form-control-file"
+							<label><spring:message code="Brand name" /></label> <input
+								name="newBrand" type="text" class="form-control" id="input"
+								value="${brand}"> <label for="exampleFormControlFile1"><spring:message
+									code="Select an image. (the recommended size is 500 x 500 px and not more than 3 MB)" /></label>
+							<input type="file" name="file" class="form-control-file"
 								id="uploadedFile">
 						</div>
 						<div class="modal-footer">
 
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
+								data-dismiss="modal">
+								<spring:message code="Cancel" />
+							</button>
 							<button type="submit" name="brand" value="${brand}"
-								class="btn btn-success">Сохранить</button>
+								class="btn btn-success">
+								<spring:message code="Save" />
+							</button>
 
 						</div>
 					</form:form>
@@ -78,7 +86,8 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Внимание!
+						<h5 class="modal-title" id="exampleModalCenterTitle">
+							<spring:message code="Caution!" />
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -86,16 +95,20 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						Это приведёт к удалению всех автомобилей этого бренда без
-						возможности восстановления<br> Вы действительно хотите
-						удалить ${brand }?
+						<spring:message
+							code="This will lead to the removal of all cars of this brand without the possibility of recovery <br> Do you really want to delete" />
+						${brand }?
 					</div>
 					<div class="modal-footer">
 						<form action='<c:url value="/editor/${brand}/delete"/>'
 							method="POST">
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
-							<button type="submit" class="btn btn-danger">Удалить</button>
+								data-dismiss="modal">
+								<spring:message code="Cancel" />
+							</button>
+							<button type="submit" class="btn btn-danger">
+								<spring:message code="Remove" />
+							</button>
 						</form>
 					</div>
 				</div>
@@ -134,9 +147,9 @@
 
 					<div class="imageModel">
 						<div class="form-group" style="font-size: 9pt;">
-							<label for="exampleFormControlFile1">Выберите
-								изображение. (рекомендуемый размер 500 x 375 px и не больше 3
-								Mb)</label> <input type="file" name="file" class="form-control-file"
+							<label for="exampleFormControlFile1"><spring:message
+									code="Select an image. (the recommended size is 500 x 375 px and not more than 3 Mb)" /></label>
+							<input type="file" name="file" class="form-control-file"
 								id="uploadedFile">
 						</div>
 					</div>
@@ -144,12 +157,14 @@
 					<div class="card-body-model" align="center"
 						style="margin-bottom: -15px;">
 						<div class="form-group">
-							<label>Название модели</label> <input name="model" type="text"
-								class="form-control" id="input"
+							<label><spring:message code="Model name" /></label> <input
+								name="model" type="text" class="form-control" id="input"
 								style="width: 200px; margin: 0px auto;">
 						</div>
 
-						<button type="submit" class="btn btn-primary mb-2">Добавить</button>
+						<button type="submit" class="btn btn-primary mb-2">
+							<spring:message code="Upload" />
+						</button>
 					</div>
 				</form:form>
 			</div>

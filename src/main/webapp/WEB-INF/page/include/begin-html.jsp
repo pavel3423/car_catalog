@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />">
 
 
-<title>Каталог автомобилей</title>
+<title><spring:message code="Car catalog" /></title>
 
 </head>
 

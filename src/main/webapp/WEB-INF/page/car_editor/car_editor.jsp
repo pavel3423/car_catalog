@@ -6,8 +6,8 @@
 		<div class="col-md-12">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<c:url value="/editor"/>">Панель
-							редактирования </a></li>
+					<li class="breadcrumb-item"><a href="<c:url value="/editor"/>"><spring:message
+								code="Editing panel" /></a></li>
 					<li class="breadcrumb-item"><a
 						href="<c:url value="/editor/${brand }"/>"><c:out
 								value="${brand}" /></a></li>
@@ -32,14 +32,17 @@
 
 		<div class="col-md-12">
 			<button type="button" class="btn btn-info" data-toggle="modal"
-				data-target="#exampleModalCenterEditCar">Изменить параметры
-				автомобиля</button>
+				data-target="#exampleModalCenterEditCar">
+				<spring:message code="Edit vehicle parameters" />
+			</button>
 			<button type="button" class="btn btn-info" data-toggle="modal"
-				data-target="#exampleModalCenterEdit">Изменить карточку
-				модели</button>
+				data-target="#exampleModalCenterEdit">
+				<spring:message code="Modify the model card" />
+			</button>
 			<button type="button" class="btn btn-danger" data-toggle="modal"
-				data-target="#exampleModalCenter">Удалить модель и
-				связанный с ней автомобиль</button>
+				data-target="#exampleModalCenter">
+				<spring:message code="Delete model and associated car" />
+			</button>
 		</div>
 
 		<div class="modal fade" id="exampleModalCenterEditCar" tabindex="-1"
@@ -49,7 +52,8 @@
 				style="max-width: 1250px;">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						<h5 class="modal-title" id="exampleModalCenterTitle">
+							<spring:message code="Editing" />
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -63,15 +67,15 @@
 						action="${edit_car_url }">
 						<div class="modal-body">
 							<div class="col-12">
-								<label for="exampleFormControlFile1">Выберите
-									изображение. (рекомендуемый размер 1920 x 600 px и не больше 3
-									Mb)</label> <input type="file" name="file" class="form-control-file"
+								<label for="exampleFormControlFile1"><spring:message
+										code="Select an image. (the recommended size is 1920 x 600 px and not more than 3 Mb)" /></label>
+								<input type="file" name="file" class="form-control-file"
 									id="uploadedFile"> <br>
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>Год</th>
-											<th>Цена от, $</th>
+											<th><spring:message code="Year" /></th>
+											<th><spring:message code="car.Price from" />, $</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -87,11 +91,11 @@
 
 									<thead>
 										<tr>
-											<th>Тип кузова</th>
-											<th>Длина, мм</th>
-											<th>Ширина, мм</th>
-											<th>Высота, мм</th>
-											<th>База, мм</th>
+											<th><spring:message code="car.Body type" /></th>
+											<th><spring:message code="car.Length, mm" /></th>
+											<th><spring:message code="car.Width, mm" /></th>
+											<th><spring:message code="car.Height, mm" /></th>
+											<th><spring:message code="car.Base, mm" /></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -110,11 +114,11 @@
 									</tbody>
 									<thead>
 										<tr>
-											<th>Кол-во дверей</th>
-											<th>Клиренс, мм</th>
-											<th>Багажник, л</th>
-											<th>Объем бака, л</th>
-											<th>Кол-во мест</th>
+											<th><spring:message code="car.Number of doors" /></th>
+											<th><spring:message code="car.Clearance, mm" /></th>
+											<th><spring:message code="car.Luggage compartment, l" /></th>
+											<th><spring:message code="car.Tank capacity, l" /></th>
+											<th><spring:message code="car.Number of places" /></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -140,9 +144,13 @@
 						<div class="modal-footer">
 
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
+								data-dismiss="modal">
+								<spring:message code="Cancel" />
+							</button>
 							<button type="submit" name="brand" value="${brand}"
-								class="btn btn-success">Сохранить</button>
+								class="btn btn-success">
+								<spring:message code="Save" />
+							</button>
 
 						</div>
 					</form:form>
@@ -156,7 +164,8 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Редактирование
+						<h5 class="modal-title" id="exampleModalCenterTitle">
+							<spring:message code="Editing" />
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -169,19 +178,23 @@
 						modelAttribute="uploadedFile" method="POST"
 						action="${edit_model_url }">
 						<div class="modal-body">
-							<label>Название модели</label> <input name="newModel" type="text"
-								class="form-control" id="input" value="${model }"> <label
-								for="exampleFormControlFile1">Выберите изображение.
-								(рекомендуемый размер 500 x 375 px и не больше 3 Mb)</label> <input
-								type="file" name="file" class="form-control-file"
+							<label><spring:message code="Model name" /></label> <input
+								name="newModel" type="text" class="form-control" id="input"
+								value="${model }"> <label for="exampleFormControlFile1"><spring:message
+									code="Select an image. (the recommended size is 500 x 375 px and not more than 3 Mb)" /></label>
+							<input type="file" name="file" class="form-control-file"
 								id="uploadedFile">
 						</div>
 						<div class="modal-footer">
 
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
+								data-dismiss="modal">
+								<spring:message code="Cancel" />
+							</button>
 							<button type="submit" name="brand" value="${brand}"
-								class="btn btn-success">Сохранить</button>
+								class="btn btn-success">
+								<spring:message code="Save" />
+							</button>
 
 						</div>
 					</form:form>
@@ -195,7 +208,8 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">Внимание!
+						<h5 class="modal-title" id="exampleModalCenterTitle">
+							<spring:message code="Caution!" />
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -203,15 +217,22 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						Это приведёт к удалению автомобиля и карточки модели<br> Вы
-						действительно хотите удалить ${brand } ${model }?
+						<spring:message
+							code="This will lead to the removal of the car and the model card" />
+						<br>
+						<spring:message code="Are you sure you want to remove" />
+						${brand } ${model }?
 					</div>
 					<div class="modal-footer">
 						<form action='<c:url value="/editor/${brand }/${model }/delete"/>'
 							method="POST">
 							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Отмена</button>
-							<button type="submit" class="btn btn-danger">Удалить</button>
+								data-dismiss="modal">
+								<spring:message code="Cancel" />
+							</button>
+							<button type="submit" class="btn btn-danger">
+								<spring:message code="Remove" />
+							</button>
 						</form>
 					</div>
 				</div>
@@ -229,7 +250,8 @@
 
 		<div class="col-md-6">
 			<h4 align="right">
-				<br> Цена от
+				<br>
+				<spring:message code="car.Price from" />
 				<c:out value="${car.price }" />
 				$
 			</h4>
@@ -260,11 +282,11 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Тип кузова</th>
-						<th>Длина, мм</th>
-						<th>Ширина, мм</th>
-						<th>Высота, мм</th>
-						<th>База, мм</th>
+						<th><spring:message code="car.Body type" /></th>
+						<th><spring:message code="car.Length, mm" /></th>
+						<th><spring:message code="car.Width, mm" /></th>
+						<th><spring:message code="car.Height, mm" /></th>
+						<th><spring:message code="car.Base, mm" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -278,11 +300,11 @@
 				</tbody>
 				<thead>
 					<tr>
-						<th>Кол-во дверей</th>
-						<th>Клиренс, мм</th>
-						<th>Багажник, л</th>
-						<th>Объем бака, л</th>
-						<th>Кол-во мест</th>
+						<th><spring:message code="car.Number of doors" /></th>
+						<th><spring:message code="car.Clearance, mm" /></th>
+						<th><spring:message code="car.Luggage compartment, l" /></th>
+						<th><spring:message code="car.Tank capacity, l" /></th>
+						<th><spring:message code="car.Number of places" /></th>
 					</tr>
 				</thead>
 				<tbody>
