@@ -2,6 +2,7 @@ package by.htp.car_catalog.web.action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,11 @@ import by.htp.car_catalog.web.util.exception.IOException.ValidateNullParamExcept
 @RequestMapping("/signup")
 public class SignupAction {
 
-    private static final String MSG_NO_REGISTRATION_USER = "Не удаётся зарегестрироваться. Пожалуйста проверьте правильность введённых данных.";
-    private static final String MSG_USER_DUBLICATE = "Пользователь с этим именем или электронной почтой уже зарегестрирован.";
+    private static final String MSG_NO_REGISTRATION_USER = "Can not register. Please check the correctness of the entered data";
+    private static final String MSG_USER_DUBLICATE = "A user with this name or e-mail is already registered";
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     @Qualifier(value = "userService")
@@ -38,7 +43,8 @@ public class SignupAction {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    private String registration(@RequestParam Map<String, String> params, HttpSession session, Model model) {
+    private String registration(@RequestParam Map<String, String> params, HttpSession session, Model model,
+	    Locale locale) {
 
 	String login = params.get(REQUEST_PARAM_USER_LOGIN);
 	String email = params.get(REQUEST_PARAM_USER_EMAIL);
@@ -52,11 +58,13 @@ public class SignupAction {
 	    return REDIRECT_TO + "profile";
 	} catch (ValidateNullParamException e) {
 
-	    model.addAttribute(REQUEST_MSG, MSG_NO_REGISTRATION_USER);
+	    String message = messageSource.getMessage(MSG_NO_REGISTRATION_USER, null, locale);
+	    model.addAttribute(REQUEST_MSG, message);
 	    return PAGE_USER_SIGNUP;
 	} catch (ConstraintViolationException e) {
 
-	    model.addAttribute(REQUEST_MSG, MSG_USER_DUBLICATE);
+	    String message = messageSource.getMessage(MSG_USER_DUBLICATE, null, locale);
+	    model.addAttribute(REQUEST_MSG, message);
 	    return PAGE_USER_SIGNUP;
 	}
     }

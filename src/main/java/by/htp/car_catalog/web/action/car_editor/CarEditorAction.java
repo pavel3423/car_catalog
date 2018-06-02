@@ -2,6 +2,7 @@ package by.htp.car_catalog.web.action.car_editor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,15 +22,19 @@ import by.htp.car_catalog.web.util.exception.IOException.UnknownCommandException
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/editor/")
 public class CarEditorAction {
 
-    private static final String CAR_UPDATED = "Данные об автомобиле обновлены";
-    private static final String CHECK_DATA = "Проверьте введённые данные";
-    private static final String ERROR_SAVE = "Ошибка сохранения изображения";
+    private static final String CAR_UPDATED = "Vehicle data updated";
+    private static final String CHECK_DATA = "Check the entered data";
+    private static final String ERROR_SAVE = "Error saving image";
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     @Qualifier(value = "carService")
@@ -50,7 +55,8 @@ public class CarEditorAction {
     @RequestMapping(value = "{brand}/{model}/carEdit", method = RequestMethod.POST)
     public String carEdit(@ModelAttribute("uploadedFile") UploadedFile uploadedFile,
 	    @PathVariable("brand") String brand, @PathVariable("model") String model,
-	    @RequestParam Map<String, String> params, RedirectAttributes redirectAttributes) throws IOException {
+	    @RequestParam Map<String, String> params, RedirectAttributes redirectAttributes, Locale locale)
+	    throws IOException {
 
 	Car car = carService.readByBrandAndModel(brand, model);
 	if (car == null) {
@@ -59,19 +65,21 @@ public class CarEditorAction {
 	try {
 	    carService.editCar(car, params, uploadedFile);
 
-	    redirectAttributes.addFlashAttribute(REQUEST_MSG, CAR_UPDATED);
+	    String message = messageSource.getMessage(CAR_UPDATED, null, locale);
+	    redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
 	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
 	} catch (NumberFormatException e) {
-	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, CHECK_DATA);
+	    String message = messageSource.getMessage(CHECK_DATA, null, locale);
+	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, message);
 	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
 	}
     }
 
     @ExceptionHandler(IOException.class)
-    public ModelAndView ioException(Exception ex) {
-	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
-	modelAndView.addObject("error", ERROR_SAVE);
-	return modelAndView;
+    public ModelAndView ioException(Exception ex, Locale locale) {
+
+	String message = messageSource.getMessage(ERROR_SAVE, null, locale);
+	return new ModelAndView(PAGE_ERROR, REQUEST_ERROR, message);
     }
 
 }

@@ -2,12 +2,14 @@ package by.htp.car_catalog.web.action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,10 @@ import by.htp.car_catalog.web.util.exception.IOException.ValidateNullParamExcept
 @RequestMapping("/login")
 public class LoginAction {
 
-    private static final String MSG_NO_USER = "Не удаётся войти. Пожалуйста проверьте правильность введённых данных.";
+    private static final String MSG_NO_USER = "Can not login. Please check the correctness of the entered data";
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     @Qualifier(value = "userService")
@@ -38,7 +43,8 @@ public class LoginAction {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    private ModelAndView authorization(@ModelAttribute("user") User user, HttpSession session, Model model) {
+    private ModelAndView authorization(@ModelAttribute("user") User user, HttpSession session, Model model,
+	    Locale locale) {
 	try {
 
 	    HttpRequestParamValidator.validateStringNotNull(user.getLogin(), user.getPassword());
@@ -48,7 +54,8 @@ public class LoginAction {
 
 	    return new ModelAndView(REDIRECT_TO + "profile");
 	} catch (ValidateNullParamException e) {
-	    model.addAttribute(REQUEST_MSG, MSG_NO_USER);
+	    String message = messageSource.getMessage(MSG_NO_USER, null, locale);
+	    model.addAttribute(REQUEST_MSG, message);
 	    return new ModelAndView(PAGE_USER_LOGIN, "command", new User());
 	}
     }
