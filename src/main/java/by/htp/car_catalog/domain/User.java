@@ -14,6 +14,8 @@ public class User extends Entity {
     private String email;
     @Column(name = "password", unique = true, nullable = false)
     private String password;
+    @Column(name = "salt", unique = true, nullable = false)
+    private String salt;
     private Role roleID;
 
     public User() {
@@ -23,11 +25,12 @@ public class User extends Entity {
 	super(id);
     }
 
-    public User(int id, String login, String email, String password, Role roleID) {
+    public User(int id, String login, String email, String password, String salt, Role roleID) {
 	super(id);
 	this.login = login;
 	this.email = email;
 	this.password = password;
+	this.salt = salt;
 	this.roleID = roleID;
     }
 
@@ -68,6 +71,14 @@ public class User extends Entity {
 	this.password = password;
     }
 
+    public String getSalt() {
+	return salt;
+    }
+
+    public void setSalt(String salt) {
+	this.salt = salt;
+    }
+
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "roleID")
     public Role getRoleID() {
@@ -81,7 +92,7 @@ public class User extends Entity {
     @Override
     public String toString() {
 	return "User [getId()=" + getId() + ", login=" + login + ", email=" + email + ", password=" + password
-		+ ", roleID=" + roleID + "]";
+		+ ", salt=" + salt + ", roleID=" + roleID + "]";
     }
 
     @Override
@@ -92,6 +103,7 @@ public class User extends Entity {
 	result = prime * result + ((login == null) ? 0 : login.hashCode());
 	result = prime * result + ((password == null) ? 0 : password.hashCode());
 	result = prime * result + ((roleID == null) ? 0 : roleID.hashCode());
+	result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 	return result;
     }
 
@@ -123,6 +135,11 @@ public class User extends Entity {
 	    if (other.roleID != null)
 		return false;
 	} else if (!roleID.equals(other.roleID))
+	    return false;
+	if (salt == null) {
+	    if (other.salt != null)
+		return false;
+	} else if (!salt.equals(other.salt))
 	    return false;
 	return true;
     }

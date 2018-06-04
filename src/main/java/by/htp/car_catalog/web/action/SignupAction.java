@@ -2,6 +2,8 @@ package by.htp.car_catalog.web.action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class SignupAction {
 
     @RequestMapping(method = RequestMethod.POST)
     private String registration(@RequestParam Map<String, String> params, HttpSession session, Model model,
-	    Locale locale) {
+	    Locale locale) throws UnsupportedEncodingException, GeneralSecurityException {
 
 	String login = params.get(REQUEST_PARAM_USER_LOGIN);
 	String email = params.get(REQUEST_PARAM_USER_EMAIL);

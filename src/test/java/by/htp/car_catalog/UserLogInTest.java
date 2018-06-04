@@ -10,7 +10,7 @@ public class UserLogInTest {
 
     @Test
     public void loginUser() {
-	User user = new UserDaoHibernateImpl().read("admin", "admin");
+	User user = new UserDaoHibernateImpl().read("admin");
 	Assert.assertNotNull("String admin not found in database", user);
     }
 }

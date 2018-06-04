@@ -1,5 +1,8 @@
 package by.htp.car_catalog.service.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -8,6 +11,9 @@ import by.htp.car_catalog.dao.UserDao;
 import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
+import by.htp.car_catalog.service.util.sequrity.AES;
+import by.htp.car_catalog.service.util.sequrity.Hash;
+import by.htp.car_catalog.service.util.sequrity.Salt;
 import by.htp.car_catalog.web.util.HttpRequestParamValidator;
 import by.htp.car_catalog.web.util.exception.IOException.ValidateNullObjectException;
 
@@ -19,20 +25,28 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User addUser(String login, String email, String password) {
-
-	User user = new User(0, login, email, password, new Role(2, "user"));
+    public User addUser(String login, String email, String password)
+	    throws UnsupportedEncodingException, GeneralSecurityException {
+	String salt = Salt.getSalt();
+	String hash = Hash.getHash(password, salt);
+	User user = new User(0, login, email, AES.encrypt(hash), salt, new Role(2, "user"));
 	return userDao.create(user);
     }
 
     @Override
-    public User getUser(User user) throws ValidateNullObjectException {
+    public User loginUser(User user)
+	    throws ValidateNullObjectException, UnsupportedEncodingException, GeneralSecurityException {
 
-	user = userDao.read(user.getLogin(), user.getPassword());
-	HttpRequestParamValidator.validateObjectNotNull(user);
+	User dataBaseUser = userDao.read(user.getLogin());
+	HttpRequestParamValidator.validateObjectNotNull(dataBaseUser);
 
-	return user;
-
+	String aes = AES.decrypt(dataBaseUser.getPassword());
+	String hash = Hash.getHash(user.getPassword(), dataBaseUser.getSalt());
+	if (hash.equals(aes)) {
+	    return dataBaseUser;
+	} else {
+	    throw new ValidateNullObjectException();
+	}
     }
 
     @Override

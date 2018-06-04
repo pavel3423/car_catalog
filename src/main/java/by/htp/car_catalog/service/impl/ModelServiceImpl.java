@@ -24,6 +24,10 @@ import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 public class ModelServiceImpl implements ModelService {
 
     @Autowired
+    @Qualifier(value = "fileEditor")
+    private FileEditor fileEditor;
+
+    @Autowired
     @Qualifier(value = "modelDao")
     private ModelCarDao modelDao;
 
@@ -47,7 +51,7 @@ public class ModelServiceImpl implements ModelService {
 
 	if (modelDao.read(brand, model) == null) {
 	    BrandCar brandCar = brandDao.read(brand);
-	    ModelCar modelCar = modelDao.create(new ModelCar(0, brandCar, model, FileEditor.saveFile(uploadedFile)));
+	    ModelCar modelCar = modelDao.create(new ModelCar(0, brandCar, model, fileEditor.saveFile(uploadedFile)));
 	    carDao.create(new Car(0, modelCar));
 	} else {
 	    throw new RepeatorException();
@@ -72,8 +76,8 @@ public class ModelServiceImpl implements ModelService {
 	}
 
 	if (uploadedFile.length() > 0) {
-	    FileEditor.deleteFile(modelCar.getImage());
-	    modelCar.setImage(FileEditor.saveFile(uploadedFile));
+	    fileEditor.deleteFile(modelCar.getImage());
+	    modelCar.setImage(fileEditor.saveFile(uploadedFile));
 	}
 
 	modelDao.update(modelCar);
@@ -84,8 +88,8 @@ public class ModelServiceImpl implements ModelService {
     public void deleteModelAndCar(String brand, String model) {
 	Car car = carDao.readByBrandAndModel(brand, model);
 	ModelCar modelCar = car.getModelID();
-	FileEditor.deleteFile(car.getImage());
-	FileEditor.deleteFile(modelCar.getImage());
+	fileEditor.deleteFile(car.getImage());
+	fileEditor.deleteFile(modelCar.getImage());
 	modelDao.delete(modelCar);
     }
 
@@ -96,8 +100,8 @@ public class ModelServiceImpl implements ModelService {
 	for (Iterator<ModelCar> iterator = modelsCar.iterator(); iterator.hasNext();) {
 	    ModelCar modelCar = iterator.next();
 	    Car car = carDao.readByBrandAndModel(brand, modelCar.getModel());
-	    FileEditor.deleteFile(car.getImage());
-	    FileEditor.deleteFile(modelCar.getImage());
+	    fileEditor.deleteFile(car.getImage());
+	    fileEditor.deleteFile(modelCar.getImage());
 	}
     }
 

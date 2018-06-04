@@ -59,4 +59,6 @@
 		</bean>
 	</mvc:interceptors>
 
+	<bean id="checkModeratorFilter" class="by.htp.car_catalog.filter.CheckModeratorFilter"/>
+
 </beans>

@@ -5,14 +5,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<br>
+			<br> ${error }
 		</div>
 		<c:forEach items="${brands}" var="brand">
 			<div class=" col-md-3">
 				<div class="card">
 					<div class="imageBrand">
 						<a href="${brand.brand}"> <img class="card-img-top"
-							src="<c:url value="/image/${brand.image}" />" alt="${brand.brand}"></a>
+							src="<c:url value="/image/${brand.image}" />"
+							alt="${brand.brand}"></a>
 					</div>
 
 					<div class="card-body" align="center">

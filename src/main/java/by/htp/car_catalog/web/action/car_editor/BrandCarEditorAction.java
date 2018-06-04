@@ -66,7 +66,7 @@ public class BrandCarEditorAction {
 
 	String message = messageSourse.getMessage(BRAND_ADDED, null, locale);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
-	return REDIRECT_TO + "/editor";
+	return REDIRECT_TO + EDITOR;
     }
 
     @RequestMapping(value = "/{brand}/delete", method = RequestMethod.POST)
@@ -79,7 +79,7 @@ public class BrandCarEditorAction {
 	String message = messageSourse.getMessage(BRAND_DELETED, null, locale);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
 
-	return REDIRECT_TO + "/editor";
+	return REDIRECT_TO + EDITOR;
 
     }
 
@@ -93,12 +93,12 @@ public class BrandCarEditorAction {
 
 	    String message = messageSourse.getMessage(BRAND_UPDATED, null, locale);
 	    redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
-	    return REDIRECT_TO + "/editor/" + newBrand;
+	    return REDIRECT_TO + EDITOR_WITH_SLASH + newBrand;
 
 	} catch (ValidateNullStringException e) {
 	    String message = messageSourse.getMessage(CHECK_DATA, null, locale);
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, message);
-	    return REDIRECT_TO + "/editor/" + brand;
+	    return REDIRECT_TO + EDITOR_WITH_SLASH + brand;
 	}
 
     }
@@ -109,7 +109,7 @@ public class BrandCarEditorAction {
 
 	String message = messageSourse.getMessage(CHECK_DATA, null, locale);
 	redirectAttributes.addFlashAttribute(REQUEST_ERROR, message);
-	return REDIRECT_TO + "/editor";
+	return REDIRECT_TO + EDITOR;
     }
 
     @ExceptionHandler(IOException.class)

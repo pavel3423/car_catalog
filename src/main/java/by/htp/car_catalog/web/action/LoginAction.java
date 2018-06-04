@@ -2,6 +2,8 @@ package by.htp.car_catalog.web.action;
 
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import by.htp.car_catalog.domain.User;
 import by.htp.car_catalog.service.UserService;
@@ -44,19 +47,20 @@ public class LoginAction {
 
     @RequestMapping(method = RequestMethod.POST)
     private ModelAndView authorization(@ModelAttribute("user") User user, HttpSession session, Model model,
-	    Locale locale) {
+	    Locale locale, RedirectAttributes redirectAttributes)
+	    throws UnsupportedEncodingException, GeneralSecurityException {
 	try {
 
 	    HttpRequestParamValidator.validateStringNotNull(user.getLogin(), user.getPassword());
-	    user = userService.getUser(user);
+	    user = userService.loginUser(user);
 
 	    session.setAttribute(REQUEST_PARAM_USER, user);
 
 	    return new ModelAndView(REDIRECT_TO + "profile");
 	} catch (ValidateNullParamException e) {
 	    String message = messageSource.getMessage(MSG_NO_USER, null, locale);
-	    model.addAttribute(REQUEST_MSG, message);
-	    return new ModelAndView(PAGE_USER_LOGIN, "command", new User());
+	    redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
+	    return new ModelAndView(REDIRECT_TO + "login");
 	}
     }
 }

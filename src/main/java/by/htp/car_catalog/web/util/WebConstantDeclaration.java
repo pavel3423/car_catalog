@@ -52,6 +52,9 @@ public class WebConstantDeclaration {
     public static final String IMAGE_ROOT = "C:\\car_catalog\\image\\";
     public static final String NO_IMAGE = "C:\\car_catalog\\image\\default-no-image.png";
 
+    public static final String EDITOR = "/editor";
+    public static final String EDITOR_WITH_SLASH = "/editor/";
+
     private WebConstantDeclaration() {
     }
 }

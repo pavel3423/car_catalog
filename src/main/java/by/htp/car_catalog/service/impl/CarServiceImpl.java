@@ -19,6 +19,10 @@ import by.htp.car_catalog.service.util.uploadFile.UploadedFile;
 public class CarServiceImpl implements CarService {
 
     @Autowired
+    @Qualifier(value = "fileEditor")
+    private FileEditor fileEditor;
+
+    @Autowired
     @Qualifier(value = "carDao")
     private CarDao carDao;
 
@@ -60,8 +64,8 @@ public class CarServiceImpl implements CarService {
 	car.setNumberOfPlaces(Integer.parseInt(params.get("numberOfPlaces")));
 
 	if (uploadedFile.length() > 0) {
-	    FileEditor.deleteFile(car.getImage());
-	    car.setImage(FileEditor.saveFile(uploadedFile));
+	    fileEditor.deleteFile(car.getImage());
+	    car.setImage(fileEditor.saveFile(uploadedFile));
 	}
 	carDao.update(car);
 

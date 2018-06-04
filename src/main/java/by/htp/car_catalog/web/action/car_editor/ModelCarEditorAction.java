@@ -71,7 +71,7 @@ public class ModelCarEditorAction {
 	    String message = messageSource.getMessage(CHECK_DATA, null, locale);
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, message);
 	}
-	return REDIRECT_TO + "/editor/" + brand;
+	return REDIRECT_TO + EDITOR_WITH_SLASH + brand;
     }
 
     @RequestMapping(value = "/{brand}/{model}/edit", method = RequestMethod.POST)
@@ -84,25 +84,25 @@ public class ModelCarEditorAction {
 
 	    String message = messageSource.getMessage(MODEL_UPDATED, null, locale);
 	    redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
-	    return REDIRECT_TO + "/editor/" + brand + "/" + newModel;
+	    return REDIRECT_TO + EDITOR_WITH_SLASH + brand + "/" + newModel;
 
 	} catch (ValidateNullStringException | FileNotFoundException e) {
 	    String message = messageSource.getMessage(CHECK_DATA, null, locale);
 	    redirectAttributes.addFlashAttribute(REQUEST_ERROR, message);
-	    return REDIRECT_TO + "/editor/" + brand + "/" + model;
+	    return REDIRECT_TO + EDITOR_WITH_SLASH + brand + "/" + model;
 	}
 
     }
 
     @RequestMapping(value = "/{brand}/{model}/delete", method = RequestMethod.POST)
     public String modelAndCarDelete(@PathVariable("brand") String brand, @PathVariable("model") String model,
-	    RedirectAttributes redirectAttributes, Locale locale) throws IOException {
+	    RedirectAttributes redirectAttributes, Locale locale) {
 
 	modelService.deleteModelAndCar(brand, model);
 
 	String message = messageSource.getMessage(MODEL_DELETED, null, locale);
 	redirectAttributes.addFlashAttribute(REQUEST_MSG, message);
-	return REDIRECT_TO + "/editor/" + brand;
+	return REDIRECT_TO + EDITOR_WITH_SLASH + brand;
 
     }
 

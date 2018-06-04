@@ -8,6 +8,7 @@
 	<packaging>war</packaging>
 
 	<properties>
+		<java-version>9</java-version>
 		<javax.servlet-api-version>4.0.0</javax.servlet-api-version>
 		<jstl-version>1.2</jstl-version>
 		<mysql-connector-version>6.0.6</mysql-connector-version>
@@ -20,6 +21,7 @@
 		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
 		<org.JUnit-version>4.12</org.JUnit-version>
 		<commons-fileupload>1.3.3</commons-fileupload>
+		<commons-codec>1.9</commons-codec>
 	</properties>
 
 	<dependencies>
@@ -118,6 +120,12 @@
 			<version>${commons-fileupload}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -127,8 +135,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin-version}</version>
 				<configuration>
-					<source>9</source>
-					<target>9</target>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

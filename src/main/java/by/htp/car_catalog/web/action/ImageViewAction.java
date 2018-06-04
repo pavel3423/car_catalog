@@ -6,6 +6,7 @@ import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class ImageViewAction {
 
 	HttpHeaders headers = new HttpHeaders();
 	headers.setContentLength(imageByte.length);
-	return new HttpEntity<byte[]>(imageByte, headers);
+	return new HttpEntity<>(imageByte, headers);
     }
 
     public byte[] read(String image) {
@@ -45,7 +46,8 @@ public class ImageViewAction {
 	try {
 	    return Files.readAllBytes(new File(NO_IMAGE).toPath());
 	} catch (IOException e) {
-	    return null;
+	    LogManager.getLogger().error("Class ImageViewAction", e);
+	    return new byte[0];
 	}
     }
 }

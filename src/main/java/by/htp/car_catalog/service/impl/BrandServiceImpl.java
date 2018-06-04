@@ -22,13 +22,17 @@ public class BrandServiceImpl implements BrandService {
     @Qualifier(value = "brandDao")
     private BrandCarDao brandDao;
 
+    @Autowired
+    @Qualifier(value = "fileEditor")
+    private FileEditor fileEditor;
+
     @Override
     public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 
 	if (brandDao.read(brand) == null) {
 
-	    String fileName = FileEditor.saveFile(uploadedFile);
+	    String fileName = fileEditor.saveFile(uploadedFile);
 	    brandDao.create(new BrandCar(0, brand, fileName));
 
 	} else {
@@ -45,7 +49,7 @@ public class BrandServiceImpl implements BrandService {
     public void deleteBrand(String brand) throws IOException {
 
 	BrandCar brandCar = brandDao.read(brand);
-	FileEditor.deleteFile(brandCar.getImage());
+	fileEditor.deleteFile(brandCar.getImage());
 	brandDao.delete(brandCar);
     }
 
@@ -60,8 +64,8 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	if (uploadedFile.length() > 0) {
-	    FileEditor.deleteFile(brandCar.getImage());
-	    brandCar.setImage(FileEditor.saveFile(uploadedFile));
+	    fileEditor.deleteFile(brandCar.getImage());
+	    brandCar.setImage(fileEditor.saveFile(uploadedFile));
 	}
 
 	brandDao.update(brandCar);
