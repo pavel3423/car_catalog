@@ -2,6 +2,9 @@ package by.htp.car_catalog.domain;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @javax.persistence.Entity
 @Table(name = "users")
 

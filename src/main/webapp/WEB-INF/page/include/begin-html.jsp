@@ -53,7 +53,7 @@
 								href="<c:url value="/profile"/>"><spring:message
 										code="Profile" /></a></li>
 							<li class="nav-item active"><a class="nav-link"
-								href="<c:url value="/logout"/>"><spring:message
+								href="j_spring_security_logout"><spring:message
 										code="Logout" /></a></li>
 						</c:if>
 
