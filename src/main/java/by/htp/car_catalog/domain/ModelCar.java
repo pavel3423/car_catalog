@@ -29,7 +29,7 @@ public class ModelCar extends Entity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Override
     public int getId() {
@@ -41,7 +41,7 @@ public class ModelCar extends Entity {
 	super.setId(id);
     }
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = { CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
     @JoinColumn(name = "brandID")
     public BrandCar getBrandID() {
 	return brandID;

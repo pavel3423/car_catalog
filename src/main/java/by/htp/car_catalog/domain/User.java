@@ -2,9 +2,6 @@ package by.htp.car_catalog.domain;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 @javax.persistence.Entity
 @Table(name = "users")
 
@@ -38,7 +35,7 @@ public class User extends Entity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     @Override
     public int getId() {

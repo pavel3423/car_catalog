@@ -24,7 +24,7 @@ public class Role extends Entity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Override
     public int getId() {

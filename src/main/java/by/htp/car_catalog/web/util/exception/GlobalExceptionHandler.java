@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleBadFileNameException(Exception ex) {
-	LogManager.getLogger().error("Unknown error", ex);
+	LogManager.getLogger().error("Unknown command", ex);
 	ModelAndView modelAndView = new ModelAndView(PAGE_ERROR);
 	modelAndView.addObject(REQUEST_ERROR, "Unknown error");
 	return modelAndView;

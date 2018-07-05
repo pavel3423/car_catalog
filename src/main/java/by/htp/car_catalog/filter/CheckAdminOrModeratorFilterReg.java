@@ -10,7 +10,7 @@ import by.htp.car_catalog.domain.Role;
 import by.htp.car_catalog.domain.User;
 import static by.htp.car_catalog.web.util.WebConstantDeclaration.*;
 
-public class CheckModeratorFilter extends GenericFilterBean {
+public class CheckAdminOrModeratorFilterReg extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

@@ -69,7 +69,7 @@ public class Car extends Entity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Override
     public int getId() {
@@ -81,7 +81,7 @@ public class Car extends Entity {
 	super.setId(id);
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "modelID", nullable = true)
     public ModelCar getModelID() {
 	return modelID;

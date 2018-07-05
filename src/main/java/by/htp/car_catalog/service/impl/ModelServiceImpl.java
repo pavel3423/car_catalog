@@ -28,31 +28,30 @@ public class ModelServiceImpl implements ModelService {
     private FileEditor fileEditor;
 
     @Autowired
-    @Qualifier(value = "modelDao")
+
     private ModelCarDao modelDao;
 
     @Autowired
-    @Qualifier(value = "brandDao")
     private BrandCarDao brandDao;
 
     @Autowired
-    @Qualifier(value = "carDao")
     private CarDao carDao;
 
     @Override
     public List<ModelCar> readByBrand(String brand) {
 
-	return modelDao.readByBrand(brand);
+	return modelDao.findBybrandID_brand(brand);
     }
 
     @Override
     public void addModel(String brand, String model, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand, model);
 
-	if (modelDao.read(brand, model) == null) {
-	    BrandCar brandCar = brandDao.read(brand);
-	    ModelCar modelCar = modelDao.create(new ModelCar(0, brandCar, model, fileEditor.saveFile(uploadedFile)));
-	    carDao.create(new Car(0, modelCar));
+	if (modelDao.findByBrandID_brandAndModel(brand, model) == null) {
+	    BrandCar brandCar = brandDao.findByBrand(brand);
+	    
+	    ModelCar modelCar = modelDao.save(new ModelCar(0, brandCar, model, fileEditor.saveFile(uploadedFile)));
+	    carDao.save(new Car(0, modelCar));
 	} else {
 	    throw new RepeatorException();
 	}
@@ -60,7 +59,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public boolean checkBrand(String brand) {
-	BrandCar brandCar = brandDao.read(brand);
+	BrandCar brandCar = brandDao.findByBrand(brand);
 	return brandCar != null;
 
     }
@@ -69,7 +68,7 @@ public class ModelServiceImpl implements ModelService {
     public void editModel(String brand, String model, String newModel, UploadedFile uploadedFile) throws IOException {
 
 	HttpRequestParamValidator.validateStringNotNull(newModel);
-	ModelCar modelCar = modelDao.read(brand, model);
+	ModelCar modelCar = modelDao.findByBrandID_brandAndModel(brand, model);
 
 	if (model != newModel) {
 	    modelCar.setModel(newModel);
@@ -80,13 +79,13 @@ public class ModelServiceImpl implements ModelService {
 	    modelCar.setImage(fileEditor.saveFile(uploadedFile));
 	}
 
-	modelDao.update(modelCar);
+	modelDao.save(modelCar);
 
     }
 
     @Override
     public void deleteModelAndCar(String brand, String model) {
-	Car car = carDao.readByBrandAndModel(brand, model);
+	Car car = carDao.findByModelID_BrandID_BrandAndModelID_Model(brand, model);
 	ModelCar modelCar = car.getModelID();
 	fileEditor.deleteFile(car.getImage());
 	fileEditor.deleteFile(modelCar.getImage());
@@ -96,10 +95,10 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public void deleteAllModelAndCarImage(String brand) {
 
-	List<ModelCar> modelsCar = modelDao.readByBrand(brand);
+	List<ModelCar> modelsCar = modelDao.findBybrandID_brand(brand);
 	for (Iterator<ModelCar> iterator = modelsCar.iterator(); iterator.hasNext();) {
 	    ModelCar modelCar = iterator.next();
-	    Car car = carDao.readByBrandAndModel(brand, modelCar.getModel());
+	    Car car = carDao.findByModelID_BrandID_BrandAndModelID_Model(brand, modelCar.getModel());
 	    fileEditor.deleteFile(car.getImage());
 	    fileEditor.deleteFile(modelCar.getImage());
 	}

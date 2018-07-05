@@ -46,20 +46,20 @@
 			<div class="card">
 				<c:url var="edit_url" value="/editor" />
 				<form:form enctype="multipart/form-data"
-					modelAttribute="uploadedFile" action='${edit_url }' method="POST">
+						modelAttribute="uploadedFile" method="POST" action='${edit_url }'>
 					<div class="imageBrand">
 						<div class="form-group" style="font-size: 9pt;">
-							<label for="exampleFormControlFile1"><spring:message
+							<label ><spring:message
 									code="Select an image. (the recommended size is 500 x 500 px and not more than 3 MB)" /></label>
 							<input type="file" name="file" class="form-control-file"
-								id="uploadedFile">
+								id="uploadedFile"/>
 						</div>
 					</div>
 
 					<div class="card-body" align="center" style="margin-bottom: -40px;">
 						<div class="form-group" style="margin-top: -70px">
 							<label><spring:message code="Brand name" /></label> <input
-								name="brand" type="text" class="form-control" id="input">
+								id="brand" name="brand" type="text" class="form-control"/>
 						</div>
 						<button type="submit" class="btn btn-primary mb-2">
 							<spring:message code="Upload" />

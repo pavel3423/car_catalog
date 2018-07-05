@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import by.htp.car_catalog.dao.UserDao;
@@ -21,7 +20,6 @@ import by.htp.car_catalog.web.util.exception.IOException.ValidateNullObjectExcep
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    @Qualifier(value = "userDao")
     private UserDao userDao;
 
     @Override
@@ -30,14 +28,14 @@ public class UserServiceImpl implements UserService {
 	String salt = Salt.getSalt();
 	String hash = Hash.getHash(password, salt);
 	User user = new User(0, login, email, AES.encrypt(hash), salt, new Role(2, "user"));
-	return userDao.create(user);
+	return userDao.save(user);
     }
 
     @Override
     public User loginUser(User user)
 	    throws ValidateNullObjectException, UnsupportedEncodingException, GeneralSecurityException {
 
-	User dataBaseUser = userDao.read(user.getLogin());
+	User dataBaseUser = userDao.findByLogin(user.getLogin());
 	HttpRequestParamValidator.validateObjectNotNull(dataBaseUser);
 
 	String aes = AES.decrypt(dataBaseUser.getPassword());
@@ -51,7 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-	userDao.update(user);
+
+	userDao.save(user);
 
     }
 

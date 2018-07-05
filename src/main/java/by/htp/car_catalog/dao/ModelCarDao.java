@@ -2,12 +2,14 @@ package by.htp.car_catalog.dao;
 
 import java.util.List;
 
+import org.springframework.data.repository.CrudRepository;
+
 import by.htp.car_catalog.domain.ModelCar;
 
-public interface ModelCarDao extends BaseDao<ModelCar> {
+public interface ModelCarDao extends CrudRepository<ModelCar, Integer> {
 
-    List<ModelCar> readByBrand(String brand);
+    List<ModelCar> findBybrandID_brand(String brand);
 
-    ModelCar read(String brand, String model);
+    ModelCar findByBrandID_brandAndModel(String brand, String model);
 
 }

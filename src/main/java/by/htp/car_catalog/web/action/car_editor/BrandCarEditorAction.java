@@ -61,8 +61,9 @@ public class BrandCarEditorAction {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String brandAdd(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, @RequestParam String brand,
-	    RedirectAttributes redirectAttributes, Locale locale) throws IOException {
+    public String brandAdd(@ModelAttribute("uploadedFile") UploadedFile uploadedFile,
+	    @RequestParam(value = "brand") String brand, RedirectAttributes redirectAttributes,
+	    Locale locale) throws IOException {
 
 	brandService.addBrand(brand, uploadedFile);
 

@@ -10,35 +10,29 @@
 	</div>
 </c:if>
 
-<c:url var="loginUrl" value="/login" />
-<form class="form-horizontal col-md-4" method="post"
-	action="${loginUrl }">
-	<fieldset>
-		<legend>
-			<spring:message code="Login" />
-		</legend>
-	</fieldset>
+<form:form class="form-horizontal col-md-4" method="post" action="login">
+
+	<legend>
+		<spring:message code="Login" />
+	</legend>
 
 	<fieldset>
-
 		<div class="form-group ">
-			<label class="control-label" for="Login"> <spring:message
-					code="label.login" />:
-			</label> <input id="user" class="form-control input-md" type="text"
-				name="user" required />
+			<form:label class="control-label" for="Login" path="login">
+				<spring:message code="label.login" />:</form:label>
+			<form:input class="form-control input-md" path="login" />
 		</div>
 		<div class="form-group ">
-			<label class="control-label" for="Password"> <spring:message
-					code="label.password" />:
-			</label> <input id="password" class="form-control input-md" type="password"
-				name="password" required />
+			<form:label class="control-label" for="Password" path="password">
+				<spring:message code="label.password" />:</form:label>
+			<form:password class="form-control input-md" path="password" />
 		</div>
 
 	</fieldset>
 	<div class="form-group ">
-		<input type="submit" class="btn btn-success"
-			value='<spring:message code="Login" />' />
+		<input class="btn btn-success" type="submit"
+			value="<spring:message code="Login" />" />
 	</div>
-</form>
+</form:form>
 
 <%@ include file="../include/end-html.jsp"%>

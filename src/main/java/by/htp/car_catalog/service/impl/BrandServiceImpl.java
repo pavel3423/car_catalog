@@ -19,21 +19,20 @@ import by.htp.car_catalog.web.util.exception.runtimeException.RepeatorException;
 public class BrandServiceImpl implements BrandService {
 
     @Autowired
-    @Qualifier(value = "brandDao")
-    private BrandCarDao brandDao;
-
-    @Autowired
     @Qualifier(value = "fileEditor")
     private FileEditor fileEditor;
+
+    @Autowired
+    private BrandCarDao brandDao;
 
     @Override
     public void addBrand(String brand, UploadedFile uploadedFile) throws IOException {
 	HttpRequestParamValidator.validateStringNotNull(brand);
 
-	if (brandDao.read(brand) == null) {
+	if (brandDao.findByBrand(brand) == null) {
 
 	    String fileName = fileEditor.saveFile(uploadedFile);
-	    brandDao.create(new BrandCar(0, brand, fileName));
+	    brandDao.save(new BrandCar(0, brand, fileName));
 
 	} else {
 	    throw new RepeatorException();
@@ -42,13 +41,13 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandCar> getAllBrands() {
-	return brandDao.readAll();
+	return (List<BrandCar>) brandDao.findAll();
     }
 
     @Override
     public void deleteBrand(String brand) throws IOException {
 
-	BrandCar brandCar = brandDao.read(brand);
+	BrandCar brandCar = brandDao.findByBrand(brand);
 	fileEditor.deleteFile(brandCar.getImage());
 	brandDao.delete(brandCar);
     }
@@ -57,7 +56,7 @@ public class BrandServiceImpl implements BrandService {
     public void editBrand(String brand, String newBrand, UploadedFile uploadedFile) throws IOException {
 
 	HttpRequestParamValidator.validateStringNotNull(newBrand);
-	BrandCar brandCar = brandDao.read(brand);
+	BrandCar brandCar = brandDao.findByBrand(brand);
 
 	if (brand != newBrand) {
 	    brandCar.setBrand(newBrand);
@@ -68,7 +67,7 @@ public class BrandServiceImpl implements BrandService {
 	    brandCar.setImage(fileEditor.saveFile(uploadedFile));
 	}
 
-	brandDao.update(brandCar);
+	brandDao.save(brandCar);
     }
 
 }

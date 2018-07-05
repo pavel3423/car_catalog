@@ -23,29 +23,27 @@ public class CarServiceImpl implements CarService {
     private FileEditor fileEditor;
 
     @Autowired
-    @Qualifier(value = "carDao")
     private CarDao carDao;
 
     @Autowired
-    @Qualifier(value = "modelDao")
     private ModelCarDao modelDao;
 
     @Override
     public Car readByBrandAndModel(String brand, String model) {
 
-	return carDao.readByBrandAndModel(brand, model);
+	return carDao.findByModelID_BrandID_BrandAndModelID_Model(brand, model);
     }
 
     @Override
     public boolean checkModel(String brand, String model) {
-	ModelCar modelCar = modelDao.read(brand, model);
+	ModelCar modelCar = modelDao.findByBrandID_brandAndModel(brand, model);
 	return modelCar != null;
     }
 
     @Override
     public Car createCar(String brand, String model) {
-	ModelCar modelCar = modelDao.read(brand, model);
-	return carDao.create(new Car(0, modelCar));
+	ModelCar modelCar = modelDao.findByBrandID_brandAndModel(brand, model);
+	return carDao.save(new Car(0, modelCar));
     }
 
     @Override
@@ -67,7 +65,8 @@ public class CarServiceImpl implements CarService {
 	    fileEditor.deleteFile(car.getImage());
 	    car.setImage(fileEditor.saveFile(uploadedFile));
 	}
-	carDao.update(car);
+
+	carDao.save(car);
 
 	return car;
     }
